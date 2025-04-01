@@ -7,13 +7,12 @@
     color: white;
 }
 
-
-.logo {
+.logo a {
     font-size: 24px;
     font-weight: bold;
-    cursor: pointer;
+    color: white;
+    text-decoration: none;
 }
-
 
 .nav a {
     margin: 0 15px;
