@@ -1,0 +1,80 @@
+.landing-container {
+    text-align: center;
+    padding: 50px;
+    background-image: url('https://www.protech.co.uk/wp-content/uploads/2019/03/event-management-2.png'); /* External URL */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white; /* Adjust text color for better visibility */
+    overflow: hidden; /* Prevent scrolling */
+}
+
+.content-box {
+    background: linear-gradient(135deg, #ff7e5f, #feb47b); /* Vibrant gradient colors */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    text-align: center;
+    animation: floatIn 1.5s ease-out; /* Add animation */
+}
+
+@keyframes floatIn {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    50% {
+        transform: translateY(40px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.content-box h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.content-box p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.landing-container button {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.landing-container button:hover {
+    background-color: #0056b3;
+}
+
+@media (max-width: 600px) {
+    .landing-container h1 {
+        font-size: 28px;
+    }
+
+    .landing-container p {
+        font-size: 16px;
+    }
+
+    .landing-container button {
+        padding: 8px 16px;
+        margin: 8px;
+    }
+}
