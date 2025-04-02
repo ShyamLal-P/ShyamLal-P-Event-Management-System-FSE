@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HeaderComponent } from './header/header.component';
 import { LandingComponent } from './landing/landing.component';
+import { FormsModule } from '@angular/forms'; // Import FormsModule
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,8 @@ import { LandingComponent } from './landing/landing.component';
     LoginComponent,
     RegisterComponent,
     HeaderComponent,
-    LandingComponent
+    LandingComponent,
+    FormsModule // Add FormsModule here
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
