@@ -1,69 +1,152 @@
+html, body {
+  height: 100vh; /* Full viewport height */
+  width: 100vw;  /* Ensures full screen width */
+  margin: 0; /* Removes default margins */
+  padding: 0; /* Removes default padding */
+  overflow: hidden; /* Removes scrollbars */
+  background-image: url('https://res.cloudinary.com/dwwpovlcs/image/upload/v1743671513/file_000000004330523093ad479036872e0c_conversation_id_67ee4eca-03b8-8007-97a8-d655f8d9bd44_message_id_8577b131-1c2b-431f-a012-495de3fa379f_tgmqk2.png'); /* Bubble effect URL */
+  background-size: cover; /* Ensures the image covers the entire viewport */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents repetition */
+  display: flex; /* Enables Flexbox layout */
+  justify-content: center; /* Centers the content horizontally */
+  align-items: center; /* Centers the content vertically */
+}
+
+.form-container h2 {
+  font-weight: 100px;
+  font-size: 30px;
+  text-align: center;
+}
+
 .form-container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #f8f9fa;
+  position: relative; /* Keeps the form in place */
+  width: 80%; /* Adjusted width for smaller screens */
+  max-width: 400px; /* Restricts the maximum width */
+  padding: 30px; /* Adds inner spacing */
+  border: 2px solid rgba(47, 237, 247, 0.8); /* Border with transparency */
+  border-width: 4px;
+  border-radius: 8px; /* Rounded corners */
+  background-color: rgba(255, 255, 255, 0.5); /* Transparent background */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  text-align: left; /* Aligns text content */
+  box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
 }
 
 .form-group {
-    margin-bottom: 15px;
+  margin-bottom: 15px; /* Adds space between form fields */
 }
 
 .form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+  display: block; /* Makes labels block elements */
+  margin-bottom: 5px; /* Adds spacing below labels */
+  font-weight: bold; /* Makes labels bold for visibility */
 }
 
 .form-group input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+  width: 100%; /* Matches the width of the button */
+  padding: 10px; /* Adds padding for consistent design */
+  border: 1px solid #ddd; /* Matches form border style */
+  border-radius: 4px; /* Adds rounded corners */
+  box-sizing: border-box; /* Ensures consistent width calculations */
+  border: 1.5px solid rgba(47, 237, 247, 0.8); /* Border with transparency */
+  transition: transform 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease; /* Smooth transition for effects */
+}
+
+.form-group input:hover {
+  border-color: #007bff; /* Changes border color on hover */
+  box-shadow: 0 6px 20px rgba(0, 94, 255, 0.9); /* Adds a glowing effect with shadow */
+  transform: translateY(-5px); /* Moves the input field slightly upward */
+}
+
+.form-group label {
+  font-size: 20px;
 }
 
 button {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    background-color: #007bff;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
+  width: 100%; /* Matches the input field width */
+  padding: 10px; /* Ensures consistent padding */
+  font-size: 15px;
+  border: none; /* Removes border for a clean look */
+  border-radius: 4px; /* Matches input design */
+  background-color: #007bff; /* Blue button background */
+  color: white; /* White text for contrast */
+  font-weight: bold; /* Bold text for emphasis */
+  cursor: pointer; /* Indicates interactivity */
+  transition: transform 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease; /* Smooth transition for effects */
 }
-
 
 button:hover {
-    background-color: #0056b3;
+  background-color: #00b300; /* Changes the background to a darker blue on hover */
+  transform: scale(1.05); /* Slightly scales up the button on hover for emphasis */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow for a lifted look */
+  transform: translateY(-5px); /* Moves the input field slightly upward */
 }
+
 .message {
-  position: fixed;
-  top: 0;
-  left: 50%;
+  position: fixed; /* Fixes message position */
+  top: 10px; /* Aligns message slightly below the top */
+  left: 50%; /* Centers message horizontally */
   transform: translateX(-50%);
-  padding: 10px;
-  border-radius: 5px;
-  color: white;
-  animation: slideDown 0.5s ease-in-out;
-  z-index: 1000; /* Ensure the message is on top */
+  padding: 10px; /* Adds spacing inside the message */
+  border-radius: 5px; /* Rounded corners for messages */
+  color: white; /* White text for readability */
+  animation: slideDown 0.5s ease-in-out; /* Adds sliding animation */
+  z-index: 1000; /* Ensures the message is above other elements */
 }
 
 .message.success {
-  background-color: green;
+  background-color: green; /* Green background for success messages */
 }
 
 .message.error {
-  background-color: red;
+  background-color: red; /* Red background for error messages */
 }
 
 @keyframes slideDown {
   from {
-    top: -50px;
+    top: -50px; /* Starts above the viewport */
   }
   to {
-    top: 0;
+    top: 10px; /* Ends slightly below the top */
+  }
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .form-container {
+    width: 90%; /* Adjusts width for tablets */
+    padding: 20px; /* Reduces padding for smaller screens */
+  }
+
+  .form-container h2 {
+    font-size: 24px; /* Adjusts font size for smaller screens */
+  }
+
+  .form-group label {
+    font-size: 18px; /* Adjusts label font size for smaller screens */
+  }
+
+  button {
+    font-size: 14px; /* Adjusts button font size for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .form-container {
+    width: 100%; /* Full width for mobile devices */
+    padding: 15px; /* Further reduces padding for mobile devices */
+  }
+
+  .form-container h2 {
+    font-size: 20px; /* Further adjusts font size for mobile devices */
+  }
+
+  .form-group label {
+    font-size: 16px; /* Further adjusts label font size for mobile devices */
+  }
+
+  button {
+    font-size: 13px; /* Further adjusts button font size for mobile devices */
   }
 }

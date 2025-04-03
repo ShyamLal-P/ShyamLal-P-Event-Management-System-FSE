@@ -1,21 +1,22 @@
 import { Component } from '@angular/core';
-import { RouterOutlet, RouterModule } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HeaderComponent } from './header/header.component';
 import { LandingComponent } from './landing/landing.component';
 import { FormsModule } from '@angular/forms'; // Import FormsModule
+import { HomeComponent } from './home/home.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     RouterOutlet,
-    RouterModule,
     LoginComponent,
     RegisterComponent,
     HeaderComponent,
     LandingComponent,
+    HomeComponent,
     FormsModule // Add FormsModule here
   ],
   templateUrl: './app.component.html',

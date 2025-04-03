@@ -1,18 +1,21 @@
-<app-header></app-header>
-<div class="form-container">
-  <h2>Login</h2>
-  <form (ngSubmit)="login()">
-    <div class="form-group">
-      <label for="username">Email:</label>
-      <input type="email" id="username" name="username" [(ngModel)]="credentials.username" required>
+<body>
+  <app-header></app-header>
+  <div class="form-container">
+    <h2>Login</h2>
+    <form (ngSubmit)="login()">
+      <div class="form-group">
+        <label for="username">Email:</label>
+        <input type="email" id="username" name="username" [(ngModel)]="credentials.username" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" [(ngModel)]="credentials.password" required>
+      </div><br>
+      <button type="submit">Login</button>
+    </form>
+    <div *ngIf="message" class="message" [ngClass]="{'success': isSuccess, 'error': !isSuccess}">
+      {{ message }}
     </div>
-    <div class="form-group">
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" [(ngModel)]="credentials.password" required>
-    </div>
-    <button type="submit">Login</button>
-  </form>
-  <div *ngIf="message" class="message" [ngClass]="{'success': isSuccess, 'error': !isSuccess}">
-    {{ message }}
   </div>
-</div>
+  </body>
+  

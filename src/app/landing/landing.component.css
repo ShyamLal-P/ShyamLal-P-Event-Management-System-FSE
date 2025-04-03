@@ -23,7 +23,7 @@ html, body {
 
 .content-box {
     background: linear-gradient(135deg, rgba(95, 124, 255, 0.9), rgba(254, 180, 123, 0.9)); /* Semi-transparent gradient */
-    padding: 3%; /* Inner spacing */
+    padding: 1%; /* Inner spacing */
     border-radius: 10px; /* Rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     width: 80%; /* Responsive width */
@@ -38,7 +38,7 @@ html, body {
   .content-box:hover {
     transform: scale(1.05); /* Slightly enlarges the box */
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2), 0 0 30px rgb(98, 255, 95), 0 0 60px rgba(255, 167, 95, 0.8); /* Larger and brighter glow effect */
-    opacity: 1; /* Ensures full visibility */
+    opacity: 0.9; /* Ensures full visibility */
     border-color: rgba(255, 167, 95, 1); /* Highlights the border with intense glow */
   }
 

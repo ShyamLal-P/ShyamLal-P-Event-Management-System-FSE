@@ -1,11 +1,12 @@
 html, body {
     height: 100%; /* Ensure the entire page height is used */
     margin: 0;
-    padding:0;
-    width:100%;
+    padding: 0;
+    width: 100%;
     scroll-behavior: unset;
     overflow: hidden; /* Disable scrolling */
 }
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -20,14 +21,14 @@ html, body {
     color: white;
     overflow: hidden;
 }
- 
+
 .logo a {
     font-size: 24px;
     font-weight: bold;
     color: white;
     text-decoration: none;
 }
- 
+
 .nav a {
     margin: 0 15px;
     color: white;
@@ -35,8 +36,46 @@ html, body {
     font-size: 18px;
     transition: color 0.3s ease, border-bottom 0.3s ease;
 }
- 
+
 .nav a:hover {
     color: #ff7e5f; /* Change color on hover */
     border-bottom: 2px solid #ff7e5f; /* Add underline effect on hover */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column; /* Stack items vertically */
+        align-items: flex-start; /* Align items to the start */
+        padding: 10px; /* Reduce padding */
+    }
+
+    .logo a {
+        font-size: 20px; /* Adjust font size */
+    }
+
+    .nav {
+        display: flex;
+        flex-direction: column; /* Stack navigation links vertically */
+        width: 100%; /* Full width */
+    }
+
+    .nav a {
+        margin: 5px 0; /* Adjust margin */
+        font-size: 16px; /* Adjust font size */
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 5px; /* Further reduce padding */
+    }
+
+    .logo a {
+        font-size: 18px; /* Further adjust font size */
+    }
+
+    .nav a {
+        font-size: 14px; /* Further adjust font size */
+    }
 }
