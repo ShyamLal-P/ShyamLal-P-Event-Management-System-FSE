@@ -1,19 +1,33 @@
+html, body {
+    height: 100%; /* Ensure the entire page height is used */
+    margin: 0;
+    padding:0;
+    width:100%;
+    scroll-behavior: unset;
+    overflow: hidden; /* Disable scrolling */
+}
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: fixed; /* Fixes the header at the top */
+    top: 0; /* Aligns the header to the top of the page */
+    left: 0; /* Ensures the header spans the left side */
+    width: 98%; /* Makes the header take up the entire width of the page */
+    z-index: 1000;
     padding: 20px;
     background-color: #333;
     color: white;
+    overflow: hidden;
 }
-
+ 
 .logo a {
     font-size: 24px;
     font-weight: bold;
     color: white;
     text-decoration: none;
 }
-
+ 
 .nav a {
     margin: 0 15px;
     color: white;
@@ -21,7 +35,7 @@
     font-size: 18px;
     transition: color 0.3s ease, border-bottom 0.3s ease;
 }
-
+ 
 .nav a:hover {
     color: #ff7e5f; /* Change color on hover */
     border-bottom: 2px solid #ff7e5f; /* Add underline effect on hover */

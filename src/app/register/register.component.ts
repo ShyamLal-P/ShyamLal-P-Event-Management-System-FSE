@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms'; // Import FormsModule
 import { AuthService } from '../services/auth.service';
+import { HeaderComponent } from "../header/header.component";
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FormsModule], // Add FormsModule here
+  imports: [FormsModule, HeaderComponent], // Add FormsModule here
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })

@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common'; // Import CommonModule
 import { AuthService } from '../services/auth.service';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, CommonModule], // Add CommonModule here
+  imports: [FormsModule, CommonModule, HeaderComponent], // Add CommonModule here
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
@@ -23,11 +24,13 @@ export class LoginComponent {
       console.log('Login successful', response);
       this.isSuccess = true;
       this.message = 'Login successful!';
+      console.log('Message set to:', this.message);
       this.clearMessage();
     }, error => {
       console.error('Login failed', error);
       this.isSuccess = false;
       this.message = 'Login failed. Please try again.';
+      console.log('Message set to:', this.message);
       this.clearMessage();
     });
   }
@@ -35,6 +38,7 @@ export class LoginComponent {
   clearMessage() {
     setTimeout(() => {
       this.message = null;
+      console.log('Message cleared');
     }, 3000); // Clear message after 3 seconds
   }
 }
