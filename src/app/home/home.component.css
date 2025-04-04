@@ -1,0 +1,31 @@
+.slide-message {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4caf50; /* Green background */
+    color: white; /* White text */
+    padding: 16px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    animation: slideDown 1s ease-out, slideUp 1s ease-in 4s; /* Slide down and then slide up after 4 seconds */
+  }
+  
+  @keyframes slideDown {
+    from {
+      top: -50px;
+    }
+    to {
+      top: 20px;
+    }
+  }
+  
+  @keyframes slideUp {
+    from {
+      top: 20px;
+    }
+    to {
+      top: -50px;
+    }
+  }
+  

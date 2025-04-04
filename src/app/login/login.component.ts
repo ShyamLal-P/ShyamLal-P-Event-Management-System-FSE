@@ -3,6 +3,8 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common'; // Import CommonModule
 import { AuthService } from '../services/auth.service';
 import { HeaderComponent } from '../header/header.component';
+import { Router } from '@angular/router'; // Import Router
+import { MessageService } from '../services/message.service'; // Import MessageService
 
 @Component({
   selector: 'app-login',
@@ -16,7 +18,7 @@ export class LoginComponent {
   message: string | null = null;
   isSuccess: boolean = false;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router, private messageService: MessageService) { } // Inject MessageService
 
   login() {
     console.log('Login method called');
@@ -25,7 +27,9 @@ export class LoginComponent {
       this.isSuccess = true;
       this.message = 'Login successful!';
       console.log('Message set to:', this.message);
-      this.clearMessage();
+      this.messageService.setMessage(this.message); // Set message in service
+      this.router.navigate(['/home']);
+      console.log('Navigating to home');
     }, error => {
       console.error('Login failed', error);
       this.isSuccess = false;
