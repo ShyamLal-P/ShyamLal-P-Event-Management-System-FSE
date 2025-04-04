@@ -9,7 +9,7 @@
     <li><a routerLink="/profile">Profile</a></li>
   </ul>
   <ul class="bottom-menu">
-    <li><a routerLink="/logout" class="logout-link">Logout</a></li>
+    <li><a (click)="logout()" class="logout-link">Logout</a></li>
   </ul>
 </div>
 <button class="toggle-button" (click)="toggleSidebar()">&#9776;</button>

@@ -18,25 +18,33 @@ export class LoginComponent {
   message: string | null = null;
   isSuccess: boolean = false;
 
-  constructor(private authService: AuthService, private router: Router, private messageService: MessageService) { } // Inject MessageService
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private messageService: MessageService // Inject MessageService
+  ) {}
 
   login() {
     console.log('Login method called');
-    this.authService.login(this.credentials).subscribe(response => {
-      console.log('Login successful', response);
-      this.isSuccess = true;
-      this.message = 'Login successful!';
-      console.log('Message set to:', this.message);
-      this.messageService.setMessage(this.message); // Set message in service
-      this.router.navigate(['/home']);
-      console.log('Navigating to home');
-    }, error => {
-      console.error('Login failed', error);
-      this.isSuccess = false;
-      this.message = 'Login failed. Please try again.';
-      console.log('Message set to:', this.message);
-      this.clearMessage();
-    });
+    this.authService.login(this.credentials).subscribe(
+      response => {
+        console.log('Login successful', response);
+        this.isSuccess = true;
+        this.message = 'Login successful!';
+        console.log('Message set to:', this.message);
+        this.messageService.setMessage(this.message); // Set message in service
+        localStorage.setItem('userToken', response.token); // Save token to localStorage
+        this.router.navigate(['/home']);
+        console.log('Navigating to home');
+      },
+      error => {
+        console.error('Login failed', error);
+        this.isSuccess = false;
+        this.message = 'Login failed. Please try again.';
+        console.log('Message set to:', this.message);
+        this.clearMessage();
+      }
+    );
   }
 
   clearMessage() {
