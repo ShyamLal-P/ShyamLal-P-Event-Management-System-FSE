@@ -1,8 +1,10 @@
+<app-sidebar (sidebarToggled)="onSidebarToggled($event)"></app-sidebar>
+
 <div *ngIf="showMessage" class="slide-message">
   {{ message }}
 </div>
 
-<div class="home-container">
+<div class="home-container" [class.sidebar-open]="isSidebarOpen">
   <h1>Welcome to the Home Page!</h1>
   <p>This is the home component.</p>
 </div>

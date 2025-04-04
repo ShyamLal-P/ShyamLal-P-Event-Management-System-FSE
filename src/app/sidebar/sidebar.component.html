@@ -1,0 +1,14 @@
+<div class="sidebar" [class.closed]="!isOpen">
+    <ul>
+      <li><a routerLink="/home">Home</a></li>
+      <li><a routerLink="/events">Events</a></li>
+      <li><a routerLink="/book-tickets">Book Tickets</a></li>
+      <li><a routerLink="/my-bookings">My Bookings</a></li>
+      <li><a routerLink="/feedback">Feedback</a></li>
+      <li><a routerLink="/notifications">Notifications</a></li>
+      <li><a routerLink="/profile">Profile</a></li>
+      <li><a routerLink="/logout">Logout</a></li>
+    </ul>
+  </div>
+  <button class="toggle-button" (click)="toggleSidebar()">&#9776;</button>
+  

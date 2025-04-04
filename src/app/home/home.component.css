@@ -1,14 +1,23 @@
-.slide-message {
+.home-container {
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+  }
+  
+  .home-container.sidebar-open {
+    margin-left: 250px; /* Adjust based on sidebar width */
+  }
+  
+  .slide-message {
     position: fixed;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #4caf50; /* Green background */
-    color: white; /* White text */
+    background-color: #4caf50;
+    color: white;
     padding: 16px;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    animation: slideDown 1s ease-out, slideUp 1s ease-in 4s; /* Slide down and then slide up after 4 seconds */
+    animation: slideDown 1s ease-out, slideUp 1s ease-in 4s;
   }
   
   @keyframes slideDown {

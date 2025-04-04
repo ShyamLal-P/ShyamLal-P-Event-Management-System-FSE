@@ -6,6 +6,7 @@ import { HeaderComponent } from './header/header.component';
 import { LandingComponent } from './landing/landing.component';
 import { FormsModule } from '@angular/forms'; // Import FormsModule
 import { HomeComponent } from './home/home.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,7 @@ import { HomeComponent } from './home/home.component';
     HeaderComponent,
     LandingComponent,
     HomeComponent,
+    SidebarComponent,
     FormsModule // Add FormsModule here
   ],
   templateUrl: './app.component.html',
