@@ -1,59 +1,111 @@
 .sidebar {
-    width: 250px;
-    height: 100%;
-    background-color: #f8f9fa;
-    padding: 15px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    overflow-y: auto;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-    transition: width 0.3s ease;
+  width: 250px;
+  height: 100%;
+  background-color: #343a40;
+  padding: 15px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  transition: width 0.3s ease;
+}
+
+.sidebar.closed {
+  width: 0;
+  padding: 0;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 50px; /* Adjust to avoid overlap with toggle button */
+}
+
+.sidebar ul li {
+  margin: 15px 0;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+  display: block;
+  padding: 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+.bottom-menu {
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+}
+
+.logout-link {
+  color: #ffffff;
+  transition: color 0.3s ease, background-color 0.3s ease; /* Add transition effect for color and background */
+}
+
+.logout-link:hover {
+  color: #ffffff;
+  background-color: #dc3545; /* Red background for text on hover */
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.toggle-button {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: left 0.3s ease, background-color 0.3s ease;
+}
+
+.toggle-button:hover {
+  background-color: #0056b3;
+}
+
+.sidebar.closed + .toggle-button {
+  left: 10px;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 200px;
   }
-  
-  .sidebar.closed {
-    width: 0;
-    padding: 0;
+
+  .home-container.sidebar-open {
+    margin-left: 200px;
   }
-  
-  .sidebar ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .sidebar ul li {
-    margin: 15px 0;
-  }
-  
-  .sidebar ul li a {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-  }
-  
-  .sidebar ul li a:hover {
-    color: #007bff;
-  }
-  
+
   .toggle-button {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    z-index: 1000;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: left 0.3s ease, background-color 0.3s ease;
-  }
-  
-  .toggle-button:hover {
-    background-color: #0056b3;
-  }
-  
-  .sidebar.closed + .toggle-button {
     left: 10px;
   }
-  
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 150px;
+  }
+
+  .home-container.sidebar-open {
+    margin-left: 150px;
+  }
+
+  .toggle-button {
+    left: 10px;
+  }
+}

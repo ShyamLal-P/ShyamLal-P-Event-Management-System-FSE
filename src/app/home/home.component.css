@@ -4,7 +4,7 @@
   }
   
   .home-container.sidebar-open {
-    margin-left: 250px; /* Adjust based on sidebar width */
+    margin-left: 270px; /* Adjust based on sidebar width */
   }
   
   .slide-message {
@@ -35,6 +35,19 @@
     }
     to {
       top: -50px;
+    }
+  }
+  
+  /* Media Queries for Responsiveness */
+  @media (max-width: 768px) {
+    .home-container.sidebar-open {
+      margin-left: 200px; /* Adjust based on sidebar width */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .home-container.sidebar-open {
+      margin-left: 150px; /* Adjust based on sidebar width */
     }
   }
   

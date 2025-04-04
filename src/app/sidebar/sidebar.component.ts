@@ -1,9 +1,11 @@
 import { Component, Output, EventEmitter } from '@angular/core';
+import { HeaderComponent } from "../header/header.component";
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+  styleUrls: ['./sidebar.component.css'],
+  imports: [HeaderComponent]
 })
 export class SidebarComponent {
   isOpen = true;
