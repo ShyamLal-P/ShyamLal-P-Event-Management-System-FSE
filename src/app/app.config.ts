@@ -6,10 +6,11 @@ import { RegisterComponent } from './register/register.component';
 import { LandingComponent } from './landing/landing.component';
 import { HomeComponent } from './home/home.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
-  { path: 'home', component: HomeComponent},
+  { path: 'home', component: HomeComponent, canActivate:[AuthGuard]},
   { path: 'sidebar', component: SidebarComponent},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent }
