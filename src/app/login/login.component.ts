@@ -31,9 +31,14 @@ export class LoginComponent {
         console.log('Login successful', response);
         this.isSuccess = true;
         this.message = 'Login successful!';
+<<<<<<< HEAD
         console.log('Message set to:', this.message);
         this.messageService.setMessage(this.message); // Set message in service
         localStorage.setItem('token', response.token); // ✅ Correct key
+=======
+        this.messageService.setMessage(this.message);
+        this.authService.setToken(response.token); // ✅ Save using service
+>>>>>>> parent of f6d8954 (header part done)
         this.router.navigate(['/home']);
         console.log('Navigating to home');
       },
