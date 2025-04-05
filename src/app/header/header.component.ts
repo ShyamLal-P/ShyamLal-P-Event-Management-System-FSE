@@ -20,11 +20,13 @@ export class HeaderComponent implements OnInit {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.currentRoute = event.urlAfterRedirects;
-        this.checkLoginStatus();
+        console.log('🔄 NavigationEnd:', this.currentRoute);
+        this.updateHeaderState();
       }
     });
 
-    this.checkLoginStatus();
+    // On initial load
+    this.updateHeaderState();
   }
 
   checkLoginStatus() {
