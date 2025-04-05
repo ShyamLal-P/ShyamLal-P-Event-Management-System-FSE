@@ -37,15 +37,9 @@ export class LoginComponent {
         localStorage.setItem('token', response.token); // ✅ Correct key
 =======
         this.messageService.setMessage(this.message);
-  
-        localStorage.setItem('token', response.token); // Save token
-        console.log('✅ Token saved to localStorage');
-  
-        // Force route reload to trigger Header update
-        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-          this.router.navigate(['/home']);
-        });
-  
+        this.authService.setToken(response.token); // ✅ Save using service
+        this.router.navigate(['/home']);
+        console.log('Navigating to home');
       },
       error => {
         console.error('Login failed', error);
