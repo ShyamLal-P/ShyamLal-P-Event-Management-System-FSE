@@ -1,9 +1,12 @@
 <div class="header">
     <div class="logo">
-        <a href="/">Event Management</a>
+      <a href="/">Event Management</a>
     </div>
     <div class="nav">
-        <a (click)="navigateTo('login')">Login</a>
-        <a (click)="navigateTo('register')">Register</a>
+      <a *ngIf="!isLoggedIn && currentRoute !== '/login'" (click)="navigateTo('login')">Login</a>
+      <a *ngIf="!isLoggedIn && currentRoute !== '/register'" (click)="navigateTo('register')">Register</a>
+      <a *ngIf="isLoggedIn" (click)="navigateTo('profile')">Profile</a>
+      <a *ngIf="isLoggedIn" (click)="logout()">Logout</a>
     </div>
-</div>
+  </div>
+  

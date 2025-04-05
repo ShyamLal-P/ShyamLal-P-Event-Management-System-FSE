@@ -33,7 +33,7 @@ export class LoginComponent {
         this.message = 'Login successful!';
         console.log('Message set to:', this.message);
         this.messageService.setMessage(this.message); // Set message in service
-        localStorage.setItem('userToken', response.token); // Save token to localStorage
+        localStorage.setItem('token', response.token); // ✅ Correct key
         this.router.navigate(['/home']);
         console.log('Navigating to home');
       },
@@ -46,6 +46,7 @@ export class LoginComponent {
       }
     );
   }
+  
 
   clearMessage() {
     setTimeout(() => {
