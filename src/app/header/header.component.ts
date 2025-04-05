@@ -20,17 +20,18 @@ export class HeaderComponent implements OnInit {
       if (event instanceof NavigationEnd) {
         this.currentRoute = event.urlAfterRedirects;
         console.log('🔄 NavigationEnd:', this.currentRoute);
-        this.checkLoginStatus();
+        this.updateHeaderState();
       }
     });
 
-    // Also check immediately on load
-    this.checkLoginStatus();
+    // On initial load
+    this.updateHeaderState();
   }
 
-  checkLoginStatus() {
-    const token = localStorage.getItem('token');
-    this.isLoggedIn = !!token;
+  updateHeaderState() {
+    this.isLoggedIn = !!localStorage.getItem('token');
+    this.currentRoute = this.router.url;
+    console.log('✅ Current Route:', this.currentRoute);
     console.log('🔐 isLoggedIn:', this.isLoggedIn);
   }
 

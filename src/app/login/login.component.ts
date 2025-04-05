@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common'; // Import CommonModule
+import { CommonModule } from '@angular/common';
 import { AuthService } from '../services/auth.service';
 import { HeaderComponent } from '../header/header.component';
-import { Router } from '@angular/router'; // Import Router
-import { MessageService } from '../services/message.service'; // Import MessageService
+import { Router } from '@angular/router';
+import { MessageService } from '../services/message.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, CommonModule, HeaderComponent], // Add CommonModule here
+  imports: [FormsModule, CommonModule, HeaderComponent],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
@@ -21,7 +21,7 @@ export class LoginComponent {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private messageService: MessageService // Inject MessageService
+    private messageService: MessageService
   ) {}
 
   login() {
@@ -31,9 +31,8 @@ export class LoginComponent {
         console.log('Login successful', response);
         this.isSuccess = true;
         this.message = 'Login successful!';
-        console.log('Message set to:', this.message);
-        this.messageService.setMessage(this.message); // Set message in service
-        localStorage.setItem('token', response.token); // ✅ Correct key
+        this.messageService.setMessage(this.message);
+        this.authService.setToken(response.token); // ✅ Save using service
         this.router.navigate(['/home']);
         console.log('Navigating to home');
       },
@@ -41,17 +40,15 @@ export class LoginComponent {
         console.error('Login failed', error);
         this.isSuccess = false;
         this.message = 'Login failed. Please try again.';
-        console.log('Message set to:', this.message);
         this.clearMessage();
       }
     );
   }
-  
 
   clearMessage() {
     setTimeout(() => {
       this.message = null;
       console.log('Message cleared');
-    }, 3000); // Clear message after 3 seconds
+    }, 3000);
   }
 }
