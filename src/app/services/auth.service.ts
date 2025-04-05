@@ -1,37 +1,31 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http'; // Import HttpClient
+import { Observable } from 'rxjs'; // Import Observable
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:5081/api/Auth';
-  private tokenKey = 'userToken';
+  private apiUrl = 'http://localhost:5081/api/Auth'; // API URL for authentication
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
+  // Method to handle user login
   login(credentials: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, credentials);
   }
 
+  // Method to handle user registration
   register(user: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/Register`, user);
   }
 
-  setToken(token: string) {
-    localStorage.setItem(this.tokenKey, token);
-  }
-
-  getToken(): string | null {
-    return localStorage.getItem(this.tokenKey);
-  }
-
+  // Method to check if the user is logged in
   isLoggedIn(): boolean {
-    return !!this.getToken();
+    return !!localStorage.getItem('userToken'); // Check if token exists in localStorage
+  }
+  logout() {
+    localStorage.removeItem('userToken'); // Remove token from localStorage
   }
 
-  logout() {
-    localStorage.removeItem(this.tokenKey);
-  }
 }

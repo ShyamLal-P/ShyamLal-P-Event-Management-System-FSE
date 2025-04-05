@@ -3,17 +3,10 @@
       <a href="/">Event Management</a>
     </div>
     <div class="nav">
-      <!-- Show Login/Register only when NOT logged in -->
-      <ng-container *ngIf="!isLoggedIn">
-        <a *ngIf="currentRoute !== '/login'" (click)="navigateTo('login')">Login</a>
-        <a *ngIf="currentRoute !== '/register'" (click)="navigateTo('register')">Register</a>
-      </ng-container>
-  
-      <!-- Show Profile/Logout only when logged in -->
-      <ng-container *ngIf="isLoggedIn && currentRoute !== '/login' && currentRoute !== '/register'">
-        <a (click)="navigateTo('profile')">Profile</a>
-        <a (click)="logout()">Logout</a>
-      </ng-container>
+      <a *ngIf="!isLoggedIn && currentRoute !== '/login'" (click)="navigateTo('login')">Login</a>
+      <a *ngIf="!isLoggedIn && currentRoute !== '/register'" (click)="navigateTo('register')">Register</a>
+      <a *ngIf="isLoggedIn" (click)="navigateTo('profile')">Profile</a>
+      <a *ngIf="isLoggedIn" (click)="logout()">Logout</a>
     </div>
   </div>
   

@@ -24,16 +24,12 @@ export class HeaderComponent implements OnInit {
       }
     });
 
-    // Initial check
     this.checkLoginStatus();
   }
 
   checkLoginStatus() {
     const token = localStorage.getItem('token');
     this.isLoggedIn = !!token;
-    this.currentRoute = this.router.url;
-
-    console.log('✅ Current Route:', this.currentRoute);
     console.log('🔐 isLoggedIn:', this.isLoggedIn);
   }
 

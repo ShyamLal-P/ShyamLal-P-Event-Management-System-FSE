@@ -1,14 +1,9 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { AuthService } from '../services/auth.service';
-import { Router } from '@angular/router';
-import { MessageService } from '../services/message.service';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, CommonModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
@@ -20,7 +15,7 @@ export class LoginComponent {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private messageService: MessageService
+    private messageService: MessageService // Inject MessageService
   ) {}
 
   login() {
@@ -33,8 +28,9 @@ export class LoginComponent {
 
         this.isSuccess = true;
         this.message = 'Login successful!';
-        this.messageService.setMessage(this.message);
-        this.authService.setToken(response.token); // ✅ Save using service
+        console.log('Message set to:', this.message);
+        this.messageService.setMessage(this.message); // Set message in service
+        localStorage.setItem('token', response.token); // ✅ Correct key
         this.router.navigate(['/home']);
         console.log('Navigating to home');
       },
@@ -42,10 +38,12 @@ export class LoginComponent {
         console.error('❌ Login failed', error);
         this.isSuccess = false;
         this.message = 'Login failed. Please try again.';
+        console.log('Message set to:', this.message);
         this.clearMessage();
       }
     );
   }
+  
 
   clearMessage() {
     setTimeout(() => {
