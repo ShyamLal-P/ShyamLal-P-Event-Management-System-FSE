@@ -1,40 +1,54 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms'; // Import FormsModule
+import { FormsModule } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { HeaderComponent } from "../header/header.component";
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FormsModule, HeaderComponent], // Add FormsModule here
+  imports: [FormsModule, HeaderComponent, CommonModule],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  user = { username: '', email: '', password: '', phoneNumber: '', roles: 'User' }; // Default role to 'User'
+  user = { username: '', email: '', password: '', phoneNumber: '', roles: 'User' };
+  confirmPassword: string = '';
+  alertMessage: string | null = null;
+  alertType: 'success' | 'error' = 'success';
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
+
+  showAlert(message: string, type: 'success' | 'error') {
+    this.alertMessage = message;
+    this.alertType = type;
+    setTimeout(() => {
+      this.alertMessage = null;
+    }, 3000);
+  }
 
   register() {
-    // Convert roles string to array with a single element
+    if (this.user.password !== this.confirmPassword) {
+      this.showAlert("Passwords do not match!", 'error');
+      return;
+    }
+
     const userPayload = {
       ...this.user,
       roles: [this.user.roles]
     };
 
-    console.log('Request Payload:', userPayload); // Log the request payload
-
     this.authService.register(userPayload).subscribe({
-      next: response => {
-        console.log('Registration successful', response);
-        // Handle successful registration
+      next: () => {
+        this.showAlert('Registration successful! Redirecting to login...', 'success');
+        setTimeout(() => {
+          this.router.navigate(['/login']);
+        }, 3000);
       },
       error: error => {
         console.error('Registration failed', error);
-        // Handle registration error
-      },
-      complete: () => {
-        console.log('Registration process completed');
+        this.showAlert('Registration failed. Please try again.', 'error');
       }
     });
   }
