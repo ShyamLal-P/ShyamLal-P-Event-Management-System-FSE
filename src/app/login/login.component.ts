@@ -34,11 +34,15 @@ export class LoginComponent {
         this.isSuccess = true;
         this.message = 'Login successful!';
         this.messageService.setMessage(this.message);
-
-        // ✅ Navigate to /home with replaceUrl to trigger NavigationEnd
-        this.router.navigate(['/home'], { replaceUrl: true }).then(() => {
-          console.log('✅ Navigated to /home');
+  
+        localStorage.setItem('token', response.token); // Save token
+        console.log('✅ Token saved to localStorage');
+  
+        // Force route reload to trigger Header update
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate(['/home']);
         });
+  
       },
       error => {
         console.error('❌ Login failed', error);
