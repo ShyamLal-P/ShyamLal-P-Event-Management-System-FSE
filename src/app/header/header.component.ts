@@ -21,12 +21,12 @@ export class HeaderComponent implements OnInit {
       if (event instanceof NavigationEnd) {
         this.currentRoute = event.urlAfterRedirects;
         console.log('🔄 NavigationEnd:', this.currentRoute);
-        this.updateHeaderState();
+        this.checkLoginStatus();
       }
     });
 
-    // On initial load
-    this.updateHeaderState();
+    // Also check immediately on load
+    this.checkLoginStatus();
   }
 
   checkLoginStatus() {
