@@ -42,7 +42,6 @@ button:hover {
 }
 
 /* ----------------- Alert Message Styles ----------------- */
-
 .custom-alert {
     width: 350px;
     margin: 20px auto;
@@ -50,7 +49,7 @@ button:hover {
     border-radius: 8px;
     text-align: center;
     font-weight: bold;
-    animation: slideDown 0.5s ease, fadeOut 0.5s ease 2.5s forwards;
+    animation: slideDown 0.5s ease;
     position: fixed;
     top: 20px;
     left: 0;
@@ -79,13 +78,5 @@ button:hover {
     to {
         transform: translateY(0);
         opacity: 1;
-    }
-}
-
-@keyframes fadeOut {
-    to {
-        opacity: 0;
-        transform: translateY(-50px);
-        visibility: hidden;
     }
 }

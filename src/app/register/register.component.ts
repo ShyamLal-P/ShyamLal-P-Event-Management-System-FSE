@@ -17,15 +17,30 @@ export class RegisterComponent {
   confirmPassword: string = '';
   alertMessage: string | null = null;
   alertType: 'success' | 'error' = 'success';
+  countdown: number = 0;
+  timerInterval: any;
 
   constructor(private authService: AuthService, private router: Router) { }
 
-  showAlert(message: string, type: 'success' | 'error') {
+  showAlert(message: string, type: 'success' | 'error', countdownSeconds: number = 0) {
     this.alertMessage = message;
     this.alertType = type;
-    setTimeout(() => {
-      this.alertMessage = null;
-    }, 3000);
+
+    if (type === 'success' && countdownSeconds > 0) {
+      this.countdown = countdownSeconds;
+      this.timerInterval = setInterval(() => {
+        this.countdown--;
+        if (this.countdown <= 0) {
+          clearInterval(this.timerInterval);
+          this.alertMessage = null;
+          this.router.navigate(['/login']);
+        }
+      }, 1000);
+    } else {
+      setTimeout(() => {
+        this.alertMessage = null;
+      }, 3000);
+    }
   }
 
   register() {
@@ -41,10 +56,7 @@ export class RegisterComponent {
 
     this.authService.register(userPayload).subscribe({
       next: () => {
-        this.showAlert('Registration successful! Redirecting to login...', 'success');
-        setTimeout(() => {
-          this.router.navigate(['/login']);
-        }, 3000);
+        this.showAlert('Registration successful! Redirecting in', 'success', 5);
       },
       error: error => {
         console.error('Registration failed', error);
