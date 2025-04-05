@@ -31,21 +31,11 @@ export class LoginComponent {
         console.log('Login successful', response);
         this.isSuccess = true;
         this.message = 'Login successful!';
-<<<<<<< HEAD
         console.log('Message set to:', this.message);
         this.messageService.setMessage(this.message); // Set message in service
-        localStorage.setItem('token', response.token); // ✅ Correct key
-=======
-        this.messageService.setMessage(this.message);
-  
-        localStorage.setItem('token', response.token); // Save token
-        console.log('✅ Token saved to localStorage');
-  
-        // Force route reload to trigger Header update
-        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-          this.router.navigate(['/home']);
-        });
-  
+        localStorage.setItem('userToken', response.token); // Save token to localStorage
+        this.router.navigate(['/home']);
+        console.log('Navigating to home');
       },
       error => {
         console.error('Login failed', error);
@@ -56,7 +46,6 @@ export class LoginComponent {
       }
     );
   }
-  
 
   clearMessage() {
     setTimeout(() => {

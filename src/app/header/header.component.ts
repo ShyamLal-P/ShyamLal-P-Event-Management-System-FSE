@@ -1,47 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrl: './header.component.css',
+  standalone:true
 })
-export class HeaderComponent implements OnInit {
-  currentRoute: string = '';
-  isLoggedIn: boolean = false;
-
+export class HeaderComponent {
   constructor(private router: Router) {}
 
-  ngOnInit() {
-    // Detect route changes and update state
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        this.currentRoute = event.urlAfterRedirects;
-        console.log('🔄 NavigationEnd:', this.currentRoute);
-        this.checkLoginStatus();
-      }
-    });
-
-    // Also check immediately on load
-    this.checkLoginStatus();
-  }
-
-  checkLoginStatus() {
-    const token = localStorage.getItem('token');
-    this.isLoggedIn = !!token;
-    console.log('🔐 isLoggedIn:', this.isLoggedIn);
-  }
-
-  navigateTo(path: string) {
-    this.router.navigate([`/${path}`]);
-  }
-
-  logout() {
-    localStorage.removeItem('token');
-    this.isLoggedIn = false;
-    this.navigateTo('login');
+  navigateTo(section: string) {
+    this.router.navigate([section]);
   }
 }
