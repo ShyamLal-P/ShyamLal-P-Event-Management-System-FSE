@@ -2,9 +2,7 @@
 <div *ngIf="alertMessage" 
      [ngClass]="{'alert-success': alertType === 'success', 'alert-error': alertType === 'error'}" 
      class="custom-alert">
-  {{ alertMessage }} 
-  <span *ngIf="alertType === 'success' && countdown > 0">{{ countdown }}s</span>
-  <div *ngIf="alertType === 'success' && countdown > 0" class="timer-bar"></div>
+  {{ alertMessage }} <span *ngIf="alertType === 'success' && countdown > 0">{{ countdown }}s</span>
 </div>
 
 <app-header></app-header>
