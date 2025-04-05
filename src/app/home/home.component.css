@@ -1,53 +1,82 @@
+:host {
+  display: block;
+}
+
+/* Header positioning adjustments */
+app-home-header {
+  display: block;
+  transition: margin-left 0.3s ease;
+}
+
+app-home-header.sidebar-open {
+  margin-left: 250px;
+}
+
+@media (max-width: 768px) {
+  app-home-header.sidebar-open {
+    margin-left: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  app-home-header.sidebar-open {
+    margin-left: 150px;
+  }
+}
+
+/* Home content container */
 .home-container {
-    padding: 20px;
-    transition: margin-left 0.3s ease;
-  }
-  
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+  margin-top: 60px; /* height of fixed header */
+  margin-left: 0;
+}
+
+.home-container.sidebar-open {
+  margin-left: 270px;
+}
+
+@media (max-width: 768px) {
   .home-container.sidebar-open {
-    margin-left: 270px; /* Adjust based on sidebar width */
+    margin-left: 200px;
   }
-  
-  .slide-message {
-    position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #4caf50;
-    color: white;
-    padding: 16px;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    animation: slideDown 1s ease-out, slideUp 1s ease-in 4s;
+}
+
+@media (max-width: 480px) {
+  .home-container.sidebar-open {
+    margin-left: 150px;
   }
-  
-  @keyframes slideDown {
-    from {
-      top: -50px;
-    }
-    to {
-      top: 20px;
-    }
+}
+
+/* Slide message styling */
+.slide-message {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4caf50;
+  color: white;
+  padding: 16px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  animation: slideDown 1s ease-out, slideUp 1s ease-in 4s;
+  z-index: 1000;
+}
+
+@keyframes slideDown {
+  from {
+    top: -50px;
   }
-  
-  @keyframes slideUp {
-    from {
-      top: 20px;
-    }
-    to {
-      top: -50px;
-    }
+  to {
+    top: 20px;
   }
-  
-  /* Media Queries for Responsiveness */
-  @media (max-width: 768px) {
-    .home-container.sidebar-open {
-      margin-left: 200px; /* Adjust based on sidebar width */
-    }
+}
+
+@keyframes slideUp {
+  from {
+    top: 20px;
   }
-  
-  @media (max-width: 480px) {
-    .home-container.sidebar-open {
-      margin-left: 150px; /* Adjust based on sidebar width */
-    }
+  to {
+    top: -50px;
   }
-  
+}

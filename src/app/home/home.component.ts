@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common'; // Import CommonModule
 import { Router } from '@angular/router';
 import { MessageService } from '../services/message.service';
 import { SidebarComponent } from "../sidebar/sidebar.component"; // Import MessageService
+import { HomeHeaderComponent } from '../home-header/home-header.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, SidebarComponent], // Add CommonModule here
+  imports: [CommonModule, SidebarComponent, HomeHeaderComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })

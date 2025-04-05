@@ -1,4 +1,5 @@
 <app-sidebar (sidebarToggled)="onSidebarToggled($event)"></app-sidebar>
+<app-home-header [isSidebarOpen]="isSidebarOpen"></app-home-header>
 
 <div *ngIf="showMessage" class="slide-message">
   {{ message }}
