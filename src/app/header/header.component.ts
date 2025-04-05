@@ -16,32 +16,32 @@ export class HeaderComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit() {
+    // Detect route changes and update state
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.currentRoute = event.urlAfterRedirects;
-        console.log('🔄 NavigationEnd:', this.currentRoute);
-        this.updateHeaderState();
+        this.checkLoginStatus();
       }
     });
 
-    // On initial load
-    this.updateHeaderState();
+    // Initial check
+    this.checkLoginStatus();
   }
 
-  updateHeaderState() {
-    this.isLoggedIn = !!localStorage.getItem('token');
+  checkLoginStatus() {
+    const token = localStorage.getItem('token');
+    this.isLoggedIn = !!token;
     this.currentRoute = this.router.url;
+
     console.log('✅ Current Route:', this.currentRoute);
     console.log('🔐 isLoggedIn:', this.isLoggedIn);
   }
 
-  navigateTo(section: string) {
-    console.log('➡️ Navigating to:', section);
-    this.router.navigate([section]);
+  navigateTo(path: string) {
+    this.router.navigate([`/${path}`]);
   }
 
   logout() {
-    console.log('🚪 Logging out...');
     localStorage.removeItem('token');
     this.isLoggedIn = false;
     this.navigateTo('login');
