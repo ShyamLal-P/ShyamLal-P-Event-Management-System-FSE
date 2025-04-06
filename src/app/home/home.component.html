@@ -6,6 +6,12 @@
 </div>
 
 <div class="home-container" [class.sidebar-open]="isSidebarOpen">
+  <div *ngIf="userDetails" class="user-info-card">
+    <h3>Welcome, {{ userDetails.userName }}</h3>
+    <p><strong>Email:</strong> {{ userDetails.email }}</p>
+    <p><strong>Phone:</strong> {{ userDetails.phoneNumber || 'N/A' }}</p>
+  </div>
+
   <h1>Welcome to the Home Page!</h1>
   <p>This is the home component.</p>
 </div>
