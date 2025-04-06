@@ -1,20 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { HomeHeaderComponent } from '../home-header/home-header.component';
+import { SidebarComponent } from '../sidebar/sidebar.component';
 
 @Component({
   selector: 'app-add-event',
   templateUrl: './add-event.component.html',
   styleUrls: ['./add-event.component.css'],
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule]
+  imports: [CommonModule, ReactiveFormsModule, HomeHeaderComponent, SidebarComponent]
 })
-export class AddEventComponent {
+export class AddEventComponent implements OnInit {
   eventForm: FormGroup;
-  apiUrl = 'http://localhost:5081/api'; // ✅ Base API URL
+  apiUrl = 'http://localhost:5081/api';
+  message: string | null = null;
+  isSuccess = false;
+  isSidebarOpen = true;
+  userDetails: any = null;
 
   constructor(
     private fb: FormBuilder,
@@ -32,12 +38,23 @@ export class AddEventComponent {
     });
   }
 
-  logClick() {
+  ngOnInit(): void {
+    const token = localStorage.getItem('userToken');
+    if (token) {
+      const decodedToken: any = jwtDecode(token);
+      this.userDetails = decodedToken;
+    }
+  }
+
+  onSidebarToggled(open: boolean): void {
+    this.isSidebarOpen = open;
+  }
+
+  logClick(): void {
     console.log('Button clicked');
   }
 
   onSubmit(): void {
-    console.log('Form submitted');
     if (this.eventForm.valid) {
       const token = localStorage.getItem('userToken');
       if (token) {
@@ -49,8 +66,6 @@ export class AddEventComponent {
           organizerId: organizerId
         };
 
-        console.log('Sending to API:', formData);
-
         const headers = new HttpHeaders({
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
@@ -58,20 +73,33 @@ export class AddEventComponent {
 
         this.http.post(`${this.apiUrl}/Event`, formData, { headers }).subscribe({
           next: (res) => {
-            console.log('Response from API:', res);
-            alert('Event added successfully!');
+            this.isSuccess = true;
+            this.message = 'Event added successfully!';
             this.eventForm.reset();
+            this.autoClearMessage();
           },
           error: err => {
-            alert('Failed to add event.');
+            this.isSuccess = false;
+            this.message = 'Failed to add event.';
             console.error(err);
+            this.autoClearMessage();
           }
         });
       } else {
-        alert('User not authenticated.');
+        this.isSuccess = false;
+        this.message = 'User not authenticated.';
+        this.autoClearMessage();
       }
     } else {
-      alert('Form is invalid.');
+      this.isSuccess = false;
+      this.message = 'Form is invalid.';
+      this.autoClearMessage();
     }
+  }
+
+  autoClearMessage(): void {
+    setTimeout(() => {
+      this.message = null;
+    }, 4000);
   }
 }

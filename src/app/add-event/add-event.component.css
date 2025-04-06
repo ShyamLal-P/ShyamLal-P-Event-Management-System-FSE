@@ -1,4 +1,21 @@
-.add-event-container {
+/* Layout */
+.layout {
+    display: flex;
+  }
+  
+  .main-content {
+    flex-grow: 1;
+    transition: margin-left 0.3s ease;
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+  
+  .main-content.sidebar-open {
+    margin-left: 250px; /* Match this with your actual sidebar width */
+  }
+  
+  /* Container */
+  .add-event-container {
     max-width: 500px;
     margin: 40px auto;
     padding: 30px;
@@ -9,12 +26,14 @@
     box-sizing: border-box;
   }
   
+  /* Heading */
   h2 {
     text-align: center;
     margin-bottom: 25px;
     color: #007bff;
   }
   
+  /* Form */
   form {
     display: flex;
     flex-direction: column;
@@ -40,6 +59,7 @@
     outline: none;
   }
   
+  /* Button */
   button {
     margin-top: 25px;
     padding: 12px;
@@ -62,7 +82,37 @@
     background-color: #0056b3;
   }
   
-  /* Responsive styles */
+  /* Message */
+  .message {
+    color: #fff;
+    padding: 12px;
+    border-radius: 6px;
+    text-align: center;
+    margin-top: 20px;
+    animation: slideDown 0.5s ease-out;
+    position: relative;
+  }
+  
+  .message.success {
+    background-color: #28a745;
+  }
+  
+  .message.error {
+    background-color: #dc3545;
+  }
+  
+  @keyframes slideDown {
+    from {
+      top: -50px;
+      opacity: 0;
+    }
+    to {
+      top: 10px;
+      opacity: 1;
+    }
+  }
+  
+  /* Responsive */
   @media (max-width: 600px) {
     .add-event-container {
       margin: 20px;
@@ -72,6 +122,10 @@
     input,
     button {
       font-size: 0.95rem;
+    }
+  
+    .main-content.sidebar-open {
+      margin-left: 0;
     }
   }
   
