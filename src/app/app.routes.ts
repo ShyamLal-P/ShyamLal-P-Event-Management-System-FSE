@@ -4,10 +4,12 @@ import { RegisterComponent } from './register/register.component';
 import { LandingComponent } from './landing/landing.component';
 import { HomeComponent } from './home/home.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { AddEventComponent } from './add-event/add-event.component';
 
 export const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'add-event', component: AddEventComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'sidebar', component: SidebarComponent},
   { path: 'home', component: HomeComponent },

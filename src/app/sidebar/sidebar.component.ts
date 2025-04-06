@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router'; // Import Router
+import { Router, RouterModule } from '@angular/router'; // Import Router
 import { AuthService } from '../services/auth.service'; // Import AuthService
 import { HeaderComponent } from "../header/header.component";
 import { CommonModule } from '@angular/common';
@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css'],
-  imports: [HeaderComponent, CommonModule]
+  imports: [HeaderComponent, CommonModule, RouterModule]
 })
 export class SidebarComponent {
   isOpen = true;
