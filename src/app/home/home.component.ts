@@ -5,6 +5,7 @@ import { MessageService } from '../services/message.service';
 import { SidebarComponent } from "../sidebar/sidebar.component";
 import { HomeHeaderComponent } from '../home-header/home-header.component';
 import { AuthService } from '../services/auth.service'; // 🔥 Import AuthService
+import { jwtDecode } from 'jwt-decode';
 
 @Component({
   selector: 'app-home',
@@ -34,7 +35,18 @@ export class HomeComponent implements OnInit {
     console.log('Home component initialized');
 
     const token = localStorage.getItem('userToken');
-    console.log('Token from localStorage:', token); // 🔥 PRINT THE TOKEN
+  console.log('Token from localStorage:', token);
+
+  if (token) {
+    try {
+      const decodedToken: any = jwtDecode(token);
+      const role = decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+      console.log('Role from token:', role);
+      localStorage.setItem('userRole', role); // ✅ Save role in localStorage
+    } catch (e) {
+      console.error('Failed to decode token', e);
+    }
+  }
 
     this.message = this.messageService.getMessage();
     console.log('Received message in home component:', this.message);

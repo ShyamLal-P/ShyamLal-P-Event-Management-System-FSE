@@ -5,6 +5,7 @@ import { AuthService } from '../services/auth.service';
 import { HeaderComponent } from '../header/header.component';
 import { Router } from '@angular/router';
 import { MessageService } from '../services/message.service';
+import { jwtDecode } from 'jwt-decode';
 
 @Component({
   selector: 'app-login',
@@ -32,10 +33,18 @@ export class LoginComponent {
         this.isSuccess = true;
         this.message = 'Login successful!';
         console.log('Message set to:', this.message);
-
-        // ✅ Save the token using the correct key
-        localStorage.setItem('userToken', response.jwtToken);
-
+  
+        const token = response.jwtToken;
+  
+        // ✅ Decode token directly from response
+        const decoded: any = jwtDecode(token);
+        const role = decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+        console.log("Decoded Role:", role);
+  
+        // ✅ Save token and role
+        localStorage.setItem('userToken', token);
+        localStorage.setItem('userRole', role);
+  
         this.messageService.setMessage(this.message);
         this.router.navigate(['/home']);
         console.log('Navigating to home');
@@ -49,7 +58,7 @@ export class LoginComponent {
       }
     );
   }
-
+  
   clearMessage() {
     setTimeout(() => {
       this.message = null;
