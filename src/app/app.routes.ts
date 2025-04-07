@@ -5,6 +5,7 @@ import { LandingComponent } from './landing/landing.component';
 import { HomeComponent } from './home/home.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { AddEventComponent } from './add-event/add-event.component';
+import { MyEventsComponent } from './my-events/my-events.component';
 
 export const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -13,5 +14,6 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'sidebar', component: SidebarComponent},
   { path: 'home', component: HomeComponent },
+  { path: 'my-events', component: MyEventsComponent},
   { path: '**', redirectTo: '', pathMatch: 'full' } // Redirect any unknown paths to the landing page
 ];

@@ -1,0 +1,21 @@
+<app-sidebar (sidebarToggled)="onSidebarToggled($event)"></app-sidebar>
+
+<div class="main-content" [class.sidebar-open]="isSidebarOpen">
+  <app-home-header
+    [isSidebarOpen]="isSidebarOpen"
+    [user]="userDetails">
+  </app-home-header>
+
+  <div class="events-container">
+    <div *ngFor="let event of events" class="event-tile">
+      <h2>{{ event.name }}</h2>
+      <p><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> {{ event.location }}</p>
+      <p><i class="fas fa-tags"></i> <strong>Category:</strong> {{ event.category }}</p>
+      <p><i class="fas fa-calendar-alt"></i> <strong>Date:</strong> {{ event.date | date }}</p>
+      <p><i class="fas fa-dollar-sign"></i> <strong>Price:</strong> {{ event.eventPrice | currency }}</p>
+      <p><i class="fas fa-ticket-alt"></i> <strong>Available Tickets:</strong> {{ event.availableTickets }}</p>
+      <p><i class="fas fa-clock"></i> <strong>Time:</strong> {{ event.time }}</p>
+      <p><i class="fas fa-users"></i> <strong>Total Tickets:</strong> {{ event.totalTickets }}</p>
+    </div>
+  </div>
+</div>

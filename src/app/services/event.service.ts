@@ -13,4 +13,8 @@ export class EventService {
   addEvent(eventData: any): Observable<any> {
     return this.http.post(this.apiUrl, eventData);
   }
+
+  getEventsByUserId(userId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/user/${userId}`);
+  }
 }

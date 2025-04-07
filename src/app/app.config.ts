@@ -9,6 +9,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { AuthGuard } from './auth.guard';
 import { AuthInterceptor } from './auth.interceptor'; // <-- import
 import { AddEventComponent } from './add-event/add-event.component';
+import { MyEventsComponent } from './my-events/my-events.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'add-event', component: AddEventComponent, canActivate: [AuthGuard] },
+  { path: 'my-events', component: MyEventsComponent, canActivate: [AuthGuard]}
 ];
 
 export const appConfig: ApplicationConfig = {
