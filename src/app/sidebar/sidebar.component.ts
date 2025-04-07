@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css'],
-  imports: [HeaderComponent, CommonModule, RouterModule]
+  imports: [CommonModule, RouterModule]
 })
 export class SidebarComponent {
   isOpen = true;

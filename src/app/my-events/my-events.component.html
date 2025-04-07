@@ -36,6 +36,9 @@
         <div class="event-detail">
           <i class="fas fa-users total-tickets-icon"></i> <strong>Total Tickets:</strong> {{ event.totalTickets }}
         </div>
+        <div class="event-detail">
+          <i class="fas fa-check-circle booked-tickets-icon"></i> <strong>Booked Tickets:</strong> {{ event.totalTickets - event.availableTickets }}
+        </div>
       </div>
       <button class="delete-button" (click)="confirmDelete(event.id)">Delete</button>
     </div>

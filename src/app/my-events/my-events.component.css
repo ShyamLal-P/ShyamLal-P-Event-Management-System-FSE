@@ -14,6 +14,7 @@
     border-radius: 8px;
     padding: 20px;
     width: calc(33.333% - 20px);
+    height: 180px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: relative;
   }
@@ -66,6 +67,10 @@
     color: #20b2aa; /* LightSeaGreen */
   }
   
+  .booked-tickets-icon {
+    color: #32cd32; /* LimeGreen */
+  }
+  
   .delete-button {
     position: absolute;
     bottom: 10px;
@@ -76,6 +81,7 @@
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 20px; /* Added margin-top to move the button down */
   }
   
   .backdrop {
