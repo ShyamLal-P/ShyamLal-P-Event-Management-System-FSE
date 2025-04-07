@@ -1,17 +1,41 @@
 <app-sidebar (sidebarToggled)="onSidebarToggled($event)"></app-sidebar>
-  
-    <div class="main-content" [class.sidebar-open]="isSidebarOpen">
-      <app-home-header
-        [isSidebarOpen]="isSidebarOpen"
-        [user]="userDetails">
-      </app-home-header>
-<div class="book-events">
-    <h2>Book Events</h2>
-    <ul>
-      <li *ngFor="let event of events">
-        <h3>{{ event.name }}</h3>
-        <p>{{ event.description }}</p>
-        <!-- <button (click)="bookEvent(event.id)">Book</button> -->
-      </li>
-    </ul>
+
+<div class="main-content" [class.sidebar-open]="isSidebarOpen">
+  <app-home-header
+    [isSidebarOpen]="isSidebarOpen"
+    [user]="userDetails">
+  </app-home-header>
+
+  <div class="events-container" *ngIf="events.length > 0">
+    <div *ngFor="let event of events" class="event-tile">
+      <h2>{{ event.name }}</h2>
+      <div class="event-details">
+        <div class="event-detail">
+          <i class="fas fa-map-marker-alt location-icon"></i> <strong>Location:</strong> {{ event.location }}
+        </div>
+        <div class="event-detail">
+          <i class="fas fa-tags category-icon"></i> <strong>Category:</strong> {{ event.category }}
+        </div>
+        <div class="event-detail">
+          <i class="fas fa-calendar-alt date-icon"></i> <strong>Date:</strong> {{ event.date | date }}
+        </div>
+        <div class="event-detail">
+          <i class="fas fa-dollar-sign price-icon"></i> <strong>Price:</strong> {{ event.eventPrice | currency }}
+        </div>
+        <div class="event-detail">
+          <i class="fas fa-ticket-alt tickets-icon"></i> <strong>Available Tickets:</strong> {{ event.availableTickets }}
+        </div>
+        <div class="event-detail">
+          <i class="fas fa-clock time-icon"></i> <strong>Time:</strong> {{ event.time }}
+        </div>
+        <div class="event-detail">
+          <i class="fas fa-users total-tickets-icon"></i> <strong>Total Tickets:</strong> {{ event.totalTickets }}
+        </div>
+        <div class="event-detail">
+          <i class="fas fa-check-circle booked-tickets-icon"></i> <strong>Booked Tickets:</strong> {{ event.totalTickets - event.availableTickets }}
+        </div>
+      </div>
+      <button class="book-button" (click)="bookEvent(event.id)">Book</button>
+    </div>
   </div>
+</div>
