@@ -9,13 +9,29 @@
   <div class="events-container">
     <div *ngFor="let event of events" class="event-tile">
       <h2>{{ event.name }}</h2>
-      <p><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> {{ event.location }}</p>
-      <p><i class="fas fa-tags"></i> <strong>Category:</strong> {{ event.category }}</p>
-      <p><i class="fas fa-calendar-alt"></i> <strong>Date:</strong> {{ event.date | date }}</p>
-      <p><i class="fas fa-dollar-sign"></i> <strong>Price:</strong> {{ event.eventPrice | currency }}</p>
-      <p><i class="fas fa-ticket-alt"></i> <strong>Available Tickets:</strong> {{ event.availableTickets }}</p>
-      <p><i class="fas fa-clock"></i> <strong>Time:</strong> {{ event.time }}</p>
-      <p><i class="fas fa-users"></i> <strong>Total Tickets:</strong> {{ event.totalTickets }}</p>
+      <div class="event-details">
+        <div class="event-detail">
+          <i class="fas fa-map-marker-alt location-icon"></i> <strong>Location:</strong> {{ event.location }}
+        </div>
+        <div class="event-detail">
+          <i class="fas fa-tags category-icon"></i> <strong>Category:</strong> {{ event.category }}
+        </div>
+        <div class="event-detail">
+          <i class="fas fa-calendar-alt date-icon"></i> <strong>Date:</strong> {{ event.date | date }}
+        </div>
+        <div class="event-detail">
+          <i class="fas fa-dollar-sign price-icon"></i> <strong>Price:</strong> {{ event.eventPrice | currency }}
+        </div>
+        <div class="event-detail">
+          <i class="fas fa-ticket-alt tickets-icon"></i> <strong>Available Tickets:</strong> {{ event.availableTickets }}
+        </div>
+        <div class="event-detail">
+          <i class="fas fa-clock time-icon"></i> <strong>Time:</strong> {{ event.time }}
+        </div>
+        <div class="event-detail">
+          <i class="fas fa-users total-tickets-icon"></i> <strong>Total Tickets:</strong> {{ event.totalTickets }}
+        </div>
+      </div>
     </div>
   </div>
 </div>

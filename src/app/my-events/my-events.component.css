@@ -22,13 +22,47 @@
     font-size: 1.5em;
   }
   
-  .event-tile p {
-    margin: 5px 0;
+  .event-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
   }
   
-  .event-tile i {
+  .event-detail {
+    display: flex;
+    align-items: center;
+  }
+  
+  .event-detail i {
     margin-right: 8px;
-    color: #555;
+  }
+  
+  .location-icon {
+    color: #ff6347; /* Tomato */
+  }
+  
+  .category-icon {
+    color: #4682b4; /* SteelBlue */
+  }
+  
+  .date-icon {
+    color: #32cd32; /* LimeGreen */
+  }
+  
+  .price-icon {
+    color: #ffd700; /* Gold */
+  }
+  
+  .tickets-icon {
+    color: #ff4500; /* OrangeRed */
+  }
+  
+  .time-icon {
+    color: #6a5acd; /* SlateBlue */
+  }
+  
+  .total-tickets-icon {
+    color: #20b2aa; /* LightSeaGreen */
   }
   
   @media (max-width: 768px) {
