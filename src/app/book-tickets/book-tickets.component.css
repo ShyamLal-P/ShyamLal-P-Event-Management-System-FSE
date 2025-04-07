@@ -1,0 +1,23 @@
+.book-events {
+    padding: 20px;
+  }
+  
+  .book-events ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .book-events li {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  .book-events button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+  }
+  

@@ -1,0 +1,17 @@
+<app-sidebar (sidebarToggled)="onSidebarToggled($event)"></app-sidebar>
+  
+    <div class="main-content" [class.sidebar-open]="isSidebarOpen">
+      <app-home-header
+        [isSidebarOpen]="isSidebarOpen"
+        [user]="userDetails">
+      </app-home-header>
+<div class="book-events">
+    <h2>Book Events</h2>
+    <ul>
+      <li *ngFor="let event of events">
+        <h3>{{ event.name }}</h3>
+        <p>{{ event.description }}</p>
+        <!-- <button (click)="bookEvent(event.id)">Book</button> -->
+      </li>
+    </ul>
+  </div>
