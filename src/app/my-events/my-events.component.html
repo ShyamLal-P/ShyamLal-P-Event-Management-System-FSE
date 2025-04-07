@@ -6,7 +6,12 @@
     [user]="userDetails">
   </app-home-header>
 
-  <div class="events-container">
+  <div *ngIf="events.length === 0" class="no-events">
+    <p>No events found. Would you like to add an event?</p>
+    <button (click)="navigateToAddEvent()">Add Event</button>
+  </div>
+
+  <div class="events-container" *ngIf="events.length > 0">
     <div *ngFor="let event of events" class="event-tile">
       <h2>{{ event.name }}</h2>
       <div class="event-details">

@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { HomeHeaderComponent } from '../home-header/home-header.component';
 import { EventService } from '../services/event.service';
@@ -18,7 +19,7 @@ export class MyEventsComponent implements OnInit {
   showConfirmDialog = false;
   eventIdToDelete: string | null = null;
 
-  constructor(private eventService: EventService) {}
+  constructor(private eventService: EventService, private router: Router) {}
 
   ngOnInit(): void {
     const token = localStorage.getItem('userToken');
@@ -63,7 +64,6 @@ export class MyEventsComponent implements OnInit {
       });
     }
   }
-  
 
   cancelDelete(): void {
     this.showConfirmDialog = false;
@@ -76,5 +76,9 @@ export class MyEventsComponent implements OnInit {
 
   logClick(): void {
     console.log('Button clicked');
+  }
+
+  navigateToAddEvent(): void {
+    this.router.navigate(['/add-event']);
   }
 }
