@@ -15,6 +15,8 @@ export class MyEventsComponent implements OnInit {
   isSidebarOpen = true;
   userDetails: any = null;
   events: any[] = [];
+  showConfirmDialog = false;
+  eventIdToDelete: string | null = null;
 
   constructor(private eventService: EventService) {}
 
@@ -35,11 +37,37 @@ export class MyEventsComponent implements OnInit {
           this.events = data;
           console.log('Events:', this.events); // Print events to the console
         },
-        (error) => {
+        (error: any) => {
           console.error('Error fetching events:', error); // Log any errors
         }
       );
     }
+  }
+
+  confirmDelete(eventId: string): void {
+    this.eventIdToDelete = eventId;
+    this.showConfirmDialog = true;
+  }
+
+  deleteEvent(): void {
+    if (this.eventIdToDelete) {
+      this.eventService.deleteEvent(this.eventIdToDelete).subscribe({
+        next: () => {
+          this.events = this.events.filter(event => event.id !== this.eventIdToDelete);
+          this.showConfirmDialog = false;
+          this.eventIdToDelete = null;
+        },
+        error: (error: any) => {
+          console.error('Error deleting event:', error); // Log any errors
+        }
+      });
+    }
+  }
+  
+
+  cancelDelete(): void {
+    this.showConfirmDialog = false;
+    this.eventIdToDelete = null;
   }
 
   onSidebarToggled(open: boolean): void {

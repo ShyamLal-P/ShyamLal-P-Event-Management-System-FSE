@@ -32,6 +32,17 @@
           <i class="fas fa-users total-tickets-icon"></i> <strong>Total Tickets:</strong> {{ event.totalTickets }}
         </div>
       </div>
+      <button class="delete-button" (click)="confirmDelete(event.id)">Delete</button>
     </div>
+  </div>
+
+  <!-- Backdrop -->
+  <div *ngIf="showConfirmDialog" class="backdrop"></div>
+
+  <!-- Confirmation Dialog -->
+  <div *ngIf="showConfirmDialog" class="confirm-dialog">
+    <p>Are you sure you want to delete this event?</p>
+    <button (click)="deleteEvent()">Yes</button>
+    <button (click)="cancelDelete()">No</button>
   </div>
 </div>
