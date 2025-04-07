@@ -1,117 +1,232 @@
 .main-content {
-    padding: 20px;
-  }
-  
-  .events-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  
+  padding: 20px;
+}
+
+.events-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.event-tile {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  width: calc(33.333% - 20px);
+  min-height: 220px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.event-tile h2 {
+  margin-top: 0;
+  font-size: 1.4em;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.event-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  font-size: 0.95em;
+}
+
+.event-detail {
+  display: flex;
+  align-items: center;
+  color: #444;
+}
+
+.event-detail i {
+  margin-right: 6px;
+}
+
+.location-icon {
+  color: #ff6347;
+}
+
+.category-icon {
+  color: #4682b4;
+}
+
+.date-icon {
+  color: #32cd32;
+}
+
+.price-icon {
+  color: #ffd700;
+}
+
+.tickets-icon {
+  color: #ff4500;
+}
+
+.time-icon {
+  color: #6a5acd;
+}
+
+.total-tickets-icon {
+  color: #20b2aa;
+}
+
+.booked-tickets-icon {
+  color: #32cd32;
+}
+
+.book-button {
+  align-self: flex-end;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95em;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+.book-button:hover {
+  background-color: #0056b3;
+}
+
+.alert-message {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #28a745;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-size: 0.95em;
+  z-index: 1000;
+}
+
+.no-events {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.no-events p {
+  font-size: 1.2em;
+  color: #666;
+}
+
+.no-events button {
+  background-color: #4682b4;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+@media (max-width: 1024px) {
   .event-tile {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 20px;
-    width: calc(33.333% - 20px);
-    height: 180px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: relative;
+    width: calc(50% - 20px);
   }
-  
-  .event-tile h2 {
-    margin-top: 0;
-    font-size: 1.5em;
+}
+
+@media (max-width: 600px) {
+  .event-tile {
+    width: 100%;
   }
-  
+
   .event-details {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    grid-template-columns: 1fr;
   }
-  
-  .event-detail {
-    display: flex;
-    align-items: center;
+}
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+}
+
+/* Modal Content */
+.modal {
+  background-color: white;
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Close Button */
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 1.4em;
+  color: #999;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.modal-close:hover {
+  color: #333;
+}
+
+/* Modal Heading */
+.modal h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.2em;
+  color: #333;
+}
+
+/* Input */
+.modal input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 1em;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+/* Submit Button */
+.modal button {
+  width: 100%;
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  font-size: 1em;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.modal button:hover {
+  background-color: #0056b3;
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
   }
-  
-  .event-detail i {
-    margin-right: 8px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .location-icon {
-    color: #ff6347; /* Tomato */
-  }
-  
-  .category-icon {
-    color: #4682b4; /* SteelBlue */
-  }
-  
-  .date-icon {
-    color: #32cd32; /* LimeGreen */
-  }
-  
-  .price-icon {
-    color: #ffd700; /* Gold */
-  }
-  
-  .tickets-icon {
-    color: #ff4500; /* OrangeRed */
-  }
-  
-  .time-icon {
-    color: #6a5acd; /* SlateBlue */
-  }
-  
-  .total-tickets-icon {
-    color: #20b2aa; /* LightSeaGreen */
-  }
-  
-  .booked-tickets-icon {
-    color: #32cd32; /* LimeGreen */
-  }
-  
-  .book-button {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 20px; /* Added margin-top to move the button down */
-  }
-  
-  .no-events {
-    text-align: center;
-    margin-top: 50px;
-  }
-  
-  .no-events p {
-    font-size: 1.2em;
-  }
-  
-  .no-events button {
-    background-color: #4682b4; /* SteelBlue */
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 20px;
-  }
-  
-  @media (max-width: 768px) {
-    .event-tile {
-      width: calc(50% - 20px);
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .event-tile {
-      width: 100%;
-    }
-  }
-  
+}

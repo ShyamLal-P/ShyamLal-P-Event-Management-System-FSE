@@ -1,9 +1,12 @@
 import { bootstrapApplication } from '@angular/platform-browser';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { importProvidersFrom } from '@angular/core';
+import { MatDialogModule } from '@angular/material/dialog';
 import { AppComponent } from './app.component';
-import { provideRouter } from '@angular/router';
-import { routes } from './app.routes';
-import { appConfig } from './app.config';
 
-bootstrapApplication(AppComponent, appConfig)
-  .catch((err) => console.error(err));
-
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideAnimations(),
+    importProvidersFrom(MatDialogModule) // ✅ This is the correct way
+  ]
+});

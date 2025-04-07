@@ -11,31 +11,35 @@
       <h2>{{ event.name }}</h2>
       <div class="event-details">
         <div class="event-detail">
-          <i class="fas fa-map-marker-alt location-icon"></i> <strong>Location:</strong> {{ event.location }}
+          <i class="fas fa-map-marker-alt location-icon"></i>
+          <strong>Location:</strong> {{ event.location }}
         </div>
         <div class="event-detail">
-          <i class="fas fa-tags category-icon"></i> <strong>Category:</strong> {{ event.category }}
+          <i class="fas fa-tags category-icon"></i>
+          <strong>Category:</strong> {{ event.category }}
         </div>
         <div class="event-detail">
-          <i class="fas fa-calendar-alt date-icon"></i> <strong>Date:</strong> {{ event.date | date }}
+          <i class="fas fa-calendar-alt date-icon"></i>
+          <strong>Date:</strong> {{ event.date | date }}
         </div>
         <div class="event-detail">
-          <i class="fas fa-dollar-sign price-icon"></i> <strong>Price:</strong> {{ event.eventPrice | currency }}
+          <i class="fas fa-dollar-sign price-icon"></i>
+          <strong>Price:</strong> {{ event.eventPrice | currency }}
         </div>
         <div class="event-detail">
-          <i class="fas fa-ticket-alt tickets-icon"></i> <strong>Available Tickets:</strong> {{ event.availableTickets }}
+          <i class="fas fa-ticket-alt tickets-icon"></i>
+          <strong>Available Tickets:</strong> {{ event.availableTickets }}
         </div>
         <div class="event-detail">
-          <i class="fas fa-clock time-icon"></i> <strong>Time:</strong> {{ event.time }}
+          <i class="fas fa-clock time-icon"></i>
+          <strong>Time:</strong> {{ event.time }}
         </div>
-        <!-- <div class="event-detail">
-          <i class="fas fa-users total-tickets-icon"></i> <strong>Total Tickets:</strong> {{ event.totalTickets }}
-        </div> -->
-        <!-- <div class="event-detail">
-          <i class="fas fa-check-circle booked-tickets-icon"></i> <strong>Booked Tickets:</strong> {{ event.totalTickets - event.availableTickets }}
-        </div> -->
       </div>
-      <button class="book-button" (click)="bookEvent(event.id)">Book</button>
+      <button class="book-button" (click)="bookEvent(event)">Book</button>
     </div>
+  </div>
+
+  <div *ngIf="message" class="alert-message">
+    {{ message }}
   </div>
 </div>

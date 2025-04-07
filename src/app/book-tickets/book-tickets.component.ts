@@ -1,91 +1,91 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { HomeHeaderComponent } from '../home-header/home-header.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service'; // Import AuthService
- 
+import { AuthService } from '../services/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { BookTicketDialogComponent } from '../book-ticket-dialog/book-ticket-dialog.component';
+import { EventService } from '../services/event.service'; // ✅ Make sure this is created and injected
+
 @Component({
   selector: 'app-book-tickets',
-  templateUrl: './book-tickets.component.html', // Correct templateUrl path
+  templateUrl: './book-tickets.component.html',
   styleUrls: ['./book-tickets.component.css'],
   standalone: true,
-  imports: [CommonModule, HomeHeaderComponent, SidebarComponent],
+  imports: [CommonModule, HomeHeaderComponent, SidebarComponent, BookTicketDialogComponent],
 })
 export class BookTicketsComponent implements OnInit {
-  apiUrl: string = 'http://localhost:5081/api'; // Base API URL for backend
-  events: any[] = []; // List of events to display
+  events: any[] = [];
   message: string | null = null;
   isSidebarOpen = true;
-  userDetails: any = null; // Holds user details for the header
- 
+  userDetails: any = null;
+
   constructor(
-    private http: HttpClient,
+    private eventService: EventService,
     private router: Router,
-    private authService: AuthService // Inject AuthService for user data
+    private authService: AuthService,
+    private dialog: MatDialog
   ) {}
- 
+
   ngOnInit(): void {
-    console.log('Book Tickets component initialized');
-   
-    // Fetch current user data dynamically for profile icon
     this.authService.getCurrentUser().subscribe({
       next: (res) => {
-        console.log('Fetched User Details:', res);
-        this.userDetails = res; // Dynamically populate user details
+        console.log('User Info:', res); // Make sure 'id' is printed
+        this.userDetails = res;
       },
       error: (err) => {
         console.error('Error fetching user details:', err);
       },
     });
- 
-    // Fetch events from API
-    this.http.get(`${this.apiUrl}/Event`).subscribe({
-      next: (res: any) => {
-        console.log('Fetched Events:', res);
-        this.events = res; // Update events list dynamically
+  
+    this.loadEvents();
+  }
+
+  loadEvents(): void {
+    this.eventService.getAllEvents().subscribe({
+      next: (res: any[]) => {
+        this.events = res;
       },
       error: (err) => {
         console.error('Error fetching events:', err);
       },
     });
   }
- 
+
   onSidebarToggled(isOpen: boolean): void {
     this.isSidebarOpen = isOpen;
   }
- 
-  bookEvent(eventId: string): void {
-    const token = localStorage.getItem('userToken');
-    if (token) {
-      const formData = {
-        eventId: eventId,
-        userId: this.userDetails?.userId, // Include user ID dynamically
-      };
- 
-      const headers = new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      });
- 
-      this.http.post(`${this.apiUrl}/Ticket/Book`, formData, { headers }).subscribe({
-        next: () => {
-          this.message = 'Tickets booked successfully!';
-          this.autoClearMessage();
-        },
-        error: (err) => {
-          this.message = 'Failed to book tickets.';
-          console.error(err);
-          this.autoClearMessage();
-        },
-      });
-    } else {
-      this.message = 'User not authenticated.';
-      this.autoClearMessage();
+
+  bookEvent(event: any): void {
+    const userId = this.userDetails?.id;
+  
+    if (!userId) {
+      console.error('User ID is missing.');
+      return;
     }
+  
+    const dialogRef = this.dialog.open(BookTicketDialogComponent, {
+      width: '500px',
+      data: {
+        event: event,
+        eventId: event.id,
+        userId: userId
+      },
+      disableClose: true,
+    });
+  
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.message = 'Tickets booked successfully!';
+        this.autoClearMessage();
+        this.loadEvents();
+      }
+    });
   }
- 
+  
+
   autoClearMessage(): void {
     setTimeout(() => {
       this.message = null;

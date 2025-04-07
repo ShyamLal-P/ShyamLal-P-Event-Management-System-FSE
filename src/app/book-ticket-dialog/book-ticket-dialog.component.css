@@ -1,0 +1,15 @@
+.ticket-input {
+    width: 100%;
+    margin-top: 15px;
+  }
+  
+  .error {
+    color: red;
+    margin-top: 10px;
+  }
+  
+  .success {
+    color: green;
+    margin-top: 10px;
+  }
+  

@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>Book Tickets</h2>
+<mat-dialog-content>
+  <div><strong>Event:</strong> {{ data.event.name }}</div>
+  <div><strong>Location:</strong> {{ data.event.location }}</div>
+  <div><strong>Date:</strong> {{ data.event.date | date }}</div>
+  <div><strong>Time:</strong> {{ data.event.time }}</div>
+  <div><strong>Price:</strong> {{ data.event.eventPrice | currency }}</div>
+  <div><strong>Available:</strong> {{ data.event.availableTickets }}</div>
+
+  <mat-form-field class="ticket-input" appearance="fill">
+    <mat-label>Number of Tickets</mat-label>
+    <input matInput type="number" [(ngModel)]="numberOfTickets" min="1" max="6" />
+  </mat-form-field>
+
+  <div *ngIf="message" class="message">{{ message }}</div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="close()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="bookTickets()">Book</button>
+</mat-dialog-actions>
