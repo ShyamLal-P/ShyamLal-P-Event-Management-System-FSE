@@ -1,45 +1,53 @@
 <div class="layout">
-    <app-sidebar (sidebarToggled)="onSidebarToggled($event)"></app-sidebar>
-  
-    <div class="main-content" [class.sidebar-open]="isSidebarOpen">
-      <app-home-header
-        [isSidebarOpen]="isSidebarOpen"
-        [user]="userDetails">
-      </app-home-header>
-  
-      <div class="add-event-container">
-        <h2>Add New Event</h2>
-  
-        <!-- Message Display -->
-        <div *ngIf="message" class="message" [ngClass]="{ 'success': isSuccess, 'error': !isSuccess }">
-          {{ message }}
-        </div>
-  
-        <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
-          <label for="name">Event Name:</label>
-          <input id="name" formControlName="name" type="text" />
-  
-          <label for="location">Location:</label>
-          <input id="location" formControlName="location" type="text" />
-  
-          <label for="category">Category:</label>
-          <input id="category" formControlName="category" type="text" />
-  
-          <label for="date">Date:</label>
-          <input id="date" formControlName="date" type="date" />
-  
-          <label for="time">Time:</label>
-          <input id="time" formControlName="time" type="time" />
-  
-          <label for="eventPrice">Event Price:</label>
-          <input id="eventPrice" formControlName="eventPrice" type="number" min="0" />
-  
-          <label for="totalTickets">Total Tickets:</label>
-          <input id="totalTickets" formControlName="totalTickets" type="number" min="1" />
-  
-          <button type="submit" (click)="logClick()">Add Event</button>
-        </form>
+  <app-sidebar (sidebarToggled)="onSidebarToggled($event)"></app-sidebar>
+
+  <div class="main-content" [class.sidebar-open]="isSidebarOpen">
+    <app-home-header
+      [isSidebarOpen]="isSidebarOpen"
+      [user]="userDetails">
+    </app-home-header>
+
+    <div class="add-event-container">
+      <h2>Add New Event</h2>
+
+      <!-- Message Display -->
+      <div *ngIf="message" class="message" [ngClass]="{ 'success': isSuccess, 'error': !isSuccess }">
+        {{ message }}
       </div>
+
+      <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+        <label for="name">Event Name:</label>
+        <input id="name" formControlName="name" type="text" />
+
+        <label for="location">Location:</label>
+        <input id="location" formControlName="location" type="text" />
+
+        <label for="category">Category:</label>
+        <select id="category" formControlName="category">
+          <option value="Corporate Events">Corporate Events</option>
+          <option value="Social Events">Social Events</option>
+          <option value="Cultural Events">Cultural Events</option>
+          <option value="Sports Events">Sports Events</option>
+          <option value="Entertainment Events">Entertainment Events</option>
+          <option value="Educational Events">Educational Events</option>
+          <option value="Charity Events">Charity Events</option>
+          <option value="Virtual Events">Virtual Events</option>
+        </select>
+
+        <label for="date">Date:</label>
+        <input id="date" formControlName="date" type="date" />
+
+        <label for="time">Time:</label>
+        <input id="time" formControlName="time" type="time" />
+
+        <label for="eventPrice">Event Price:</label>
+        <input id="eventPrice" formControlName="eventPrice" type="number" min="0" />
+
+        <label for="totalTickets">Total Tickets:</label>
+        <input id="totalTickets" formControlName="totalTickets" type="number" min="1" />
+
+        <button type="submit" (click)="logClick()">Add Event</button>
+      </form>
     </div>
   </div>
-  
+</div>

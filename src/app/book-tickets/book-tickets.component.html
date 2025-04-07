@@ -28,12 +28,12 @@
         <div class="event-detail">
           <i class="fas fa-clock time-icon"></i> <strong>Time:</strong> {{ event.time }}
         </div>
-        <div class="event-detail">
+        <!-- <div class="event-detail">
           <i class="fas fa-users total-tickets-icon"></i> <strong>Total Tickets:</strong> {{ event.totalTickets }}
-        </div>
-        <div class="event-detail">
+        </div> -->
+        <!-- <div class="event-detail">
           <i class="fas fa-check-circle booked-tickets-icon"></i> <strong>Booked Tickets:</strong> {{ event.totalTickets - event.availableTickets }}
-        </div>
+        </div> -->
       </div>
       <button class="book-button" (click)="bookEvent(event.id)">Book</button>
     </div>

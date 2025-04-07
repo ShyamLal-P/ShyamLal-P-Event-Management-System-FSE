@@ -6,6 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { HomeHeaderComponent } from '../home-header/home-header.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-add-event',
@@ -25,7 +26,8 @@ export class AddEventComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private authService: AuthService // Inject AuthService
   ) {
     this.eventForm = this.fb.group({
       name: ['', Validators.required],
@@ -39,16 +41,23 @@ export class AddEventComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const token = localStorage.getItem('userToken');
-    if (token) {
-      const decodedToken: any = jwtDecode(token);
-      this.userDetails = decodedToken;
-    }
+    console.log('Add Event component initialized');
+    // 🔥 Fetch current user data dynamically
+    this.authService.getCurrentUser().subscribe({
+      next: (res) => {
+        console.log('Fetched User Details:', res);
+        this.userDetails = res; // Set user details dynamically
+      },
+      error: (err) => {
+        console.error('Error fetching user details:', err);
+      }
+    });
   }
 
   onSidebarToggled(open: boolean): void {
     this.isSidebarOpen = open;
   }
+
 
   logClick(): void {
     console.log('Button clicked');
