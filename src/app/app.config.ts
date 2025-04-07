@@ -11,6 +11,7 @@ import { AuthInterceptor } from './auth.interceptor'; // <-- import
 import { AddEventComponent } from './add-event/add-event.component';
 import { MyEventsComponent } from './my-events/my-events.component';
 import { BookTicketsComponent } from './book-tickets/book-tickets.component';
+// import { BookEventFormComponent } from './book-event-form/book-event-form.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'sidebar', component: SidebarComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  // { path: 'book-event-fomr', component: BookEventFormComponent, canActivate: [AuthGuard]},
   { path: 'book-tickets', component: BookTicketsComponent, canActivate: [AuthGuard]},
   { path: 'add-event', component: AddEventComponent, canActivate: [AuthGuard]},
   { path: 'my-events', component: MyEventsComponent, canActivate: [AuthGuard]}

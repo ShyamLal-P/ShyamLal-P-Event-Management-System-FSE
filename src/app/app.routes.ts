@@ -7,12 +7,14 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { AddEventComponent } from './add-event/add-event.component';
 import { MyEventsComponent } from './my-events/my-events.component';
 import { BookTicketsComponent } from './book-tickets/book-tickets.component';
+// import { BookEventFormComponent } from './book-event-form/book-event-form.component';
 
 export const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'login', component: LoginComponent },
   { path: 'add-event', component: AddEventComponent },
   { path: 'register', component: RegisterComponent },
+  // { path: 'book-event-form', component: BookEventFormComponent },
   { path: 'sidebar', component: SidebarComponent},
   { path: 'home', component: HomeComponent },
   { path: 'my-events', component: MyEventsComponent},

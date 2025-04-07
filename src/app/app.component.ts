@@ -4,7 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HeaderComponent } from './header/header.component';
 import { LandingComponent } from './landing/landing.component';
-import { FormsModule } from '@angular/forms'; // Import FormsModule
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Import FormsModule
 import { HomeComponent } from './home/home.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
@@ -17,6 +17,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     RegisterComponent,
     HeaderComponent,
     LandingComponent,
+    ReactiveFormsModule,
     HomeComponent,
     SidebarComponent,
     FormsModule // Add FormsModule here
