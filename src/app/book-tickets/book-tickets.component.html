@@ -23,8 +23,7 @@
           <strong>Date:</strong> {{ event.date | date }}
         </div>
         <div class="event-detail">
-          <i class="fas fa-dollar-sign price-icon"></i>
-          <strong>Price:</strong> {{ event.eventPrice | currency }}
+          <i class="fas fa-rupee-sign price-icon"></i> <strong>Price:</strong> {{ event.eventPrice | currency:'INR':'symbol-narrow' }}
         </div>
         <div class="event-detail">
           <i class="fas fa-ticket-alt tickets-icon"></i>
