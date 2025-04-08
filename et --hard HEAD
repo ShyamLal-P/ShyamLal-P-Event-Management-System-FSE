@@ -1,0 +1,326 @@
+[33mcommit 8cabd00d36cce43f97b73e08b422f426acf80251[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Pallavaram Sundar Lal <2387683@cognizant.com>
+Date:   Tue Apr 8 11:38:24 2025 +0530
+
+    added upcoming events in my booking
+
+[33mcommit b53811d737ad2d80089e949329e55438f978d2d8[m
+Author: Pallavaram Sundar Lal <2387683@cognizant.com>
+Date:   Tue Apr 8 09:22:44 2025 +0530
+
+    added css for addevent and myeve
+
+[33mcommit 042d02c8146f80ff25136aba420eadf6921224a2[m
+Author: Pallavaram Sundar Lal <2387683@cognizant.com>
+Date:   Tue Apr 8 09:15:04 2025 +0530
+
+    added css for addevent and myeve
+
+[33mcommit fc745a8a6b3df6566ad38327a40b9444c3f1c72d[m
+Author: Shyam-Lal <pvshyamlal4@gmail.com>
+Date:   Mon Apr 7 23:02:22 2025 +0530
+
+    booking tickets working
+
+[33mcommit 5a3d526f086f25fe75898b1e855073b7c380be5f[m
+Author: Pallavaram Sundar Lal <2387683@cognizant.com>
+Date:   Mon Apr 7 18:13:13 2025 +0530
+
+    added drop down for adding event in category
+
+[33mcommit 54dd7a8cee1686be24085ccf63bdf6ab14c49866[m
+Author: Pallavaram Sundar Lal <2387683@cognizant.com>
+Date:   Mon Apr 7 15:45:42 2025 +0530
+
+    added drop down for adding event in category
+
+[33mcommit 3140602565b09f7e3c5a7e7d4af7da9d7c694a1e[m
+Author: Pallavaram Sundar Lal <2387683@cognizant.com>
+Date:   Mon Apr 7 14:53:17 2025 +0530
+
+    added drop down for ass event
+
+[33mcommit d32f54cdb0723bdce3c7b701b4642a18720574aa[m
+Author: Pallavaram Sundar Lal <2387683@cognizant.com>
+Date:   Mon Apr 7 13:59:41 2025 +0530
+
+    added book ticket component and tile format
+
+[33mcommit 1df7017c65f8506296923c507910dbedec8701d8[m
+Author: Pallavaram Sundar Lal <2387683@cognizant.com>
+Date:   Mon Apr 7 13:54:18 2025 +0530
+
+    added book ticket component
+
+[33mcommit 537267045898c54db33699b0233d31a885d0444d[m
+Author: Pallavaram Sundar Lal <2387683@cognizant.com>
+Date:   Mon Apr 7 12:34:03 2025 +0530
+
+    added css and total tickets booked
+
+[33mcommit b1ae3a5722bb49849d4c7e4bdb7acd69b50a0058[m
+Author: Pallavaram Sundar Lal <2387683@cognizant.com>
+Date:   Mon Apr 7 12:06:42 2025 +0530
+
+    added redirection button when there are no events
+
+[33mcommit 570f8a0720fe97c5ce075bc11dc8a09ce85ca5b2[m
+Author: Pallavaram Sundar Lal <2387683@cognizant.com>
+Date:   Mon Apr 7 11:57:20 2025 +0530
+
+    added delete button in my events
+
+[33mcommit ff4af590cf4cf7126bff4cd79051b192e3216b60[m
+Author: Pallavaram Sundar Lal <2387683@cognizant.com>
+Date:   Mon Apr 7 10:58:59 2025 +0530
+
+    added my events and it is working with css colors
+
+[33mcommit e39391d466f3b47537013a4d756cd0ed39731d6a[m
+Author: Pallavaram Sundar Lal <2387683@cognizant.com>
+Date:   Mon Apr 7 10:57:10 2025 +0530
+
+    added my events and it is working
+
+[33mcommit d4337ed8fd8a7fd9c38dcab2754f94a2da3bb59e[m
+Author: Shyam-Lal <pvshyamlal4@gmail.com>
+Date:   Sun Apr 6 23:07:09 2025 +0530
+
+    added success msgs
+
+[33mcommit 2a3a62bcef9c248f344e1410d73e4393d51ef215[m
+Author: Shyam-Lal <pvshyamlal4@gmail.com>
+Date:   Sun Apr 6 22:55:59 2025 +0530
+
+    event added
+
+[33mcommit 4482241fb6f8332e0056e873a85b9d5fc8bba261[m
+Author: Shyam-Lal <pvshyamlal4@gmail.com>
+Date:   Sun Apr 6 21:03:13 2025 +0530
+
+    added role based nav bar
+
+[33mcommit 4701452339e87800f9dd16dbf6d590e9c856c927[m
+Author: Shyam-Lal <pvshyamlal4@gmail.com>
+Date:   Sun Apr 6 20:40:50 2025 +0530
+
+    added function for profile bubble
+
+[33mcommit 4fdc5ff9f2021127d6b721a5ee57116646d0a9cd[m
+Author: Shyam-Lal <pvshyamlal4@gmail.com>
+Date:   Sun Apr 6 20:32:46 2025 +0530
+
+    added user data retrieval in home
+
+[33mcommit 9e34b4034a56894c25854ea794af6e3ea4987920[m
+Author: Shyam-Lal <pvshyamlal4@gmail.com>
+Date:   Sat Apr 5 20:44:13 2025 +0530
+
+    header added for home
+
+[33mcommit 2d808566af275f98fb4a90b4a7110c5a877c489a[m
+Author: Shyam-Lal <pvshyamlal4@gmail.com>
+Date:   Sat Apr 5 20:02:08 2025 +0530
+
+    Ideal State CheckPoint
+
+[33mcommit e6a87f8e481fb520f0ac8a71bac791f8806f9df5[m
+Author: Shyam-Lal <pvshyamlal4@gmail.com>
+Date:   Sat Apr 5 18:03:13 2025 +0530
+
+    Revert "added timer for redirection"
+    
+    This reverts commit 4b20556541b2ba9f8ed50ca76bb6c3b3cbf26c2f.
+
+[33mcommit 52512ab4a066e57054189017c77384d59f9064f2[m
+Author: Shyam-Lal <pvshyamlal4@gmail.com>
+Date:   Sat Apr 5 18:01:44 2025 +0530
+
+    Reapply "header part done"
+    
+    This reverts commit d38bec6e43830483b3ef4b81290c7dac1bdc20a5.
+
+[33mcommit d38bec6e43830483b3ef4b81290c7dac1bdc20a5[m
+Author: Shyam-Lal <pvshyamlal4@gmail.com>
+Date:   Sat Apr 5 18:01:25 2025 +0530
+
+    Revert "header part done"
+    
+    This reverts commit f6d8954072ee621a439c7a7b8e46b63c29ac84b4.
+
+[33mcommit 03184c00e2edf67dbda73fb312aec8654b48bb6d[m
+Author: Shyam-Lal <pvshyamlal4@gmail.com>
+Date:   Sat Apr 5 18:01:17 2025 +0530
+
+    Revert "header part done"
+    
+    This reverts commit f6d8954072ee621a439c7a7b8e46b63c29ac84b4.
+
+[33mcommit d777dded1fe80ecda616c10ca2742a09d885cd9f[m
+Author: Shyam-Lal <pvshyamlal4@gmail.com>
+Date:   Sat Apr 5 18:01:00 2025 +0530
+
+    sd
+
+[33mcommit 08581ef32218dfb8aa9a1e2387e8784bbd068041[m
+Author: Shyam-Lal <pvshyamlal4@gmail.com>
+Date:   Sat Apr 5 18:00:06 2025 +0530
+
+    Revert "little testing"
+    
+    This reverts commit 8ee8fc5fe4002263b63cc6e0d75815a1b45dc702.
+
+[33mcommit ca3c0c1a2081ba41e0a7637fdd702941272fb5db[m
+Author: Shyam-Lal <pvshyamlal4@gmail.com>
+Date:   Sat Apr 5 17:59:58 2025 +0530
+
+    cv
+
+[33mcommit 25ab2726c5f584a58ae31080910a2080c9a15235[m
+Author: Shyam-Lal <pvshyamlal4@gmail.com>
+Date:   Sat Apr 5 17:59:22 2025 +0530
+
+    cv
+
+[33mcommit 81941ec58c910920d7a32e9a57fceeca54b22ab2[m
+Author: Shyam-Lal <pvshyamlal4@gmail.com>
+Date:   Sat Apr 5 17:29:17 2025 +0530
+
+    xc
+
+[33mcommit 9290481aa5a23365f84b68b8c50637d09238f148[m
+Author: Shyam-Lal <pvshyamlal4@gmail.com>
+Date:   Sat Apr 5 17:25:31 2025 +0530
+
+    Revert "header part done"
+    
+    This reverts commit f6d8954072ee621a439c7a7b8e46b63c29ac84b4.
+
+[33mcommit d6f3d51dd52226df5b21e01b6eb0f8c8c48deb20[m
+Author: Shyam-Lal <pvshyamlal4@gmail.com>
+Date:   Sat Apr 5 17:25:22 2025 +0530
+
+    Revert "header part done"
+    
+    This reverts commit f6d8954072ee621a439c7a7b8e46b63c29ac84b4.
+
+[33mcommit f0b64ad2142d5803b5c736d2426ed8d3e616798b[m
+Author: Shyam-Lal <pvshyamlal4@gmail.com>
+Date:   Sat Apr 5 17:23:59 2025 +0530
+
+    WIP: saving changes before revert
+
+[33mcommit f6d8954072ee621a439c7a7b8e46b63c29ac84b4[m
+Author: Shyam-Lal <pvshyamlal4@gmail.com>
+Date:   Sat Apr 5 16:33:17 2025 +0530
+
+    header part done
+
+[33mcommit 8ee8fc5fe4002263b63cc6e0d75815a1b45dc702[m
+Author: Shyam-Lal <pvshyamlal4@gmail.com>
+Date:   Sat Apr 5 16:19:50 2025 +0530
+
+    little testing
+
+[33mcommit a538281243ea083ded940246a83cc0cc2b8ea190[m
+Author: Shyam-Lal <pvshyamlal4@gmail.com>
+Date:   Sat Apr 5 16:09:09 2025 +0530
+
+    added dynamic header
+
+[33mcommit 4b20556541b2ba9f8ed50ca76bb6c3b3cbf26c2f[m
+Author: Shyam-Lal <pvshyamlal4@gmail.com>
+Date:   Sat Apr 5 15:53:51 2025 +0530
+
+    added timer for redirection
+
+[33mcommit 2605120c3abf21994dbd7ad7740de1a11ab9800d[m
+Author: Shyam-Lal <pvshyamlal4@gmail.com>
+Date:   Sat Apr 5 15:50:24 2025 +0530
+
+    added redirection timer
+
+[33mcommit e14e6726383e3150b632b22b0e8efea773319195[m
+Author: Shyam-Lal <pvshyamlal4@gmail.com>
+Date:   Sat Apr 5 15:45:11 2025 +0530
+
+    added success msg in register
+
+[33mcommit d8900b31d658d1cedb38cdb16d4ad38096f0b958[m
+Author: Pallavaram Sundar Lal <2387683@cognizant.com>
+Date:   Fri Apr 4 15:15:18 2025 +0530
+
+    aaded authguard and implemented
+
+[33mcommit 04712668ec14230fc08adce0d4f40058c05ab405[m
+Author: Pallavaram Sundar Lal <2387683@cognizant.com>
+Date:   Fri Apr 4 15:04:14 2025 +0530
+
+    aaded authguard so it will not nav
+
+[33mcommit fa804fa15c8483a90b878d08a995f1962c6bd4ca[m
+Author: Pallavaram Sundar Lal <2387683@cognizant.com>
+Date:   Fri Apr 4 14:32:38 2025 +0530
+
+    aaded css for the nav bar
+
+[33mcommit b926d841aa202684a99efe003a56914e55c3d25a[m
+Author: Pallavaram Sundar Lal <2387683@cognizant.com>
+Date:   Fri Apr 4 12:35:10 2025 +0530
+
+    aaded home page nav bar
+
+[33mcommit 238eeb36cfb48e146b3cd715d97a3f8cd92f0c72[m
+Author: Pallavaram Sundar Lal <2387683@cognizant.com>
+Date:   Fri Apr 4 10:22:56 2025 +0530
+
+    aaded redirection and the success msg
+
+[33mcommit 4e486719a24e4bfb9d4cd4b5df095ba212de0628[m
+Author: Pallavaram Sundar Lal <2387683@cognizant.com>
+Date:   Thu Apr 3 17:12:44 2025 +0530
+
+    aaded css for login
+
+[33mcommit 1eb7086bd9ff901999df150220b2aff1edfa40c1[m
+Author: Pallavaram Sundar Lal <2387683@cognizant.com>
+Date:   Thu Apr 3 12:13:40 2025 +0530
+
+    aaded css for landing and header
+
+[33mcommit 0544f29c684fc53c183e559a704fff22c642e629[m
+Author: Pallavaram Sundar Lal <2387683@cognizant.com>
+Date:   Wed Apr 2 17:14:07 2025 +0530
+
+    aaded function for register need to add success msgs
+
+[33mcommit 5224abf5e99c66eac54b4c8b2e8661c6ab94d861[m
+Author: Pallavaram Sundar Lal <2387683@cognizant.com>
+Date:   Wed Apr 2 15:35:50 2025 +0530
+
+    aaded login working but now navigation need to work on register
+
+[33mcommit 1af910537ed1db8f6a155729fa946ab89762f32a[m
+Author: Pallavaram Sundar Lal <2387683@cognizant.com>
+Date:   Tue Apr 1 18:13:43 2025 +0530
+
+    aaded nav to logo to landing page
+
+[33mcommit 4bc8805ceb736cb24efee2034d1b31460b0af8fc[m
+Merge: d7e88f7 911ad50
+Author: Pallavaram Sundar Lal <2387683@cognizant.com>
+Date:   Tue Apr 1 18:09:13 2025 +0530
+
+    Merge branch 'main' of https://github.com/ShyamLal-P/ShyamLal-P-Event-Management-System-FSE
+
+[33mcommit d7e88f78a300a58ad6f192f2fba7411b104eb37d[m
+Author: Pallavaram Sundar Lal <2387683@cognizant.com>
+Date:   Tue Apr 1 17:59:18 2025 +0530
+
+    aaded hover effect for the anchors
+
+[33mcommit 911ad5039307f298be9f8bd615fe9615a040c079[m
+Author: ShyamLal-P <Pallavaram.SundarLal@cognizant.com>
+Date:   Tue Apr 1 17:49:23 2025 +0530
+
+    Initial commit

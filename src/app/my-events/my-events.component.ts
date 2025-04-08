@@ -8,6 +8,7 @@ import { jwtDecode } from 'jwt-decode';
 
 @Component({
   selector: 'app-my-events',
+  standalone: true,
   imports: [CommonModule, SidebarComponent, HomeHeaderComponent],
   templateUrl: './my-events.component.html',
   styleUrls: ['./my-events.component.css']
