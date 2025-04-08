@@ -13,4 +13,12 @@ export class TicketService {
   getTicketsByUserId(userId: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/user/${userId}`);
   }
+
+  getEventsByUserId(userId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/user/${userId}/events`);
+  }
+
+  deleteEvent(eventId: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${eventId}`);
+  }
 }

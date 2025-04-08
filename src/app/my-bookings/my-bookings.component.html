@@ -1,41 +1,59 @@
+<!-- Sidebar -->
 <app-sidebar (sidebarToggled)="onSidebarToggled($event)"></app-sidebar>
-<app-home-header
-  [isSidebarOpen]="isSidebarOpen"
-  [user]="userDetails">
-</app-home-header>
 
-<div *ngIf="showMessage" class="slide-message">
-  {{ message }}
-</div>
+<!-- Main Content -->
+<div class="main-content" [class.sidebar-open]="isSidebarOpen">
 
-<div class="home-container" [class.sidebar-open]="isSidebarOpen">
-  <h2>My Bookings</h2>
-  <div class="events-container" *ngIf="bookedTickets.length > 0; else noBookings">
-    <div *ngFor="let ticket of bookedTickets" class="event-tile">
-      <h3>{{ ticket.event.name }}</h3>
+  <!-- Header -->
+  <app-home-header [isSidebarOpen]="isSidebarOpen"></app-home-header>
+
+  <!-- Sliding Toggle Bar -->
+  <div id="slider-bar" class="slider-bar">
+    <div
+      class="slider-button"
+      [class.active]="activeTab === 'all'"
+      (click)="selectTab('all')">All Events</div>
+    <div
+      class="slider-button"
+      [class.active]="activeTab === 'upcoming'"
+      (click)="selectTab('upcoming')">Upcoming Events</div>
+    <div
+      class="slider-button"
+      [class.active]="activeTab === 'completed'"
+      (click)="selectTab('completed')">Completed Events</div>
+    <div class="slider-indicator" [ngClass]="activeTab"></div>
+  </div>
+
+  <!-- Existing Event Logic -->
+  <div *ngIf="events.length === 0" class="no-events">
+    <p>No events found. Would you like to add an event?</p>
+    <button (click)="navigateToAddEvent()">Add Event</button>
+  </div>
+
+  <div class="events-container" *ngIf="events.length > 0">
+    <div *ngFor="let event of filteredEvents" class="event-tile">
+      <h2>{{ event.name }}</h2>
       <div class="event-details">
         <div class="event-detail">
-          <strong>Location:</strong> {{ ticket.event.location }}
+          <i class="fas fa-map-marker-alt location-icon"></i> <strong>Location:</strong> {{ event.location }}
         </div>
         <div class="event-detail">
-          <strong>Category:</strong> {{ ticket.event.category }}
+          <i class="fas fa-tags category-icon"></i> <strong>Category:</strong> {{ event.category }}
         </div>
         <div class="event-detail">
-          <strong>Date:</strong> {{ ticket.event.date | date }}
+          <i class="fas fa-calendar-alt date-icon"></i> <strong>Date:</strong> {{ event.date | date }}
         </div>
         <div class="event-detail">
-          <strong>Time:</strong> {{ ticket.event.time }}
+          <i class="fas fa-rupee-sign price-icon"></i> <strong>Price:</strong> {{ event.eventPrice | currency:'INR':'symbol-narrow' }}
         </div>
         <div class="event-detail">
-          <strong>Price:</strong> {{ ticket.event.eventPrice | currency:'INR':'symbol-narrow' }}
+          <i class="fas fa-clock time-icon"></i> <strong>Time:</strong> {{ event.time }}
         </div>
         <div class="event-detail">
-          <strong>Status:</strong> {{ ticket.status }}
+          <i class="fas fa-check-circle booked-tickets-icon"></i> <strong>Booked Tickets:</strong> {{ event.totalTickets - event.availableTickets }}
         </div>
       </div>
+      <button class="delete-button" (click)="confirmDelete(event.id)">Delete</button>
     </div>
   </div>
-  <ng-template #noBookings>
-    <p>No bookings found.</p>
-  </ng-template>
 </div>
