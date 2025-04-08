@@ -29,7 +29,7 @@ app-home-header.sidebar-open {
   padding: 20px;
   transition: margin-left 0.3s ease;
   margin-top: 60px; /* height of fixed header */
-  margin-left: 0;
+  margin-left: 60px; /* Adjust to match the closed sidebar width */
 }
 
 .home-container.sidebar-open {
@@ -89,3 +89,4 @@ app-home-header.sidebar-open {
   margin-bottom: 20px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
+ 

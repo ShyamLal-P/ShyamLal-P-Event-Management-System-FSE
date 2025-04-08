@@ -1,21 +1,49 @@
-<h2 mat-dialog-title>Book Tickets</h2>
+<h2 mat-dialog-title class="dialog-title">
+  Book Events
+  <button class="close-button" (click)="close()">
+    <i class="material-icons">close</i>
+  </button>
+</h2>
 <mat-dialog-content>
-  <div><strong>Event:</strong> {{ data.event.name }}</div>
-  <div><strong>Location:</strong> {{ data.event.location }}</div>
-  <div><strong>Date:</strong> {{ data.event.date | date }}</div>
-  <div><strong>Time:</strong> {{ data.event.time }}</div>
-  <div><strong>Price:</strong> {{ data.event.eventPrice | currency }}</div>
-  <div><strong>Available:</strong> {{ data.event.availableTickets }}</div>
+  <div class="event-name">{{ data.event.name }}</div>
+  <div class="event-details">
+    <div><i class="material-icons location-icon">location_on</i> <strong>Location:</strong> {{ data.event.location }}</div>
+    <div><i class="material-icons date-icon">event</i> <strong>Date:</strong> {{ data.event.date | date }}</div>
+    <div><i class="material-icons time-icon">access_time</i> <strong>Time:</strong> {{ data.event.time }}</div>
+    <div><i class="material-icons price-icon">attach_money</i> <strong>Price:</strong> ₹{{ data.event.eventPrice }}</div>
+    <div><i class="material-icons tickets-icon">confirmation_number</i> <strong>Available:</strong> {{ data.event.availableTickets }}</div>
+  </div>
 
   <mat-form-field class="ticket-input" appearance="fill">
     <mat-label>Number of Tickets</mat-label>
-    <input matInput type="number" [(ngModel)]="numberOfTickets" min="1" max="6" />
+    <mat-select [(ngModel)]="numberOfTickets" (selectionChange)="calculateTotalFare()">
+      <mat-option *ngFor="let ticket of tickets" [value]="ticket">{{ ticket }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div *ngIf="numberOfTickets > 6" class="error">
+    Max limit is 6.
+  </div>
+
+  <div class="total-fare" *ngIf="numberOfTickets <= 6">
+    <strong>Total Fare:</strong> ₹{{ totalFare }}
+  </div>
+
+  <mat-form-field class="payment-method" appearance="fill">
+    <mat-label>Payment Method</mat-label>
+    <mat-select [(ngModel)]="paymentMethod">
+      <mat-option value="credit-card"><i class="material-icons">credit_card</i> Credit Card</mat-option>
+      <mat-option value="debit-card"><i class="material-icons">credit_card</i> Debit Card</mat-option>
+      <mat-option value="net-banking"><i class="material-icons">account_balance</i> Net Banking</mat-option>
+      <mat-option value="upi"><i class="material-icons">account_balance_wallet</i> UPI</mat-option>
+    </mat-select>
   </mat-form-field>
 
   <div *ngIf="message" class="message">{{ message }}</div>
 </mat-dialog-content>
 
-<mat-dialog-actions align="end">
-  <button mat-button (click)="close()">Cancel</button>
-  <button mat-raised-button color="primary" (click)="bookTickets()">Book</button>
+<mat-dialog-actions class="dialog-actions">
+  <button mat-button class="cancel-button" (click)="close()">Cancel</button>
+  <button mat-raised-button class="book-button" color="primary" (click)="bookTickets()">Book</button>
 </mat-dialog-actions>
+ 

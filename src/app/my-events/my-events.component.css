@@ -48,6 +48,70 @@ app-home-header.sidebar-open {
   }
 }
 
+/* Sliding Toggle Bar */
+#slider-bar {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f1f1f1;
+  border-radius: 25px;
+  border: 5px solid #04676e; /* Thicker border */
+  width: 60%;
+  margin: 20px auto; /* Centered horizontally */
+  padding: 5px;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
+}
+
+/* Individual Toggle Buttons */
+.slider-button {
+  flex: 1;
+  text-align: center;
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: #6c757d;
+  padding: 10px 0;
+  position: relative;
+  z-index: 2; /* Ensure text is above the slider indicator */
+  transition: color 0.3s ease;
+}
+
+.slider-button.active {
+  font-weight: bold;
+  color: white; /* Matches the slider indicator color */
+}
+
+/* Sliding Indicator */
+.slider-indicator {
+  position: absolute;
+  height: 100%;
+  width: 33.33%; /* Occupies one-third of the bar width */
+  border-radius: 25px;
+  background-color: #007bff; /* Default color (All Events) */
+  z-index: 1; /* Below the text */
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 15px rgba(0, 123, 255, 0.8); /* Glowy shadow effect */
+}
+
+/* Indicator Colors */
+.slider-indicator.all {
+  transform: translateX(0%);
+  background-color: #007bff; /* Blue */
+  box-shadow: 0 0 15px rgba(0, 123, 255, 0.8); /* Glowy shadow for blue */
+}
+
+.slider-indicator.upcoming {
+  transform: translateX(100%);
+  background-color: #28a745; /* Green */
+  box-shadow: 0 0 15px rgba(40, 167, 69, 0.8); /* Glowy shadow for green */
+}
+
+.slider-indicator.completed {
+  transform: translateX(200%);
+  background-color: #dc3545; /* Red */
+  box-shadow: 0 0 15px rgba(220, 53, 69, 0.8); /* Glowy shadow for red */
+}
+
 /* Events container */
 .events-container {
   display: grid;
@@ -222,6 +286,11 @@ app-home-header.sidebar-open {
   .events-container {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
+
+  #slider-bar {
+    flex-direction: column; /* Stack toggle options vertically */
+    width: 90%;
+  }
 }
 
 @media (max-width: 480px) {
@@ -229,3 +298,4 @@ app-home-header.sidebar-open {
     grid-template-columns: 1fr;
   }
 }
+ 

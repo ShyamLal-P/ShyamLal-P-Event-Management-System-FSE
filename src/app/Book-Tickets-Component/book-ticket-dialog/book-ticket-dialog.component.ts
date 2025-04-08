@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
 import { BookingService } from '../../services/booking.service';
 
 @Component({
@@ -16,31 +18,54 @@ import { BookingService } from '../../services/booking.service';
     FormsModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule,
+    MatOptionModule
   ]
 })
 export class BookTicketDialogComponent {
+  tickets: number[] = [1, 2, 3, 4, 5, 6];
   numberOfTickets: number = 1;
+  totalFare: number = 0;
   message: string | null = null;
+  paymentMethod: string | null = null;
 
   constructor(
     public dialogRef: MatDialogRef<BookTicketDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private bookingService: BookingService
-  ) {}
+  ) {
+    this.calculateTotalFare();
+  }
+
+  calculateTotalFare(): void {
+    if (this.numberOfTickets < 1 || this.numberOfTickets > 6) {
+      this.totalFare = 0;
+      this.message = 'Please select a valid number of tickets (1-6)';
+    } else {
+      this.totalFare = this.numberOfTickets * this.data.event.eventPrice;
+      this.message = null;
+    }
+  }
 
   bookTickets(): void {
     if (this.numberOfTickets < 1 || this.numberOfTickets > 6) {
-      this.message = 'You can only book between 1 to 6 tickets.';
+      this.message = 'Max limit is 6';
       return;
     }
-  
+
+    if (!this.paymentMethod) {
+      this.message = 'Please select a payment method.';
+      return;
+    }
+
     const bookingRequest = {
       userId: this.data.userId,
       eventId: this.data.eventId,
-      numberOfTickets: this.numberOfTickets
+      numberOfTickets: this.numberOfTickets,
+      paymentMethod: this.paymentMethod
     };
-  
+
     this.bookingService.bookTickets(bookingRequest).subscribe({
       next: (res) => {
         this.message = 'Tickets booked successfully!';
@@ -52,9 +77,9 @@ export class BookTicketDialogComponent {
       },
     });
   }
-  
 
   close(): void {
     this.dialogRef.close(false);
   }
 }
+ 

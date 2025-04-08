@@ -1,0 +1,41 @@
+<app-sidebar (sidebarToggled)="onSidebarToggled($event)"></app-sidebar>
+<app-home-header
+  [isSidebarOpen]="isSidebarOpen"
+  [user]="userDetails">
+</app-home-header>
+
+<div *ngIf="showMessage" class="slide-message">
+  {{ message }}
+</div>
+
+<div class="home-container" [class.sidebar-open]="isSidebarOpen">
+  <h2>My Bookings</h2>
+  <div class="events-container" *ngIf="bookedTickets.length > 0; else noBookings">
+    <div *ngFor="let ticket of bookedTickets" class="event-tile">
+      <h3>{{ ticket.event.name }}</h3>
+      <div class="event-details">
+        <div class="event-detail">
+          <strong>Location:</strong> {{ ticket.event.location }}
+        </div>
+        <div class="event-detail">
+          <strong>Category:</strong> {{ ticket.event.category }}
+        </div>
+        <div class="event-detail">
+          <strong>Date:</strong> {{ ticket.event.date | date }}
+        </div>
+        <div class="event-detail">
+          <strong>Time:</strong> {{ ticket.event.time }}
+        </div>
+        <div class="event-detail">
+          <strong>Price:</strong> {{ ticket.event.eventPrice | currency:'INR':'symbol-narrow' }}
+        </div>
+        <div class="event-detail">
+          <strong>Status:</strong> {{ ticket.status }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #noBookings>
+    <p>No bookings found.</p>
+  </ng-template>
+</div>
