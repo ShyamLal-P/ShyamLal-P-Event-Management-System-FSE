@@ -1,16 +1,18 @@
+
 <div class="sidebar" [class.closed]="!isOpen">
   <ul>
-    <li><a routerLink="/home">Home</a></li>
-    <li *ngIf="isAdmin()"><a routerLink="/my-events">My Events</a></li>
-    <li *ngIf="isAdmin()"><a routerLink="/add-event">Add Event</a></li>
-    <li><a routerLink="/book-tickets">Book Tickets</a></li>
-    <li><a routerLink="/my-bookings">My Bookings</a></li>
-    <li><a routerLink="/feedback">Feedback</a></li>
-    <li><a routerLink="/notifications">Notifications</a></li>
-    <li><a routerLink="/profile">Profile</a></li>
+    <li><a routerLink="/home" class="nav-link" title="Home"><i class="fas fa-home"></i><span>Home</span></a></li>
+    <li *ngIf="isAdmin()"><a routerLink="/my-events" class="nav-link" title="My Events"><i class="fas fa-calendar-alt"></i><span>My Events</span></a></li>
+    <li *ngIf="isAdmin()"><a routerLink="/add-event" class="nav-link" title="Add Event"><i class="fas fa-plus-circle"></i><span>Add Event</span></a></li>
+    <li><a routerLink="/book-tickets" class="nav-link" title="Book Tickets"><i class="fas fa-ticket-alt"></i><span>Book Tickets</span></a></li>
+    <li><a routerLink="/my-bookings" class="nav-link" title="My Bookings"><i class="fas fa-book"></i><span>My Bookings</span></a></li>
+    <li><a routerLink="/feedback" class="nav-link" title="Feedback"><i class="fas fa-comment-dots"></i><span>Feedback</span></a></li>
+    <li><a routerLink="/notifications" class="nav-link" title="Notifications"><i class="fas fa-bell"></i><span>Notifications</span></a></li>
+    <li><a routerLink="/profile" class="nav-link" title="Profile"><i class="fas fa-user"></i><span>Profile</span></a></li>
   </ul>
   <ul class="bottom-menu">
-    <li><a (click)="logout()" class="logout-link">Logout</a></li>
+    <li><a (click)="logout()" class="logout-link" title="Logout"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a></li>
   </ul>
 </div>
 <button class="toggle-button" (click)="toggleSidebar()">&#9776;</button>
+ 

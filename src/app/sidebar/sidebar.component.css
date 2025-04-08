@@ -12,8 +12,8 @@
 }
 
 .sidebar.closed {
-  width: 0;
-  padding: 0;
+  width: 60px; /* Adjust width to show icons */
+  padding: 15px 0;
 }
 
 .sidebar ul {
@@ -30,10 +30,25 @@
   text-decoration: none;
   color: #ffffff;
   font-weight: bold;
-  display: block;
+  display: flex;
+  align-items: center;
   padding: 10px;
   border-radius: 4px;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sidebar ul li a i {
+  margin-right: 10px;
+  display: inline-block;
+}
+
+.sidebar.closed ul li a i {
+  margin-right: 0;
+}
+
+.sidebar.closed ul li a span {
+  display: none;
+  padding-left: 10px;
 }
 
 .sidebar .bottom-menu .logout-link:hover {
@@ -84,28 +99,29 @@
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
   .sidebar {
-    width: 200px;
+      width: 200px;
   }
 
   .home-container.sidebar-open {
-    margin-left: 200px;
+      margin-left: 200px;
   }
 
   .toggle-button {
-    left: 10px;
+      left: 10px;
   }
 }
 
 @media (max-width: 480px) {
   .sidebar {
-    width: 150px;
+      width: 150px;
   }
 
   .home-container.sidebar-open {
-    margin-left: 150px;
+      margin-left: 150px;
   }
 
   .toggle-button {
-    left: 10px;
+      left: 10px;
   }
 }
+ 

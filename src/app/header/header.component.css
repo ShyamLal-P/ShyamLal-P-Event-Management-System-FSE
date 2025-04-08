@@ -35,6 +35,7 @@ html, body {
     text-decoration: none;
     font-size: 18px;
     transition: color 0.3s ease, border-bottom 0.3s ease;
+    cursor: pointer;
 }
 
 .nav a:hover {
