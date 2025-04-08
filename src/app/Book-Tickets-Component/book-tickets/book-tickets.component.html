@@ -1,13 +1,29 @@
 <app-sidebar (sidebarToggled)="onSidebarToggled($event)"></app-sidebar>
 
 <div class="main-content" [class.sidebar-open]="isSidebarOpen">
-  <app-home-header
-    [isSidebarOpen]="isSidebarOpen"
-    [user]="userDetails">
-  </app-home-header>
+  <app-home-header [isSidebarOpen]="isSidebarOpen" [user]="userDetails"></app-home-header>
 
-  <div class="events-container" *ngIf="events.length > 0">
-    <div *ngFor="let event of events" class="event-tile">
+  <!-- Search Bar and Filter Dropdown -->
+  <div class="search-filter-container">
+    <div class="search-bar">
+      <input type="text" placeholder="Search events..." [(ngModel)]="searchTerm" (input)="filterEvents()" />
+      <i class="fas fa-search search-icon"></i>
+    </div>
+    <select [(ngModel)]="selectedFilter" (change)="filterEvents()">
+      <option value="">All Filters</option>
+      <option value="category">Category</option>
+      <option value="price">Price</option>
+      <option value="date">Date</option>
+    </select>
+  </div>
+
+  <!-- No events found message -->
+  <div *ngIf="filteredEvents.length === 0" class="no-events">
+    <p>No events found.</p>
+  </div>
+
+  <div class="events-container" *ngIf="filteredEvents.length > 0">
+    <div *ngFor="let event of filteredEvents" class="event-tile">
       <h2>{{ event.name }}</h2>
       <div class="event-details">
         <div class="event-detail">
@@ -27,7 +43,6 @@
         </div>
         <div class="event-detail">
           <i class="fas fa-ticket-alt tickets-icon"></i>
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
           <strong>Available Tickets:</strong> {{ event.availableTickets }}
         </div>
         <div class="event-detail">
@@ -43,3 +58,4 @@
     {{ message }}
   </div>
 </div>
+ 
