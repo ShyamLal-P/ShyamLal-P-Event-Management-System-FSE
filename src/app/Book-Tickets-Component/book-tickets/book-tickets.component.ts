@@ -55,7 +55,7 @@ export class BookTicketsComponent implements OnInit {
   }
 
   loadEvents(): void {
-    this.eventService.getAllEvents().subscribe({
+    this.eventService.getUpcomingEvents().subscribe({
       next: (res: any[]) => {
         this.events = res;
         this.filteredEvents = res;
