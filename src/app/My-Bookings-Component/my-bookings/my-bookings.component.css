@@ -335,3 +335,13 @@ app-home-header.sidebar-open {
     grid-template-columns: 1fr;
   }
 }
+
+.cancel-disabled-msg {
+  color: #dc3545; /* Bootstrap danger red */
+  font-size: 0.9rem;
+  font-style: italic;
+  position: absolute; /* Stick to the bottom of the tile */
+  bottom: 10px;
+  right: 10px;
+  margin: 0;
+}

@@ -1,12 +1,12 @@
+import { Component, HostListener, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { SidebarComponent } from '../../sidebar/sidebar.component';
 import { HomeHeaderComponent } from '../../home-header/home-header.component';
-import { jwtDecode } from 'jwt-decode';
 import { TicketService } from '../../services/ticket.service';
-import { Router } from '@angular/router';
-import { Component, HostListener, OnInit } from '@angular/core';
 import { CancelTicketDialogComponent } from '../cancel-ticket-dialog/cancel-ticket-dialog.component';
+import { jwtDecode } from 'jwt-decode';
 
 @Component({
   selector: 'app-my-bookings',
@@ -16,132 +16,95 @@ import { CancelTicketDialogComponent } from '../cancel-ticket-dialog/cancel-tick
   styleUrls: ['./my-bookings.component.css']
 })
 export class MyBookingsComponent implements OnInit {
-  isSidebarOpen = true; // Tracks if the sidebar is open
-  userDetails: any = null; // Stores user details decoded from token
-  events: any[] = []; // All events retrieved for the user
-  filteredEvents: any[] = []; // Filtered events displayed based on selection
-  activeTab: string = 'all'; // Tracks the currently active tab (default is 'all')
-  showScrollToTop: Boolean= false;
+  isSidebarOpen = true;
+  userDetails: any = null;
+  events: any[] = [];
+  filteredEvents: any[] = [];
+  activeTab: string = 'all';
+  showScrollToTop: Boolean = false;
 
-  // Declare missing properties
-  eventIdToDelete: string | null = null; // Holds the ID of the event to delete
-  showConfirmDialog: boolean = false; // Tracks whether the confirmation dialog is displayed
+  eventIdToDelete: string | null = null;
+  showConfirmDialog: boolean = false;
 
   constructor(private ticketService: TicketService, private router: Router, public dialog: MatDialog) {}
 
   ngOnInit(): void {
-    // Retrieve and decode user token from localStorage
     const token = localStorage.getItem('userToken');
     if (token) {
       const decodedToken: any = jwtDecode(token);
       this.userDetails = decodedToken;
-      this.loadEvents(); // Load events based on user details
+      this.loadEvents();
     }
   }
 
-  // Loads events associated with the user's UID
   loadEvents(): void {
-    if (this.userDetails && this.userDetails.uid) {
+    if (this.userDetails?.uid) {
       this.ticketService.getEventsByUserId(this.userDetails.uid).subscribe(
         (data: any[]) => {
-          this.events = data; // Assign all retrieved events
-          this.filteredEvents = [...this.events]; // Initially show all events
+          this.events = data;
+          this.filteredEvents = [...this.events];
         },
         (error: any) => console.error('Error fetching events:', error)
       );
     }
   }
 
-  // Sets the active tab and filters events accordingly
   selectTab(tab: string): void {
-    this.activeTab = tab; // Update the active tab
-    this.filterEvents(tab); // Filter events based on the active tab
+    this.activeTab = tab;
+    this.filterEvents(tab);
   }
 
-  // Filters events based on the selected tab
   filterEvents(type: string): void {
-    const currentTime = new Date(); // Get the current time for comparison
-
+    const now = new Date();
     if (type === 'all') {
-      this.filteredEvents = [...this.events]; // Show all events
+      this.filteredEvents = [...this.events];
     } else if (type === 'upcoming') {
-      this.filteredEvents = this.events.filter(event => new Date(event.date) > currentTime); // Show future events
+      this.filteredEvents = this.events.filter(event => new Date(event.date) > now);
     } else if (type === 'completed') {
-      this.filteredEvents = this.events.filter(event => new Date(event.date) <= currentTime); // Show past events
+      this.filteredEvents = this.events.filter(event => new Date(event.date) <= now);
     }
   }
 
-  // Confirms deletion of an event
-  confirmDelete(eventId: string): void {
-    this.eventIdToDelete = eventId; // Set the ID of the event to delete
-    this.showConfirmDialog = true; // Display the confirmation dialog
+  // ➕ NEW METHOD: Check if event starts in more than 24 hours
+  isMoreThan24HoursAway(dateStr: string, timeStr: string): boolean {
+    const [hours, minutes] = timeStr.split(':').map(Number);
+    const eventDateTime = new Date(dateStr);
+    eventDateTime.setHours(hours, minutes, 0, 0);
+
+    const now = new Date();
+    const diffInMs = eventDateTime.getTime() - now.getTime();
+    const diffInHours = diffInMs / (1000 * 60 * 60);
+
+    return diffInHours > 24;
   }
 
-  // Deletes an event and updates the list
-  deleteEvent(): void {
-    if (this.eventIdToDelete) {
-      this.ticketService.deleteEvent(this.eventIdToDelete).subscribe({
-        next: () => {
-          this.events = this.events.filter(event => event.id !== this.eventIdToDelete);
-          this.filteredEvents = [...this.events]; // Update the filtered list after deletion
-          this.showConfirmDialog = false; // Hide the confirmation dialog
-          this.eventIdToDelete = null; // Reset the ID of the event to delete
-        },
-        error: (error: any) => console.error('Error deleting event:', error)
-      });
-    }
-  }
-
-  // Cancels the delete confirmation dialog
-  cancelDelete(): void {
-    this.showConfirmDialog = false; // Hide the confirmation dialog
-    this.eventIdToDelete = null; // Reset the ID of the event to delete
-  }
-
-  // Opens the cancel ticket dialog
   openCancelDialog(event: MouseEvent, eventData: any): void {
-    event.preventDefault(); // Prevent default anchor behavior
-  
-    // Add userId to eventData before passing it to the dialog
+    event.preventDefault();
     const eventDataWithUserId = {
       ...eventData,
-      userId: this.userDetails?.uid // append userId from token
+      userId: this.userDetails?.uid
     };
-  
+
     this.dialog.open(CancelTicketDialogComponent, {
       width: '400px',
       data: { event: eventDataWithUserId }
     });
   }
 
-  // Toggles the sidebar open or closed
   onSidebarToggled(open: boolean): void {
     this.isSidebarOpen = open;
   }
 
   @HostListener('window:scroll', [])
-onScroll(): void {
-  const scrollPosition =
-    window.pageYOffset || 
-    document.documentElement.scrollTop || 
-    document.body.scrollTop || 0;
+  onScroll(): void {
+    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    this.showScrollToTop = scrollPosition > 50;
+  }
 
-  console.log('Scroll position:', scrollPosition); // Debugging log
-  this.showScrollToTop = scrollPosition > 50; // Adjust threshold if necessary
-  console.log('Show Scroll-to-Top:', this.showScrollToTop); // Debugging log
-}
+  scrollToTop(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
-scrollToTop(): void {
-  console.log('Scroll-to-Top button clicked'); // Debugging log
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth',
-  });
-}
-
- 
-
-  // Navigates to the "Add Event" page
   navigateToAddEvent(): void {
     this.router.navigate(['/add-event']);
   }
