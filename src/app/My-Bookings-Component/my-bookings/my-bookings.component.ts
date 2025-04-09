@@ -101,9 +101,16 @@ export class MyBookingsComponent implements OnInit {
   // Opens the cancel ticket dialog
   openCancelDialog(event: MouseEvent, eventData: any): void {
     event.preventDefault(); // Prevent default anchor behavior
+  
+    // Add userId to eventData before passing it to the dialog
+    const eventDataWithUserId = {
+      ...eventData,
+      userId: this.userDetails?.uid // append userId from token
+    };
+  
     this.dialog.open(CancelTicketDialogComponent, {
       width: '400px',
-      data: { event: eventData }
+      data: { event: eventDataWithUserId }
     });
   }
 
