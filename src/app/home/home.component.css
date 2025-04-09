@@ -24,68 +24,130 @@ app-home-header.sidebar-open {
   }
 }
 
-/* Home content container */
-.home-container {
+/* Main content container */
+.main-content {
   padding: 20px;
   transition: margin-left 0.3s ease;
   margin-top: 60px; /* height of fixed header */
   margin-left: 60px; /* Adjust to match the closed sidebar width */
 }
 
-.home-container.sidebar-open {
+.main-content.sidebar-open {
   margin-left: 270px;
 }
 
 @media (max-width: 768px) {
-  .home-container.sidebar-open {
+  .main-content.sidebar-open {
     margin-left: 200px;
   }
 }
 
 @media (max-width: 480px) {
-  .home-container.sidebar-open {
+  .main-content.sidebar-open {
     margin-left: 150px;
   }
 }
 
-/* Slide message styling */
-.slide-message {
-  position: fixed;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #4caf50;
-  color: white;
-  padding: 16px;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  animation: slideDown 1s ease-out, slideUp 1s ease-in 4s;
-  z-index: 1000;
+/* Events container */
+.events-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
 }
 
-@keyframes slideDown {
-  from {
-    top: -50px;
-  }
-  to {
-    top: 20px;
+/* Event tile */
+.event-tile {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 20px;
+  padding-bottom: 40px; /* Add padding to the bottom */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden; /* Prevent overflow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.event-tile:hover {
+  transform: scale(1.05); /* Increase size slightly */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a larger shadow */
+}
+
+.event-tile h2 {
+  margin-top: 0;
+  font-size: 1.5em;
+  white-space: nowrap; /* Prevent text wrapping */
+  overflow: hidden; /* Hide overflow */
+  text-overflow: ellipsis; /* Add ellipsis for overflow text */
+}
+
+/* Event details */
+.event-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  flex-grow: 1; /* Allow the details to grow */
+  overflow: hidden; /* Prevent overflow */
+}
+
+.event-detail {
+  display: flex;
+  align-items: center;
+  white-space: nowrap; /* Prevent text wrapping */
+  overflow: hidden; /* Hide overflow */
+  text-overflow: ellipsis; /* Add ellipsis for overflow text */
+}
+
+.event-detail i {
+  margin-right: 8px;
+}
+
+/* Icon colors */
+.location-icon {
+  color: #ff6347; /* Tomato */
+}
+
+.category-icon {
+  color: #4682b4; /* SteelBlue */
+}
+
+.date-icon {
+  color: #32cd32; /* LimeGreen */
+}
+
+.price-icon {
+  color: #ffd700; /* Gold */
+}
+
+.tickets-icon {
+  color: #ff4500; /* OrangeRed */
+}
+
+.time-icon {
+  color: #6a5acd; /* SlateBlue */
+}
+
+.total-tickets-icon {
+  color: #20b2aa; /* LightSeaGreen */
+}
+
+.booked-tickets-icon {
+  color: #32cd32; /* LimeGreen */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .events-container {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
 }
 
-@keyframes slideUp {
-  from {
-    top: 20px;
+@media (max-width: 480px) {
+  .events-container {
+    grid-template-columns: 1fr;
   }
-  to {
-    top: -50px;
-  }
-}
-
-/* User Info Card Styling */
-.user-info-card {
-  background-color: #f3f3f3;
-  border-radius: 12px;
-  padding: 16px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }

@@ -28,5 +28,7 @@ export class EventService {
   getUpcomingEvents(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/upcoming`);
   }
-
+  getTopEvents(): Observable<any[]> {
+  return this.http.get<any[]>(`${this.apiUrl}/top-events`);
+}
 }
