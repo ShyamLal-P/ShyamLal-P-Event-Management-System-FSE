@@ -12,7 +12,8 @@ import { AddEventComponent } from './add-event/add-event.component';
 import { MyEventsComponent } from './my-events/my-events.component';
 import { BookTicketDialogComponent } from './Book-Tickets-Component/book-ticket-dialog/book-ticket-dialog.component';
 import { BookTicketsComponent } from './Book-Tickets-Component/book-tickets/book-tickets.component';
-import { MyBookingsComponent } from './my-bookings/my-bookings.component';
+import { MyBookingsComponent } from './My-Bookings-Component/my-bookings/my-bookings.component';
+import { CancelTicketDialogComponent } from './My-Bookings-Component/cancel-ticket-dialog/cancel-ticket-dialog.component';
 // import { BookEventFormComponent } from './book-event-form/book-event-form.component';
 
 const routes: Routes = [
@@ -22,7 +23,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'my-bookings', component: MyBookingsComponent,  canActivate: [AuthGuard]},
-    { path: 'book-tickets-dialog', component: BookTicketDialogComponent,  canActivate: [AuthGuard]},
+  { path: 'cancel-ticket-dialog', component: CancelTicketDialogComponent, canActivate: [AuthGuard]},
+  { path: 'book-tickets-dialog', component: BookTicketDialogComponent,  canActivate: [AuthGuard]},
   { path: 'book-tickets', component: BookTicketsComponent, canActivate: [AuthGuard]},
   { path: 'add-event', component: AddEventComponent, canActivate: [AuthGuard]},
   { path: 'my-events', component: MyEventsComponent, canActivate: [AuthGuard]}

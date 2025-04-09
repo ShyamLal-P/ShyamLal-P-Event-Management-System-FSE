@@ -54,7 +54,9 @@
           <i class="fas fa-check-circle booked-tickets-icon"></i> <strong>Booked Tickets:</strong> {{ event.totalTickets - event.availableTickets }}
         </div>
       </div>
-      <button class="delete-button" (click)="confirmDelete(event.id)">Delete</button>
+
+
+      <a href="#" class="cancel-link" (click)="openCancelDialog($event, event)">Want to cancel tickets?</a>
     </div>
   </div>
 </div>

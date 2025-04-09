@@ -1,43 +1,69 @@
-<!-- Alert Message Box -->
-<div *ngIf="alertMessage" 
-     [ngClass]="{'alert-success': alertType === 'success', 'alert-error': alertType === 'error'}" 
-     class="custom-alert">
-  {{ alertMessage }} 
-  <span *ngIf="alertType === 'success' && countdown > 0">{{ countdown }}s</span>
-  <div *ngIf="alertType === 'success' && countdown > 0" class="timer-bar"></div>
-</div>
+<body style="overflow-y: auto;">
+  <!-- Alert Message -->
+  <div *ngIf="alertMessage" 
+       [ngClass]="{'alert-success': alertType === 'success', 'alert-error': alertType === 'error'}" 
+       class="custom-alert">
+    {{ alertMessage }} 
+    <span *ngIf="alertType === 'success' && countdown > 0">{{ countdown }}s</span>
+    <div *ngIf="alertType === 'success' && countdown > 0" class="timer-bar"></div>
+  </div>
 
-<app-header></app-header>
-<div class="form-container">
-  <h2>Register</h2>
-  <form (ngSubmit)="register()">
-    <div class="form-group">
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username" [(ngModel)]="user.username" required>
-    </div>
-    <div class="form-group">
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" [(ngModel)]="user.email" required>
-    </div>
-    <div class="form-group">
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" [(ngModel)]="user.password" required>
-    </div>
-    <div class="form-group">
-      <label for="confirm-password">Confirm Password:</label>
-      <input type="password" id="confirm-password" name="confirm-password" [(ngModel)]="confirmPassword" required>
-    </div>
-    <div class="form-group">
-      <label for="phone-number">Phone Number:</label>
-      <input type="tel" id="phoneNumber" name="phoneNumber" [(ngModel)]="user.phoneNumber">
-    </div>
-    <div class="form-group">
-      <label for="roles">Roles:</label>
-      <select id="roles" name="roles" [(ngModel)]="user.roles" required>
-        <option value="User">User</option>
-        <option value="Admin">Admin</option>
-      </select>
-    </div>
-    <button type="submit">Register</button>
-  </form>
-</div>
+  <!-- Header Component -->
+  <app-header></app-header>
+
+  <!-- Form Container -->
+  <div class="form-container">
+    <h2 class="form-heading">Register</h2>
+    <form (ngSubmit)="register()">
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" [(ngModel)]="user.username" required (input)="validateUsername()" />
+        <div *ngIf="usernameError" class="error-message">{{ usernameError }}</div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" [(ngModel)]="user.email" required (input)="validateEmail()" />
+        <div *ngIf="emailError" class="error-message">{{ emailError }}</div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <div class="password-container">
+          <input [type]="showPassword ? 'text' : 'password'" id="password" name="password" [(ngModel)]="user.password" required (input)="validatePassword()" />
+          <span (click)="togglePasswordVisibility()" class="toggle-eye">
+            {{ showPassword ? '👁️' : '🙈' }}
+          </span>
+        </div>
+        <div *ngIf="passwordError" class="error-message">{{ passwordError }}</div>
+      </div>
+      <div class="form-group">
+        <label for="confirm-password">Confirm Password:</label>
+        <div class="password-container">
+          <input [type]="showConfirmPassword ? 'text' : 'password'" id="confirm-password" name="confirm-password" [(ngModel)]="confirmPassword" required (input)="validateConfirmPassword()" />
+          <span (click)="toggleConfirmPasswordVisibility()" class="toggle-eye">
+            {{ showConfirmPassword ? '👁️' : '🙈' }}
+          </span>
+        </div>
+        <div *ngIf="confirmPasswordError" class="error-message">{{ confirmPasswordError }}</div>
+      </div>
+      <div class="form-group">
+        <label for="phone-number">Phone Number:</label>
+        <input type="tel" id="phoneNumber" name="phoneNumber" [(ngModel)]="user.phoneNumber" required (input)="validatePhoneNumber()" />
+        <div *ngIf="phoneError" class="error-message">{{ phoneError }}</div>
+      </div>
+      <div class="form-group">
+        <label for="role">Role:</label>
+        <select id="role" name="role" [(ngModel)]="user.role" required>
+          <option value="" disabled selected>Select a role</option>
+          <option value="user">User</option>
+          <option value="admin">Admin</option>
+        </select>
+        <div *ngIf="roleError" class="error-message">{{ roleError }}</div>
+      </div>
+      
+
+      <button type="submit">Register</button>
+    </form>
+  </div>
+</body>
+
+ 

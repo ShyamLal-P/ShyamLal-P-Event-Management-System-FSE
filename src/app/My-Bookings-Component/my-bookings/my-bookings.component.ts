@@ -1,15 +1,17 @@
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { SidebarComponent } from '../sidebar/sidebar.component';
-import { HomeHeaderComponent } from '../home-header/home-header.component';
-import { TicketService } from '../services/ticket.service';
+import { SidebarComponent } from '../../sidebar/sidebar.component';
+import { HomeHeaderComponent } from '../../home-header/home-header.component';
 import { jwtDecode } from 'jwt-decode';
+import { TicketService } from '../../services/ticket.service';
+import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { CancelTicketDialogComponent } from '../cancel-ticket-dialog/cancel-ticket-dialog.component';
 
 @Component({
   selector: 'app-my-bookings',
   standalone: true,
-  imports: [CommonModule, SidebarComponent, HomeHeaderComponent],
+  imports: [CommonModule, SidebarComponent, HomeHeaderComponent, MatDialogModule],
   templateUrl: './my-bookings.component.html',
   styleUrls: ['./my-bookings.component.css']
 })
@@ -24,7 +26,7 @@ export class MyBookingsComponent implements OnInit {
   eventIdToDelete: string | null = null; // Holds the ID of the event to delete
   showConfirmDialog: boolean = false; // Tracks whether the confirmation dialog is displayed
 
-  constructor(private ticketService: TicketService, private router: Router) {}
+  constructor(private ticketService: TicketService, private router: Router, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     // Retrieve and decode user token from localStorage
@@ -93,6 +95,15 @@ export class MyBookingsComponent implements OnInit {
   cancelDelete(): void {
     this.showConfirmDialog = false; // Hide the confirmation dialog
     this.eventIdToDelete = null; // Reset the ID of the event to delete
+  }
+
+  // Opens the cancel ticket dialog
+  openCancelDialog(event: MouseEvent, eventData: any): void {
+    event.preventDefault(); // Prevent default anchor behavior
+    this.dialog.open(CancelTicketDialogComponent, {
+      width: '400px',
+      data: { event: eventData }
+    });
   }
 
   // Toggles the sidebar open or closed

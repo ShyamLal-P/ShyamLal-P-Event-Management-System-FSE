@@ -7,7 +7,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { AddEventComponent } from './add-event/add-event.component';
 import { MyEventsComponent } from './my-events/my-events.component';
 import { BookTicketsComponent } from './Book-Tickets-Component/book-tickets/book-tickets.component';
-import { MyBookingsComponent } from './my-bookings/my-bookings.component';
+import { MyBookingsComponent } from './My-Bookings-Component/my-bookings/my-bookings.component';
+import { CancelTicketDialogComponent } from './My-Bookings-Component/cancel-ticket-dialog/cancel-ticket-dialog.component';
 
 export const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -17,6 +18,7 @@ export const routes: Routes = [
   { path: 'sidebar', component: SidebarComponent},
   { path: 'home', component: HomeComponent },
   { path: 'my-events', component: MyEventsComponent},
+  { path: 'cancel-ticket-dialog', component: CancelTicketDialogComponent},
   { path: 'my-bookings', component: MyBookingsComponent},
   { path: 'book-tickets', component: BookTicketsComponent},
   { path: '**', redirectTo: '', pathMatch: 'full' } // Redirect any unknown paths to the landing page

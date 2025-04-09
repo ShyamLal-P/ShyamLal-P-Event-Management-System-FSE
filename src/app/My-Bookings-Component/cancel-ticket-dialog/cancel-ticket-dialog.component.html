@@ -1,0 +1,28 @@
+<h2 mat-dialog-title class="dialog-title">
+    Cancel Tickets
+    <button class="close-button" (click)="close()">
+      <i class="material-icons">close</i>
+    </button>
+  </h2>
+  <mat-dialog-content>
+    <div class="event-name">{{ data.event.name }}</div>
+    <div class="event-details">
+      <div><i class="material-icons location-icon">location_on</i> <strong>Location:</strong> {{ data.event.location }}</div>
+      <div><i class="material-icons date-icon">event</i> <strong>Date:</strong> {{ data.event.date | date }}</div>
+      <div><i class="material-icons time-icon">access_time</i> <strong>Time:</strong> {{ data.event.time }}</div>
+      <div><i class="material-icons price-icon">attach_money</i> <strong>Price:</strong> ₹{{ data.event.eventPrice }}</div>
+      <div><i class="material-icons tickets-icon">confirmation_number</i> <strong>Booked Tickets:</strong> {{ data.event.totalTickets - data.event.availableTickets }}</div>
+    </div>
+  
+    <div class="confirmation-message">
+      Are you sure you want to cancel your tickets for this event?
+    </div>
+  
+    <div *ngIf="message" class="message">{{ message }}</div>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions class="dialog-actions">
+    <button mat-button class="cancel-button" (click)="close()">No</button>
+    <button mat-raised-button class="confirm-button" color="warn" (click)="cancelTickets()">Yes, Cancel</button>
+  </mat-dialog-actions>
+  
