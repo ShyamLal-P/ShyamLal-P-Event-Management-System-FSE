@@ -36,12 +36,12 @@ export class LoginComponent {
   
         const token = response.jwtToken;
   
-        // ✅ Decode token directly from response
+        // Decode token directly from response
         const decoded: any = jwtDecode(token);
         const role = decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
         console.log("Decoded Role:", role);
   
-        // ✅ Save token and role
+        // Save token and role
         localStorage.setItem('userToken', token);
         localStorage.setItem('userRole', role);
   

@@ -51,16 +51,22 @@
   padding-left: 10px;
 }
 
+.sidebar ul li a:hover {
+  background-color: #007bff; /* Blue color on hover */
+  color: #ffffff;
+}
+
+.nav-link.active {
+  background-color: #28a745; /* Green background for clicked elements */
+  color: white;
+  font-weight: bold;
+}
+
 .sidebar .bottom-menu .logout-link:hover {
   color: #ffffff;
   background-color: #dc3545; /* Red background for text on hover */
   padding: 10px;
   border-radius: 4px;
-}
-
-.sidebar ul li a:hover {
-  background-color: #007bff;
-  color: #ffffff;
 }
 
 .bottom-menu {
@@ -124,4 +130,3 @@
       left: 10px;
   }
 }
- 

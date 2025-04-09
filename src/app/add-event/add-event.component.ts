@@ -22,6 +22,7 @@ export class AddEventComponent implements OnInit {
   isSuccess = false;
   isSidebarOpen = true;
   userDetails: any = null;
+  today: string = new Date().toISOString().split('T')[0];
 
   constructor(
     private fb: FormBuilder,
