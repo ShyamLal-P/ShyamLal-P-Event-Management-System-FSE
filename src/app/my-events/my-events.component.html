@@ -64,4 +64,11 @@
       <button class="delete-button" (click)="confirmDelete(event.id)">Delete</button>
     </div>
   </div>
+  <div
+      class="scroll-to-top"
+      *ngIf="showScrollToTop"
+      (click)="scrollToTop()"
+    >
+      <i class="fas fa-arrow-up"></i>
+    </div>
 </div>

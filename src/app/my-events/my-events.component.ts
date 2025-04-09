@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { HomeHeaderComponent } from '../home-header/home-header.component';
@@ -20,6 +20,7 @@ export class MyEventsComponent implements OnInit {
   events: any[] = []; // All events retrieved for the user
   filteredEvents: any[] = []; // Filtered events displayed based on selection
   activeTab: string = 'all'; // Tracks the currently active tab (default is 'all')
+  showScrollToTop: boolean = false;
 
   // Declare missing properties
   eventIdToDelete: string | null = null; // Holds the ID of the event to delete
@@ -49,6 +50,26 @@ export class MyEventsComponent implements OnInit {
       );
     }
   }
+
+  @HostListener('window:scroll', [])
+onScroll(): void {
+  const scrollPosition =
+    window.pageYOffset || 
+    document.documentElement.scrollTop || 
+    document.body.scrollTop || 0;
+
+  console.log('Scroll position:', scrollPosition); // Debugging log
+  this.showScrollToTop = scrollPosition > 50; // Adjust threshold if necessary
+  console.log('Show Scroll-to-Top:', this.showScrollToTop); // Debugging log
+}
+
+scrollToTop(): void {
+  console.log('Scroll-to-Top button clicked'); // Debugging log
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+}
 
   // Sets the active tab and filters events accordingly
   selectTab(tab: string): void {
