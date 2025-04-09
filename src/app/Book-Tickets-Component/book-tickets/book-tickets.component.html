@@ -1,61 +1,89 @@
-<app-sidebar (sidebarToggled)="onSidebarToggled($event)"></app-sidebar>
-
-<div class="main-content" [class.sidebar-open]="isSidebarOpen">
-  <app-home-header [isSidebarOpen]="isSidebarOpen" [user]="userDetails"></app-home-header>
-
-  <!-- Search Bar and Filter Dropdown -->
-  <div class="search-filter-container">
-    <div class="search-bar">
-      <input type="text" placeholder="Search events..." [(ngModel)]="searchTerm" (input)="filterEvents()" />
-      <i class="fas fa-search search-icon"></i>
-    </div>
-    <select [(ngModel)]="selectedFilter" (change)="filterEvents()">
-      <option value="">All Filters</option>
-      <option value="category">Category</option>
-      <option value="price">Price</option>
-      <option value="date">Date</option>
-    </select>
-  </div>
-
-  <!-- No events found message -->
-  <div *ngIf="filteredEvents.length === 0" class="no-events">
-    <p>No events found.</p>
-  </div>
-
-  <div class="events-container" *ngIf="filteredEvents.length > 0">
-    <div *ngFor="let event of filteredEvents" class="event-tile">
-      <h2>{{ event.name }}</h2>
-      <div class="event-details">
-        <div class="event-detail">
-          <i class="fas fa-map-marker-alt location-icon"></i>
-          <strong>Location:</strong> {{ event.location }}
-        </div>
-        <div class="event-detail">
-          <i class="fas fa-tags category-icon"></i>
-          <strong>Category:</strong> {{ event.category }}
-        </div>
-        <div class="event-detail">
-          <i class="fas fa-calendar-alt date-icon"></i>
-          <strong>Date:</strong> {{ event.date | date }}
-        </div>
-        <div class="event-detail">
-          <i class="fas fa-rupee-sign price-icon"></i> <strong>Price:</strong> {{ event.eventPrice | currency:'INR':'symbol-narrow' }}
-        </div>
-        <div class="event-detail">
-          <i class="fas fa-ticket-alt tickets-icon"></i>
-          <strong>Available Tickets:</strong> {{ event.availableTickets }}
-        </div>
-        <div class="event-detail">
-          <i class="fas fa-clock time-icon"></i>
-          <strong>Time:</strong> {{ event.time }}
-        </div>
+<body>
+  <app-sidebar (sidebarToggled)="onSidebarToggled($event)"></app-sidebar>
+  
+  <div class="main-content" [class.sidebar-open]="isSidebarOpen">
+    <app-home-header [isSidebarOpen]="isSidebarOpen" [user]="userDetails"></app-home-header>
+  
+    <!-- Search Bar and Filter Dropdown -->
+    <div class="search-filter-container">
+      <div class="search-bar">
+        <input type="text" placeholder="Search events..." [(ngModel)]="searchTerm" (input)="filterEvents()" />
+        <i class="fas fa-search search-icon"></i>
       </div>
-      <button class="book-button" (click)="bookEvent(event)">Book</button>
+      <select [(ngModel)]="selectedFilter" (change)="filterEvents()">
+        <option value="">All Filters</option>
+        <option value="category">Category</option>
+        <option value="priceLowToHigh">Price: Low to High</option>
+        <option value="priceHighToLow">Price: High to Low</option>
+        <option value="date">Date</option>
+      </select>
+    </div>
+  
+    <!-- Date Range Picker -->
+    <div class="filter-container" *ngIf="selectedFilter === 'date'">
+      <input type="date" [(ngModel)]="fromDate" (change)="filterEvents()" [min]="minDate" placeholder="From Date" />
+      <input type="date" [(ngModel)]="toDate" (change)="filterEvents()" [min]="fromDate || minDate" placeholder="To Date" />
+    </div>
+  
+    <!-- Category Dropdown -->
+    <div class="category-filter-container" *ngIf="selectedFilter === 'category'">
+      <select [(ngModel)]="selectedCategory" (change)="filterEvents()">
+        <option value="">All Categories</option>
+        <option value="cultural">Cultural</option>
+        <option value="entertainment">Entertainment</option>
+        <option value="charity">Charity</option>
+        <option value="social">Social</option>
+        <option value="sports">Sports</option>
+        <option value="corporate">Corporate</option>
+        <option value="educational">Educational</option>
+        <option value="virtual">Virtual</option>
+      </select>
+    </div>
+  
+  
+    <!-- No events found message -->
+    <div *ngIf="filteredEvents.length === 0" class="no-events">
+      <p>No events found.</p>
+    </div>
+  
+    <div class="events-container" *ngIf="filteredEvents.length > 0">
+      <div *ngFor="let event of filteredEvents" class="event-tile">
+        <h2>{{ event.name }}</h2>
+        <div class="event-details">
+          <div class="event-detail">
+            <i class="fas fa-map-marker-alt location-icon"></i>
+            <strong>Location:</strong> {{ event.location }}
+          </div>
+          <div class="event-detail">
+            <i class="fas fa-tags category-icon"></i>
+            <strong>Category:</strong> {{ event.category }}
+          </div>
+          <div class="event-detail">
+            <i class="fas fa-calendar-alt date-icon"></i>
+            <strong>Date:</strong> {{ event.date | date }}
+          </div>
+          <div class="event-detail">
+            <i class="fas fa-rupee-sign price-icon"></i> <strong>Price:</strong> {{ event.eventPrice | currency:'INR':'symbol-narrow' }}
+          </div>
+          <div class="event-detail">
+            <i class="fas fa-ticket-alt tickets-icon"></i>
+            <strong>Available Tickets:</strong> {{ event.availableTickets }}
+          </div>
+          <div class="event-detail">
+            <i class="fas fa-clock time-icon"></i>
+            <strong>Time:</strong> {{ event.time }}
+          </div>
+        </div>
+        <button class="book-button" (click)="bookEvent(event)">Book</button>
+      </div>
+    </div>
+  
+    <div *ngIf="message" class="alert-message">
+      {{ message }}
+    </div>
+    <div class="scroll-to-top" *ngIf="showScrollToTop" (click)="scrollToTop()">
+      <i class="fas fa-arrow-up"></i>
     </div>
   </div>
-
-  <div *ngIf="message" class="alert-message">
-    {{ message }}
-  </div>
-</div>
- 
+  </body>
+   

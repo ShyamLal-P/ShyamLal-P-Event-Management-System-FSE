@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; // Import FormsModule
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { BookTicketDialogComponent } from '../book-ticket-dialog/book-ticket-dialog.component';
@@ -24,9 +24,14 @@ export class BookTicketsComponent implements OnInit {
   searchTerm: string = '';
   selectedFilter: string = ''; // Add selectedFilter property
   selectedCategory: string = ''; // Add selectedCategory property
+  priceSortOrder: string = ''; // Add priceSortOrder property
+  fromDate: string = ''; // Add fromDate property
+  toDate: string = ''; // Add toDate property
+  minDate: string = new Date().toISOString().split('T')[0]; // Set minDate to today's date
   message: string | null = null;
   isSidebarOpen = true;
   userDetails: any = null;
+  showScrollToTop: boolean=false;
 
   constructor(
     private eventService: EventService,
@@ -68,15 +73,26 @@ export class BookTicketsComponent implements OnInit {
       let matchesFilter = true;
 
       if (this.selectedFilter === 'category') {
-        matchesFilter = event.category.toLowerCase().includes(this.searchTerm.toLowerCase());
-      } else if (this.selectedFilter === 'price') {
-        matchesFilter = event.eventPrice.toString().includes(this.searchTerm);
+        matchesFilter = this.selectedCategory ? event.category.toLowerCase() === this.selectedCategory.toLowerCase() : true;
+      } else if (this.selectedFilter === 'priceLowToHigh' || this.selectedFilter === 'priceHighToLow') {
+        matchesFilter = true; // No specific filtering needed for price sorting
       } else if (this.selectedFilter === 'date') {
-        matchesFilter = event.date.toLowerCase().includes(this.searchTerm.toLowerCase());
+        const eventDate = new Date(event.date).toISOString().split('T')[0];
+        matchesFilter = (!this.fromDate || eventDate >= this.fromDate) && (!this.toDate || eventDate <= this.toDate);
       }
 
       return matchesSearchTerm && matchesFilter;
     });
+
+    this.sortEventsByPrice();
+  }
+
+  sortEventsByPrice(): void {
+    if (this.selectedFilter === 'priceLowToHigh') {
+      this.filteredEvents.sort((a, b) => a.eventPrice - b.eventPrice);
+    } else if (this.selectedFilter === 'priceHighToLow') {
+      this.filteredEvents.sort((a, b) => b.eventPrice - a.eventPrice);
+    }
   }
 
   onSidebarToggled(isOpen: boolean): void {
@@ -115,5 +131,16 @@ export class BookTicketsComponent implements OnInit {
       this.message = null;
     }, 4000);
   }
+
+  @HostListener('window:scroll', [])
+  onScroll(): void {
+    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    this.showScrollToTop = scrollPosition > 50; // Show button if scrolled down more than 200px
+  }
+
+  scrollToTop(): void {
+    document.documentElement.scrollTo({ top: 0, behavior: 'smooth' }); // Smooth scroll to the top
+  }
+
 }
  
