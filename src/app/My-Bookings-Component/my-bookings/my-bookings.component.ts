@@ -57,11 +57,21 @@ export class MyBookingsComponent implements OnInit {
     if (type === 'all') {
       this.filteredEvents = [...this.events];
     } else if (type === 'upcoming') {
-      this.filteredEvents = this.events.filter(event => new Date(event.date) > now);
+      this.filteredEvents = this.events.filter(event => {
+        const eventDateTime = new Date(event.date);
+        const [hours, minutes] = event.time.split(':').map(Number);
+        eventDateTime.setHours(hours, minutes, 0, 0);
+        return eventDateTime > now;
+      });
     } else if (type === 'completed') {
-      this.filteredEvents = this.events.filter(event => new Date(event.date) <= now);
+      this.filteredEvents = this.events.filter(event => {
+        const eventDateTime = new Date(event.date);
+        const [hours, minutes] = event.time.split(':').map(Number);
+        eventDateTime.setHours(hours, minutes, 0, 0);
+        return eventDateTime <= now;
+      });
     }
-  }
+  }  
 
   isMoreThan24HoursAway(dateStr: string, timeStr: string): boolean {
     const [hours, minutes] = timeStr.split(':').map(Number);
@@ -73,6 +83,27 @@ export class MyBookingsComponent implements OnInit {
     const diffInHours = diffInMs / (1000 * 60 * 60);
 
     return diffInHours > 24;
+  }
+
+  isEventPassed(dateStr: string, timeStr: string): boolean {
+    const [hours, minutes] = timeStr.split(':').map(Number);
+    const eventDateTime = new Date(dateStr);
+    eventDateTime.setHours(hours, minutes, 0, 0);
+
+    const now = new Date();
+    return eventDateTime < now;
+  }
+
+  isEventStartedWithinHour(dateStr: string, timeStr: string): boolean {
+    const [hours, minutes] = timeStr.split(':').map(Number);
+    const eventDateTime = new Date(dateStr);
+    eventDateTime.setHours(hours, minutes, 0, 0);
+
+    const now = new Date();
+    const diffInMs = now.getTime() - eventDateTime.getTime();
+    const diffInHours = diffInMs / (1000 * 60 * 60);
+
+    return diffInHours <= 1 && diffInHours >= 0;
   }
 
   openCancelDialog(event: MouseEvent, eventData: any): void {

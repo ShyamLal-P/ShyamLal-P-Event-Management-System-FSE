@@ -44,14 +44,20 @@
   
         <!-- Conditional display: Show anchor or message -->
         <div class="cancel-section">
-          <a *ngIf="isMoreThan24HoursAway(event.date, event.time)"
+          <a *ngIf="!isEventPassed(event.date, event.time) && isMoreThan24HoursAway(event.date, event.time)"
             href="#"
             class="cancel-link"
             (click)="openCancelDialog($event, event)">
             Want to cancel tickets?
           </a>
-          <p *ngIf="!isMoreThan24HoursAway(event.date, event.time)" class="cancel-disabled-msg">
+          <p *ngIf="!isEventPassed(event.date, event.time) && !isMoreThan24HoursAway(event.date, event.time)" class="cancel-disabled-msg">
             Tickets can't be cancelled within 24 hours of event start.
+          </p>
+          <p *ngIf="isEventPassed(event.date, event.time) && !isEventStartedWithinHour(event.date, event.time)" class="cancel-disabled-msg">
+            This event has ended.
+          </p>
+          <p *ngIf="isEventStartedWithinHour(event.date, event.time)" class="cancel-disabled-msg">
+            This event has already started.
           </p>
         </div>
       </div>
