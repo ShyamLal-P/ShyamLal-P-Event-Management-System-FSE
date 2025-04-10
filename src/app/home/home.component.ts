@@ -131,7 +131,11 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   startAutoSlide() {
     this.intervalId = setInterval(() => {
       this.nextEvent();
-    }, 4000); // Change event every 5 seconds
+    }, 3500); // Change event every 4 seconds
+  }
+
+  navigateToBookEvents() {
+    this.router.navigate(['/book-tickets']); // Ensure this matches the correct route
   }
 }
  

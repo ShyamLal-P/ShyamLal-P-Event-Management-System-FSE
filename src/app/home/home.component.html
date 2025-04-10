@@ -49,5 +49,8 @@
     <div class="carousel-dots">
       <span *ngFor="let event of topEvents; let i = index" class="dot" [class.active]="i === currentEventIndex" (click)="goToEvent(i)"></span>
     </div>
+    <!-- Explore More button -->
+    <button class="explore-more" (click)="navigateToBookEvents()">Explore More</button>
   </div>
+</div>
  

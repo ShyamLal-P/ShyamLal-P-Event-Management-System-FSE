@@ -23,14 +23,19 @@ app-home-header.sidebar-open {
     margin-left: 150px;
   }
 }
-
 /* Home content container */
 .home-container {
   padding: 20px;
+  height:100vh;
   transition: margin-left 0.3s ease;
   margin-top: 60px; /* height of fixed header */
   margin-left: 60px; /* Adjust to match the closed sidebar width */
+  background-image: url('https://tse3.mm.bing.net/th/id/OIP.ZM0sn2nBANNkjQYnEOUmtQHaEo?rs=1&pid=ImgDetMain');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
 }
+
 
 .home-container.sidebar-open {
   margin-left: 270px;
@@ -195,12 +200,12 @@ button.prev, button.next {
 
 button.prev {
   left: 10px;
-  background-color:#4682b4;
+  background-color: #4682b4;
 }
 
 button.next {
   right: 10px;
-  background-color:#4682b4;
+  background-color: #4682b4;
 }
 
 /* Dot navigation */
@@ -222,5 +227,31 @@ button.next {
 
 .dot.active {
   background-color: #717171;
+}
+.explore-more {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #4682b4; /* SteelBlue */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  position: absolute;
+  right: 20px; /* Adjust as needed */
+  bottom: 20px; /* Adjust as needed */
+}
+
+.explore-more:hover {
+  background-color: #5a9bd4; /* Lighter SteelBlue */
+  transform: scale(1.05);
+}
+
+.explore-more:active {
+  background-color: #3b6a8e; /* Darker SteelBlue */
+  transform: scale(0.95);
 }
  
