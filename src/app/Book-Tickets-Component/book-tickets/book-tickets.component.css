@@ -1,6 +1,4 @@
 /* Main Content Styles */
-
-
 .main-content {
   padding: 20px;
   transition: margin-left 0.3s ease;
@@ -9,42 +7,60 @@
 }
 
 .main-content.sidebar-open {
-  margin-left: 270px;
+  margin-left: 270px; /* Adjust spacing for open sidebar */
 }
 
 @media (max-width: 768px) {
   .main-content.sidebar-open {
-    margin-left: 200px;
+    margin-left: 200px; /* Adjust spacing for smaller screens */
   }
 }
 
 @media (max-width: 480px) {
   .main-content.sidebar-open {
-    margin-left: 150px;
+    margin-left: 150px; /* Adjust spacing for very small screens */
   }
 }
 
 /* Events Container */
 .events-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Adjusted width for tiles */
-  gap: 5px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive layout for tiles */
+  gap: 20px; /* Adjusted gap to prevent collisions */
   padding: 20px;
+}
+
+@media (max-width: 768px) {
+  .events-container {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Adjust grid for medium screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .events-container {
+    grid-template-columns: 1fr; /* Single-column layout for very small screens */
+  }
 }
 
 /* Event Tile with Flip Effect */
 .event-tile {
   perspective: 1000px; /* Perspective for 3D flip effect */
-  padding-bottom:150px;
   position: relative; /* Ensures it stays within its container */
-  z-index:1;
+  z-index: 1; /* Keeps tile above other elements */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+/* Fixed height to prevent shifting */
 }
 
+.event-tile:hover {
+  transform: scale(1.05); /* Zoom-up effect only when hovering directly over the card */
+}
+
+/* Flip Container */
 .flip-container {
   position: relative;
   width: 80%;
   height: 100%;
-  transform-origin: left;
+  transform-origin: left; /* Aligns flip behavior properly */
 }
 
 .flipper {
@@ -55,22 +71,14 @@
 }
 
 .flip-container.flipped .flipper {
-  transform: rotateY(180deg);
-
-}
-
-/* Hover Effect */
-.event-tile:hover {
-  transform: scale(1.05); /* Zoom-up effect */
-   /* Slightly larger shadow */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+  transform: rotateY(180deg); /* Adds flip rotation */
 }
 
 /* Front and Back Styles */
 .front,
 .back {
   position: absolute;
-  backface-visibility: hidden; /* Ensure hidden back face */
+  backface-visibility: hidden; /* Ensures hidden back face */
   width: 80%;
   height: 100%;
   display: flex;
@@ -79,10 +87,11 @@
   flex-direction: column;
   overflow: hidden; /* Prevent content overflow */
   border-radius: 8px;
+  background-color: #f9f9f9; /* Background color for tiles */
 }
 
+/* Front Styles */
 .front {
-  background-color: #f9f9f9;
   border: 1px solid #ddd;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 20px;
@@ -90,33 +99,73 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+  position: relative; /* For positioning child elements */
 }
 
+.event-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the whole picture is visible */
+  border-radius: 8px;
+  opacity: 0.7; /* Decrease the opacity of the images */
+}
+
+.event-name {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 20px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.rating {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.view-details {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Back Styles */
 .back {
   transform: rotateY(180deg);
   background-color: #ffffff;
   border: 1px solid #ddd;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 20px;
-
 }
 
 /* Event Details */
 .event-details {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  grid-template-columns: 1fr 1fr; /* Two-column layout */
+  gap: 10px; /* Added spacing between details */
   font-size: 0.95em;
   width: 100%;
-
 }
 
 .event-detail {
   display: flex;
   align-items: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: nowrap; /* Prevent text wrapping */
+  overflow: hidden; /* Prevent overflow */
+  text-overflow: ellipsis; /* Add ellipsis for overflowing text */
   color: #444;
 }
 
@@ -173,16 +222,16 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  margin-bottom: 20px; /* Added space below for filters */
+  margin-bottom: 20px; /* Added spacing below for better layout */
 }
 
 .search-bar {
   position: relative;
-  width: 70%; /* Decreased width for proper layout */
+  width: 70%; /* Adjusted width for better display */
 }
 
-.search-bar input[type='text'] {
-  padding: 10px 40px 10px 10px; /* Add padding for the icon */
+.search-bar input[type="text"] {
+  padding: 10px 40px 10px 10px; /* Add padding for the search icon */
   font-size: 1em;
   border-radius: 6px;
   border: 1px solid #ccc;
@@ -202,7 +251,7 @@
   font-size: 1em;
   border-radius: 6px;
   border: 1px solid #ccc;
-  width: 20%; /* Adjusted width */
+  width: 20%; /* Ensure dropdown width is consistent */
 }
 
 /* Date Range Picker */
@@ -213,30 +262,30 @@
   padding: 20px;
 }
 
-.filter-container input[type='date'] {
+.filter-container input[type="date"] {
   padding: 10px;
   font-size: 1em;
   border-radius: 6px;
   border: 1px solid #ccc;
-  width: calc(50% - 10px); /* Two date pickers side by side */
+  width: calc(50% - 10px); /* Ensures two date pickers fit side by side */
 }
 
-.filter-container input[type='date']:first-child {
+.filter-container input[type="date"]:first-child {
   margin-right: 20px; /* Added margin between date pickers */
 }
 
-.filter-container input[type='date']::placeholder {
+.filter-container input[type="date"]::placeholder {
   color: #ccc;
 }
 
-.filter-container input[type='date']:focus {
+.filter-container input[type="date"]:focus {
   outline: none;
   border-color: #007bff;
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
 .category-filter-container {
-  padding: 0px 20px 20px 20px; /* Align with other filter containers */
+  padding: 0px 20px 20px 20px;
 }
 
 .category-filter-container select {
@@ -244,13 +293,13 @@
   font-size: 1em;
   border-radius: 6px;
   border: 1px solid #ccc;
-  width: 100%; /* Full width for category dropdown */
+  width: 100%;
 }
 
 /* No Events Message */
 .no-events {
   text-align: center;
-  margin-top: 20px; /* Place below search bar */
+  margin-top: 20px;
 }
 
 .no-events p {
@@ -269,6 +318,7 @@
 }
 
 /* Scroll-To-Top Button */
+
 .scroll-to-top {
   position: fixed;
   bottom: 20px;
@@ -296,6 +346,8 @@
 .scroll-to-top i {
   font-size: 1.5rem;
 }
+
+/* Alert Message */
 .alert-message {
   position: fixed;
   bottom: 20px;
@@ -304,7 +356,6 @@
   color: white;
   padding: 12px 20px;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  font-size: 0.95em;
-  z-index: 1000;
+  box-shadow: 0 0 10px rgba;
 }
+ 

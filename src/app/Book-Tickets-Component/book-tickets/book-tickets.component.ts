@@ -161,5 +161,24 @@ export class BookTicketsComponent implements OnInit {
   scrollToTop(): void {
     document.documentElement.scrollTo({ top: 0, behavior: 'smooth' }); // Smooth scroll to the top
   }
+
+  getEventImage(category: string): string {
+    switch (category.toLowerCase()) {
+      case 'corporate':
+        return 'https://res.cloudinary.com/dwwpovlcs/image/upload/v1744188671/corporate-event-page_jy9eeb.jpg';
+      case 'social':
+        return 'https://res.cloudinary.com/dwwpovlcs/image/upload/v1744189024/SocialEvents-TypesofEvents-Hero-5x2._ugby6d.webp';
+      case 'sports':
+        return 'https://res.cloudinary.com/dwwpovlcs/image/upload/v1744189277/deporteenimagenes_qfnam8.jpg';
+      case 'entertainment':
+        return 'https://res.cloudinary.com/dwwpovlcs/image/upload/v1744189495/Live-Performance-scaled-1_dhgm5t.jpg';
+      case 'educational':
+        return 'https://res.cloudinary.com/dwwpovlcs/image/upload/v1744189781/pngtree-illustration-of-3d-rendered-laptop-computer-showcasing-the-concept-of-e-picture-image_5792554_cedtpl.png';
+      case 'cultural':
+        return 'https://res.cloudinary.com/dwwpovlcs/image/upload/v1744189884/Festival-in-Chiang-Mai-Thailand-1200x853_rgphzu.jpg';
+      default:
+        return '';
+    }
+  }
 }
  
