@@ -1,13 +1,13 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, Output, EventEmitter } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { MatOptionModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TicketCancellationService } from '../../services/ticket-cancellation.service';
+import { MatOptionModule } from '@angular/material/core';
 
 @Component({
   selector: 'app-cancel-ticket-dialog',
@@ -18,6 +18,8 @@ import { TicketCancellationService } from '../../services/ticket-cancellation.se
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CancelTicketDialogComponent implements OnInit {
+  @Output() cancellationSuccess = new EventEmitter<string>();
+
   numberOfTicketsToCancel: number = 1;
   bookedTicketsArray: number[] = [];
   message: string = '';
@@ -45,7 +47,7 @@ export class CancelTicketDialogComponent implements OnInit {
     if (confirm) {
       this.cancelTickets();
     } else {
-      this.dialogRef.close();
+      this.showCancelConfirmation = false;
     }
   }
 
@@ -56,6 +58,7 @@ export class CancelTicketDialogComponent implements OnInit {
     this.ticketCancellationService.cancelTickets(userId, eventId, this.numberOfTicketsToCancel).subscribe({
       next: (response) => {
         this.message = `${this.numberOfTicketsToCancel} tickets have been canceled. Refund amount: ₹${response.refundAmount}`;
+        this.cancellationSuccess.emit('Tickets cancelled successfully!');
         this.dialogRef.close(true);
       },
       error: (error) => {

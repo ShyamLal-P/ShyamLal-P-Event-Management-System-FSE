@@ -15,6 +15,11 @@
       <div class="slider-indicator" [ngClass]="activeTab"></div>
     </div>
   
+    <!-- Success Message -->
+    <div *ngIf="successMessage" class="alert-message">
+      {{ successMessage }}
+    </div>
+  
     <!-- No Events -->
     <div *ngIf="events.length === 0" class="no-events">
       <p>No events found. Would you like to add an event?</p>
@@ -57,5 +62,4 @@
       <i class="fas fa-arrow-up"></i>
     </div>
   </div>
-  </body>
-  
+</body>

@@ -345,3 +345,25 @@ app-home-header.sidebar-open {
   right: 10px;
   margin: 0;
 }
+
+.alert-message {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #28a745;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-size: 0.95em;
+  z-index: 1000;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.alert-message.show {
+  opacity: 1;
+}
+
+.alert-message.hide {
+  opacity: 0;
+}

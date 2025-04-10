@@ -22,9 +22,7 @@ export class MyBookingsComponent implements OnInit {
   filteredEvents: any[] = [];
   activeTab: string = 'all';
   showScrollToTop: Boolean = false;
-
-  eventIdToDelete: string | null = null;
-  showConfirmDialog: boolean = false;
+  successMessage: string | null = null;
 
   constructor(private ticketService: TicketService, private router: Router, public dialog: MatDialog) {}
 
@@ -65,7 +63,6 @@ export class MyBookingsComponent implements OnInit {
     }
   }
 
-  // ➕ NEW METHOD: Check if event starts in more than 24 hours
   isMoreThan24HoursAway(dateStr: string, timeStr: string): boolean {
     const [hours, minutes] = timeStr.split(':').map(Number);
     const eventDateTime = new Date(dateStr);
@@ -85,9 +82,14 @@ export class MyBookingsComponent implements OnInit {
       userId: this.userDetails?.uid
     };
 
-    this.dialog.open(CancelTicketDialogComponent, {
+    const dialogRef = this.dialog.open(CancelTicketDialogComponent, {
       width: '400px',
       data: { event: eventDataWithUserId }
+    });
+
+    dialogRef.componentInstance.cancellationSuccess.subscribe((message: string) => {
+      this.successMessage = message;
+      this.loadEvents(); // Reload events after cancellation
     });
   }
 
