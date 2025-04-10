@@ -24,8 +24,8 @@ import { BookingService } from '../../services/booking.service';
   ]
 })
 export class BookTicketDialogComponent {
-  tickets: number[] = [1, 2, 3, 4, 5, 6];
-  numberOfTickets: number = 1;
+  tickets: number[] = [];
+  numberOfTickets: number = 1; // Add this property
   totalFare: number = 0;
   message: string | null = null;
   paymentMethod: string | null = null;
@@ -35,7 +35,13 @@ export class BookTicketDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private bookingService: BookingService
   ) {
+    this.initializeTickets();
     this.calculateTotalFare();
+  }
+
+  initializeTickets(): void {
+    const maxTickets = Math.min(this.data.event.availableTickets, 6);
+    this.tickets = Array.from({ length: maxTickets }, (_, i) => i + 1);
   }
 
   calculateTotalFare(): void {
@@ -82,4 +88,3 @@ export class BookTicketDialogComponent {
     this.dialogRef.close(false);
   }
 }
- 
