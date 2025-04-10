@@ -24,36 +24,56 @@ app-home-header.sidebar-open {
   }
 }
 
-/* Main content container */
-.main-content {
+/* Home content container */
+.home-container {
   padding: 20px;
   transition: margin-left 0.3s ease;
   margin-top: 60px; /* height of fixed header */
   margin-left: 60px; /* Adjust to match the closed sidebar width */
 }
 
-.main-content.sidebar-open {
+.home-container.sidebar-open {
   margin-left: 270px;
 }
 
 @media (max-width: 768px) {
-  .main-content.sidebar-open {
+  .home-container.sidebar-open {
     margin-left: 200px;
   }
 }
 
 @media (max-width: 480px) {
-  .main-content.sidebar-open {
+  .home-container.sidebar-open {
     margin-left: 150px;
   }
 }
 
 /* Events container */
 .events-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  display: flex;
+  justify-content: center; /* Center the event tiles */
+  align-items: center; /* Center the event tiles vertically */
+  flex-direction: column; /* Stack event tiles vertically */
   gap: 20px;
   padding: 20px;
+  transition: margin-left 0.3s ease;
+  margin-left: 60px; /* Adjust to match the closed sidebar width */
+}
+
+.events-container.sidebar-open {
+  margin-left: 270px;
+}
+
+@media (max-width: 768px) {
+  .events-container.sidebar-open {
+    margin-left: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .events-container.sidebar-open {
+    margin-left: 150px;
+  }
 }
 
 /* Event tile */
@@ -61,9 +81,11 @@ app-home-header.sidebar-open {
   background-color: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 20px;
-  padding: 20px;
-  padding-bottom: 40px; /* Add padding to the bottom */
+  padding: 10px; /* Reduced padding */
+  padding-bottom: 20px; /* Reduced padding */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 80%; /* Adjust width to make it shorter */
+  max-width: 400px; /* Set a maximum width */
   position: relative;
   display: flex;
   flex-direction: column;
@@ -79,7 +101,7 @@ app-home-header.sidebar-open {
 
 .event-tile h2 {
   margin-top: 0;
-  font-size: 1.5em;
+  font-size: 1.2em; /* Reduced font size */
   white-space: nowrap; /* Prevent text wrapping */
   overflow: hidden; /* Hide overflow */
   text-overflow: ellipsis; /* Add ellipsis for overflow text */
@@ -89,7 +111,7 @@ app-home-header.sidebar-open {
 .event-details {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  gap: 5px; /* Reduced gap */
   flex-grow: 1; /* Allow the details to grow */
   overflow: hidden; /* Prevent overflow */
 }
@@ -103,7 +125,7 @@ app-home-header.sidebar-open {
 }
 
 .event-detail i {
-  margin-right: 8px;
+  margin-right: 5px; /* Reduced margin */
 }
 
 /* Icon colors */
@@ -139,7 +161,22 @@ app-home-header.sidebar-open {
   color: #32cd32; /* LimeGreen */
 }
 
-/* Responsive adjustments */
+.event-slider {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+
+.event-slider .event-tile {
+  position: absolute;
+  width: 100%;
+  transition: opacity 1s ease-in-out;
+}
+
+.event-slider .event-tile.hidden {
+  opacity: 0;
+}
+
 @media (max-width: 768px) {
   .events-container {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -151,3 +188,4 @@ app-home-header.sidebar-open {
     grid-template-columns: 1fr;
   }
 }
+ 

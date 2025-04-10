@@ -15,23 +15,24 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './book-tickets.component.html',
   styleUrls: ['./book-tickets.component.css'],
   standalone: true,
-  imports: [CommonModule, FormsModule, HomeHeaderComponent, SidebarComponent], // Add FormsModule here
+  imports: [CommonModule, FormsModule, HomeHeaderComponent, SidebarComponent],
 })
 export class BookTicketsComponent implements OnInit {
   events: any[] = [];
   filteredEvents: any[] = [];
   categories: string[] = [];
   searchTerm: string = '';
-  selectedFilter: string = ''; // Add selectedFilter property
-  selectedCategory: string = ''; // Add selectedCategory property
-  priceSortOrder: string = ''; // Add priceSortOrder property
-  fromDate: string = ''; // Add fromDate property
-  toDate: string = ''; // Add toDate property
-  minDate: string = new Date().toISOString().split('T')[0]; // Set minDate to today's date
+  selectedFilter: string = '';
+  selectedCategory: string = '';
+  priceSortOrder: string = '';
+  fromDate: string = '';
+  toDate: string = '';
+  minDate: string = new Date().toISOString().split('T')[0];
   message: string | null = null;
   isSidebarOpen = true;
   userDetails: any = null;
-  showScrollToTop: boolean=false;
+  showScrollToTop = false;
+  flippedEventId: string | null = null; // Add this property to handle flipping
 
   constructor(
     private eventService: EventService,
@@ -43,7 +44,7 @@ export class BookTicketsComponent implements OnInit {
   ngOnInit(): void {
     this.authService.getCurrentUser().subscribe({
       next: (res) => {
-        console.log('User Info:', res); // Make sure 'id' is printed
+        console.log('User Info:', res);
         this.userDetails = res;
       },
       error: (err) => {
@@ -59,7 +60,7 @@ export class BookTicketsComponent implements OnInit {
       next: (res: any[]) => {
         this.events = res;
         this.filteredEvents = res;
-        this.categories = [...new Set(res.map(event => event.category))];
+        this.categories = [...new Set(res.map((event) => event.category))];
       },
       error: (err) => {
         console.error('Error fetching events:', err);
@@ -68,17 +69,27 @@ export class BookTicketsComponent implements OnInit {
   }
 
   filterEvents(): void {
-    this.filteredEvents = this.events.filter(event => {
-      const matchesSearchTerm = event.name.toLowerCase().includes(this.searchTerm.toLowerCase());
+    this.filteredEvents = this.events.filter((event) => {
+      const matchesSearchTerm = event.name
+        .toLowerCase()
+        .includes(this.searchTerm.toLowerCase());
       let matchesFilter = true;
 
       if (this.selectedFilter === 'category') {
-        matchesFilter = this.selectedCategory ? event.category.toLowerCase() === this.selectedCategory.toLowerCase() : true;
-      } else if (this.selectedFilter === 'priceLowToHigh' || this.selectedFilter === 'priceHighToLow') {
+        matchesFilter = this.selectedCategory
+          ? event.category.toLowerCase() ===
+            this.selectedCategory.toLowerCase()
+          : true;
+      } else if (
+        this.selectedFilter === 'priceLowToHigh' ||
+        this.selectedFilter === 'priceHighToLow'
+      ) {
         matchesFilter = true; // No specific filtering needed for price sorting
       } else if (this.selectedFilter === 'date') {
         const eventDate = new Date(event.date).toISOString().split('T')[0];
-        matchesFilter = (!this.fromDate || eventDate >= this.fromDate) && (!this.toDate || eventDate <= this.toDate);
+        matchesFilter =
+          (!this.fromDate || eventDate >= this.fromDate) &&
+          (!this.toDate || eventDate <= this.toDate);
       }
 
       return matchesSearchTerm && matchesFilter;
@@ -99,6 +110,11 @@ export class BookTicketsComponent implements OnInit {
     this.isSidebarOpen = isOpen;
   }
 
+  toggleFlip(eventId: string): void {
+    // Toggles the flipped state of the event tile
+    this.flippedEventId = this.flippedEventId === eventId ? null : eventId;
+  }
+
   bookEvent(event: any): void {
     const userId = this.userDetails?.id;
 
@@ -112,7 +128,7 @@ export class BookTicketsComponent implements OnInit {
       data: {
         event: event,
         eventId: event.id,
-        userId: userId
+        userId: userId,
       },
       disableClose: true,
     });
@@ -134,13 +150,16 @@ export class BookTicketsComponent implements OnInit {
 
   @HostListener('window:scroll', [])
   onScroll(): void {
-    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-    this.showScrollToTop = scrollPosition > 50; // Show button if scrolled down more than 200px
+    const scrollPosition =
+      window.pageYOffset ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop ||
+      0;
+    this.showScrollToTop = scrollPosition > 50; // Show button if scrolled down more than 50px
   }
 
   scrollToTop(): void {
     document.documentElement.scrollTo({ top: 0, behavior: 'smooth' }); // Smooth scroll to the top
   }
-
 }
  

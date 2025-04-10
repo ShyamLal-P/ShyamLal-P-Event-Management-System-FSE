@@ -22,9 +22,19 @@
   </mat-form-field>
 
   <div *ngIf="message" class="message">{{ message }}</div>
+
+  <!-- Confirmation Dialog -->
+  <div *ngIf="showCancelConfirmation" class="confirmation-dialog">
+    <h2>Confirm Cancellation</h2>
+    <p>Are you sure you want to cancel the ticket?</p>
+    <button mat-button (click)="confirmCancel(false)">No</button>
+    <button mat-button (click)="confirmCancel(true)">Yes</button>
+  </div>
 </mat-dialog-content>
 
 <mat-dialog-actions class="dialog-actions">
-  <button mat-button class="cancel-button" (click)="close()">No</button>
-  <button mat-raised-button class="confirm-button" color="warn" (click)="cancelTickets()">Yes, Cancel</button>
+  <button mat-button class="cancel-button" (click)="openCancelDialog()">Yes, Cancel</button>
+  <button mat-raised-button class="confirm-button" color="warn" (click)="cancelTickets()">Cancel</button>
 </mat-dialog-actions>
+
+<div *ngIf="showCancelConfirmation" class="dialog-backdrop"></div>
