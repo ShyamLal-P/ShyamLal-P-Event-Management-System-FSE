@@ -11,39 +11,43 @@
 <div class="home-container" [class.sidebar-open]="isSidebarOpen">
   <div *ngIf="userDetails" class="user-info-card">
     <h3>Welcome, {{ userDetails.userName }}</h3>
-    <p><strong>Email:</strong> {{ userDetails.email }}</p>
-    <p><strong>Phone:</strong> {{ userDetails.phoneNumber || 'N/A' }}</p>
   </div>
-
-  <h1>Welcome to the Home Page!</h1>
-  <p>This is the home component.</p>
-
-  <!-- 🔥 Display top events -->
   <div *ngIf="topEvents.length > 0" class="top-events">
     <h2>Top Events</h2>
-    <div *ngFor="let event of topEvents" class="event-tile">
-      <h2>{{ event.name }}</h2>
-      <div class="event-details">
-        <div class="event-detail">
-          <i class="fas fa-map-marker-alt location-icon"></i> <strong>Location:</strong> {{ event.location }}
-        </div>
-        <div class="event-detail">
-          <i class="fas fa-tags category-icon"></i> <strong>Category:</strong> {{ event.category }}
-        </div>
-        <div class="event-detail">
-          <i class="fas fa-calendar-alt date-icon"></i> <strong>Date:</strong> {{ event.date | date }}
-        </div>
-        <div class="event-detail">
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-          <i class="fas fa-rupee-sign price-icon"></i> <strong>Price:</strong> {{ event.eventPrice | currency:'INR':'symbol-narrow' }}
-        </div>
-        <div class="event-detail">
-          <i class="fas fa-clock time-icon"></i> <strong>Time:</strong> {{ event.time }}
-        </div>
-        <div class="event-detail">
-          <i class="fas fa-check-circle booked-tickets-icon"></i> <strong>Booked Tickets:</strong> {{ event.totalTickets - event.availableTickets }}
+    <div class="carousel-container">
+      <button class="prev" (click)="prevEvent()">&#10094;</button>
+      <div class="carousel-track-container">
+        <div class="carousel-track">
+          <div class="event-tile" *ngFor="let event of topEvents; let i = index" [class.active]="i === currentEventIndex">
+            <h2>{{ event.name }}</h2>
+            <div class="event-details">
+              <div class="event-detail">
+                <i class="fas fa-map-marker-alt location-icon"></i> <strong>Location:</strong> {{ event.location }}
+              </div>
+              <div class="event-detail">
+                <i class="fas fa-tags category-icon"></i> <strong>Category:</strong> {{ event.category }}
+              </div>
+              <div class="event-detail">
+                <i class="fas fa-calendar-alt date-icon"></i> <strong>Date:</strong> {{ event.date | date }}
+              </div>
+              <div class="event-detail">
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+                <i class="fas fa-rupee-sign price-icon"></i> <strong>Price:</strong> {{ event.eventPrice | currency:'INR':'symbol-narrow' }}
+              </div>
+              <div class="event-detail">
+                <i class="fas fa-clock time-icon"></i> <strong>Time:</strong> {{ event.time }}
+              </div>
+              <div class="event-detail">
+                <i class="fas fa-check-circle booked-tickets-icon"></i> <strong>Available Tickets: </strong> {{ event.availableTickets }}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+      <button class="next" (click)="nextEvent()">&#10095;</button>
+    </div>
+    <div class="carousel-dots">
+      <span *ngFor="let event of topEvents; let i = index" class="dot" [class.active]="i === currentEventIndex" (click)="goToEvent(i)"></span>
     </div>
   </div>
-</div>
+ 

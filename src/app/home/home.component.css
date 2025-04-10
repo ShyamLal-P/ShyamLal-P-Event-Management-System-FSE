@@ -84,7 +84,8 @@ app-home-header.sidebar-open {
   padding: 10px; /* Reduced padding */
   padding-bottom: 20px; /* Reduced padding */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 80%; /* Adjust width to make it shorter */
+  width: 60%; /* Decreased width */
+  height: 300px; /* Increased height */
   max-width: 400px; /* Set a maximum width */
   position: relative;
   display: flex;
@@ -92,11 +93,7 @@ app-home-header.sidebar-open {
   justify-content: space-between;
   overflow: hidden; /* Prevent overflow */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.event-tile:hover {
-  transform: scale(1.05); /* Increase size slightly */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a larger shadow */
+  margin: 0 auto; /* Center the event tile */
 }
 
 .event-tile h2 {
@@ -161,31 +158,69 @@ app-home-header.sidebar-open {
   color: #32cd32; /* LimeGreen */
 }
 
-.event-slider {
+/* Carousel styles */
+.carousel-container {
   position: relative;
-  overflow: hidden;
-  height: 100%;
-}
-
-.event-slider .event-tile {
-  position: absolute;
   width: 100%;
-  transition: opacity 1s ease-in-out;
+  overflow: hidden;
 }
 
-.event-slider .event-tile.hidden {
-  opacity: 0;
+.carousel-track-container {
+  overflow: hidden;
+  width: 100%;
 }
 
-@media (max-width: 768px) {
-  .events-container {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  }
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
 }
 
-@media (max-width: 480px) {
-  .events-container {
-    grid-template-columns: 1fr;
-  }
+.event-tile {
+  min-width: 100%;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+button.prev, button.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+button.prev {
+  left: 10px;
+  background-color:#4682b4;
+}
+
+button.next {
+  right: 10px;
+  background-color:#4682b4;
+}
+
+/* Dot navigation */
+.carousel-dots {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.dot {
+  height: 15px;
+  width: 15px;
+  margin: 0 5px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+  transition: background-color 0.6s ease;
+}
+
+.dot.active {
+  background-color: #717171;
 }
  

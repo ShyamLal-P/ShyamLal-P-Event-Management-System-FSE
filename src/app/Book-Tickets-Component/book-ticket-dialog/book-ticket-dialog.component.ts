@@ -1,12 +1,15 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { MatOptionModule } from '@angular/material/core';
+import { MatOptionModule } from '@angular/material/core'; // Ensure this is imported
+import { MatDialogModule } from '@angular/material/dialog';
 import { BookingService } from '../../services/booking.service';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-book-ticket-dialog',
@@ -14,18 +17,18 @@ import { BookingService } from '../../services/booking.service';
   styleUrls: ['./book-ticket-dialog.component.css'],
   standalone: true,
   imports: [
-    CommonModule,
+    CommonModule, // Import CommonModule for *ngIf
     FormsModule,
-    MatDialogModule,
+    MatDialogModule, // Import MatDialogModule for mat-dialog-actions
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatOptionModule
+    MatOptionModule // Import MatOptionModule for mat-option
   ]
 })
 export class BookTicketDialogComponent {
   tickets: number[] = [];
-  numberOfTickets: number = 1; // Add this property
+  numberOfTickets: number = 1;
   totalFare: number = 0;
   message: string | null = null;
   paymentMethod: string | null = null;
@@ -75,6 +78,7 @@ export class BookTicketDialogComponent {
     this.bookingService.bookTickets(bookingRequest).subscribe({
       next: (res) => {
         this.message = 'Tickets booked successfully!';
+        this.generatePDF();
         setTimeout(() => this.dialogRef.close(true), 2000);
       },
       error: (err) => {
@@ -83,6 +87,38 @@ export class BookTicketDialogComponent {
       },
     });
   }
+
+  generatePDF(): void {
+    const doc = new jsPDF();
+    const event = this.data.event;
+  
+    // Add ticket details
+    doc.setFontSize(18);
+    doc.text('Ticket Details', 10, 10);
+  
+    // Add event details
+    doc.setFontSize(14);
+    doc.text(`Event Name: ${event.name}`, 10, 20);
+    doc.text(`Location: ${event.location}`, 10, 30);
+    doc.text(`Date: ${new Date(event.date).toLocaleDateString()}`, 10, 40);
+    doc.text(`Time: ${event.time}`, 10, 50);
+    doc.text(`Price per Ticket: ₹${event.eventPrice}`, 10, 60);
+  
+    // Add bill summary
+    doc.setFontSize(16);
+    doc.text('Bill Summary', 10, 80);
+    doc.setFontSize(14);
+    doc.text(`Number of Tickets: ${this.numberOfTickets}`, 10, 90);
+    doc.text(`Total Cost: ₹${this.totalFare}`, 10, 100);
+  
+    // Add thank you message
+    doc.setFontSize(16);
+    doc.text('Thank you for booking tickets!', 10, 120);
+  
+    // Save the PDF
+    doc.save('ticket.pdf');
+  }
+  
 
   close(): void {
     this.dialogRef.close(false);
