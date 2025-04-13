@@ -1,0 +1,34 @@
+<div class="ticket-container" *ngIf="event">
+    <div class="ticket-header">
+      <h2>🎟️ Event Ticket</h2>
+    </div>
+    
+    <div class="ticket-details">
+      <div class="ticket-item">
+        <strong>Event Name:</strong> {{ event.name }}
+      </div>
+      <div class="ticket-item">
+        <strong>Location:</strong> {{ event.location }}
+      </div>
+      <div class="ticket-item">
+        <strong>Date:</strong> {{ event.date | date }}
+      </div>
+      <div class="ticket-item">
+        <strong>Time:</strong> {{ event.time }}
+      </div>
+      <div class="ticket-item">
+        <strong>Price per Ticket:</strong> ₹{{ event.eventPrice }}
+      </div>
+      <div class="ticket-item">
+        <strong>Number of Tickets:</strong> {{ numberOfTickets }}
+      </div>
+      <div class="ticket-item">
+        <strong>Total Fare:</strong> ₹{{ totalFare }}
+      </div>
+    </div>
+  
+    <div class="thank-you">
+      <p>✅ Thank you for booking with Eventify!</p>
+    </div>
+  </div>
+  

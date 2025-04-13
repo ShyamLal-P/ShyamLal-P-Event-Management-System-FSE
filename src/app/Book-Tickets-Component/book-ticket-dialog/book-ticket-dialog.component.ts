@@ -5,11 +5,11 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { MatOptionModule } from '@angular/material/core'; // Ensure this is imported
+import { MatOptionModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BookingService } from '../../services/booking.service';
+import { Router } from '@angular/router';
 import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-book-ticket-dialog',
@@ -17,13 +17,13 @@ import html2canvas from 'html2canvas';
   styleUrls: ['./book-ticket-dialog.component.css'],
   standalone: true,
   imports: [
-    CommonModule, // Import CommonModule for *ngIf
+    CommonModule,
     FormsModule,
-    MatDialogModule, // Import MatDialogModule for mat-dialog-actions
+    MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatOptionModule // Import MatOptionModule for mat-option
+    MatOptionModule
   ]
 })
 export class BookTicketDialogComponent {
@@ -36,7 +36,8 @@ export class BookTicketDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<BookTicketDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private bookingService: BookingService
+    private bookingService: BookingService,
+    private router: Router
   ) {
     this.initializeTickets();
     this.calculateTotalFare();
@@ -62,24 +63,23 @@ export class BookTicketDialogComponent {
       this.message = 'Max limit is 6';
       return;
     }
-
+  
     if (!this.paymentMethod) {
       this.message = 'Please select a payment method.';
       return;
     }
-
+  
     const bookingRequest = {
       userId: this.data.userId,
       eventId: this.data.eventId,
       numberOfTickets: this.numberOfTickets,
       paymentMethod: this.paymentMethod
     };
-
+  
     this.bookingService.bookTickets(bookingRequest).subscribe({
-      next: (res) => {
-        this.message = 'Tickets booked successfully!';
-        this.generatePDF();
-        setTimeout(() => this.dialogRef.close(true), 2000);
+      next: () => {
+        this.dialogRef.close(true);
+        this.generatePDF(); // ✅ Generate ticket PDF here
       },
       error: (err) => {
         console.error(err);
@@ -87,38 +87,40 @@ export class BookTicketDialogComponent {
       },
     });
   }
-
+  
   generatePDF(): void {
     const doc = new jsPDF();
-    const event = this.data.event;
   
-    // Add ticket details
-    doc.setFontSize(18);
-    doc.text('Ticket Details', 10, 10);
+    doc.setFontSize(22);
+    doc.setTextColor(40, 40, 40);
+    doc.text('🎟️ Event Ticket', 70, 20);
   
-    // Add event details
+    doc.setFontSize(12);
+    doc.setTextColor(0, 0, 0);
+    let y = 40;
+    const lineHeight = 10;
+  
+    const lines = [
+      `Event Name: ${this.data.event.name}`,
+      `Location: ${this.data.event.location}`,
+      `Date: ${new Date(this.data.event.date).toLocaleDateString()}`,
+      `Time: ${this.data.event.time}`,
+      `Price per Ticket: ₹${this.data.event.eventPrice}`,
+      `Number of Tickets: ${this.numberOfTickets}`,
+      `Total Fare: ₹${this.totalFare}`
+    ];
+  
+    lines.forEach(line => {
+      doc.text(line, 20, y);
+      y += lineHeight;
+    });
+  
+    doc.setTextColor(70, 130, 180);
     doc.setFontSize(14);
-    doc.text(`Event Name: ${event.name}`, 10, 20);
-    doc.text(`Location: ${event.location}`, 10, 30);
-    doc.text(`Date: ${new Date(event.date).toLocaleDateString()}`, 10, 40);
-    doc.text(`Time: ${event.time}`, 10, 50);
-    doc.text(`Price per Ticket: ₹${event.eventPrice}`, 10, 60);
+    doc.text('✅ Thank you for booking with Eventify!', 20, y + 10);
   
-    // Add bill summary
-    doc.setFontSize(16);
-    doc.text('Bill Summary', 10, 80);
-    doc.setFontSize(14);
-    doc.text(`Number of Tickets: ${this.numberOfTickets}`, 10, 90);
-    doc.text(`Total Cost: ₹${this.totalFare}`, 10, 100);
-  
-    // Add thank you message
-    doc.setFontSize(16);
-    doc.text('Thank you for booking tickets!', 10, 120);
-  
-    // Save the PDF
-    doc.save('ticket.pdf');
-  }
-  
+    doc.save('event-ticket.pdf');
+  }  
 
   close(): void {
     this.dialogRef.close(false);

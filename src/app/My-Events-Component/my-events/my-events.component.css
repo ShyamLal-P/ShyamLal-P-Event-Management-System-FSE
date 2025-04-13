@@ -125,7 +125,7 @@ app-home-header.sidebar-open {
   background-color: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 20px;
-  padding: 20px;
+  padding: 30px; /* Increased padding */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: relative;
   display: flex;
@@ -133,6 +133,7 @@ app-home-header.sidebar-open {
   justify-content: space-between;
   overflow: hidden; /* Prevent overflow */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-height: 200px; /* Increased minimum height for larger tiles */
 }
 
 .event-tile:hover {
@@ -204,16 +205,13 @@ app-home-header.sidebar-open {
 
 /* Delete button */
 .delete-button {
-  position: absolute;
-  bottom: 0px; /* Move the button lower */
-  right: 10px;
-  background-color: #ff4500;
+  background-color: #ff4500; /* OrangeRed color for delete */
   color: white;
   border: none;
   padding: 10px;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 20px; /* Added margin-top to move the button down */
+  flex-shrink: 0; /* Prevent shrinking */
 }
 
 /* Backdrop */
@@ -259,6 +257,32 @@ app-home-header.sidebar-open {
 .confirm-dialog button:last-child {
   background-color: #ff4500; /* OrangeRed */
   color: white;
+}
+
+.event-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 10px;
+}
+
+.edit-button {
+  background-color: #007bff; /* Blue color for edit */
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  flex-shrink: 0; /* Prevent shrinking */
+}
+
+.button-container {
+  position: absolute;
+  top: 90%; /* Add some space from the bottom edge */
+  right: 10px; /* Position container to the right */
+  display: flex;
+  gap: 10px; /* Space between buttons */
+  align-items: center; /* Vertically center the buttons */
 }
 
 /* No events message */

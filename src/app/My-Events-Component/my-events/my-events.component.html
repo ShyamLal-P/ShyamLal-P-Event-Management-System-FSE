@@ -53,15 +53,17 @@
           <i class="fas fa-clock time-icon"></i> <strong>Time:</strong> {{ event.time }}
         </div>
         <div class="event-detail">
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
+          
           <i class="fas fa-users total-tickets-icon"></i> <strong>Total Tickets:</strong> {{ event.totalTickets }}
         </div>
         <div class="event-detail">
           <i class="fas fa-check-circle booked-tickets-icon"></i> <strong>Booked Tickets:</strong> {{ event.totalTickets - event.availableTickets }}
         </div>
       </div>
-      <button class="delete-button" (click)="confirmDelete(event.id)">Delete</button>
+      <div class="button-container">
+        <button class="edit-button" (click)="openEditDialog(event)">Edit</button>
+        <button class="delete-button" (click)="confirmDelete(event.id)">Delete</button>
+      </div>
     </div>
   </div>
 

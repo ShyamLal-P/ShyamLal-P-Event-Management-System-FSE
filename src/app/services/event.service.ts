@@ -14,6 +14,13 @@ export class EventService {
     return this.http.post(this.apiUrl, eventData);
   }
 
+  updateEvent(id: string, updatedEvent: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`, updatedEvent);
+  }
+  
+  getEventById(id: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${id}`);
+  }
   getEventsByUserId(userId: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/user/${userId}`);
   }
