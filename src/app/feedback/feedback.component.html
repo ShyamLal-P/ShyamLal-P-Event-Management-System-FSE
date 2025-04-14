@@ -21,6 +21,8 @@
             <p>{{ event.description }}</p>
             <p><strong>Date:</strong> {{ event.date | date: 'mediumDate' }}</p>
             <p><strong>Location:</strong> {{ event.location }}</p>
+            <!-- Add Event Button -->
+            <button (click)="openFeedbackDialog(event)">Add Feedback</button>
           </div>
         </div>
   

@@ -38,12 +38,15 @@ export class LoginComponent {
   
         // Decode token directly from response
         const decoded: any = jwtDecode(token);
+        const userId = decoded["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"]; // common userId claim
         const role = decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
         console.log("Decoded Role:", role);
   
         // Save token and role
         localStorage.setItem('userToken', token);
         localStorage.setItem('userRole', role);
+        localStorage.setItem('userId', userId); // ✅ Add this line
+
   
         this.messageService.setMessage(this.message);
         this.router.navigate(['/home']);

@@ -21,6 +21,7 @@ export const routes: Routes = [
   { path: 'sidebar', component: SidebarComponent},
   { path: 'feedback', component: FeedbackComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'feedback-dialog', component: FeedbackComponent },
   { path: 'book-tickets-dialog', component: BookTicketDialogComponent},
   { path: 'my-events', component: MyEventsComponent},
   { path: 'ticket', component: TicketComponent },

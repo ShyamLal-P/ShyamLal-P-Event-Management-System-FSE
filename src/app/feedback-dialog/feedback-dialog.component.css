@@ -1,0 +1,146 @@
+/* Dialog Container */
+.mat-dialog-container {
+    padding: 20px;
+    max-width: 600px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Dialog Header */
+  .mat-dialog-title {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Close Button */
+  .close-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #888;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
+  
+  .close-button:hover {
+    color: #e74c3c;
+  }
+  
+  /* Star Rating */
+  .star-rating {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .star {
+    font-size: 2rem;
+    color: lightgray; /* Default color for unselected stars */
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .star.selected {
+    color: gold; /* Color for selected stars */
+  }
+  
+  .star:hover {
+    color: #f39c12; /* Hover effect for unselected stars */
+  }
+  
+  /* Dialog Content (Form inputs, textarea) */
+  .mat-dialog-content {
+    padding: 0;
+  }
+  
+  /* Textarea Input */
+  textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    margin-bottom: 20px;
+    transition: border-color 0.3s ease;
+  }
+  
+  textarea:focus {
+    border-color: #3498db;
+  }
+  
+  /* Buttons Section */
+  .mat-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 10px 0;
+  }
+  
+  /* Action Buttons */
+  .mat-button,
+  .mat-raised-button {
+    font-size: 1rem;
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .mat-button {
+    background-color: #ecf0f1;
+    color: #3498db;
+    border: none;
+  }
+  
+  .mat-button:hover {
+    background-color: #dbe4e8;
+  }
+  
+  .mat-raised-button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+  }
+  
+  .mat-raised-button:hover {
+    background-color: #2980b9;
+  }
+  
+  .mat-dialog-actions .cancel-btn {
+    background-color: #ecf0f1;
+    color: #3498db;
+  }
+  
+  .mat-dialog-actions .submit-btn {
+    background-color: #3498db;
+    color: white;
+  }
+  
+  /* Responsive Design for Small Screens */
+  @media (max-width: 768px) {
+    .mat-dialog-container {
+      width: 100%;
+      padding: 15px;
+    }
+  
+    .mat-dialog-title {
+      font-size: 1.3rem;
+    }
+  
+    textarea {
+      font-size: 0.9rem;
+    }
+  
+    .mat-button, .mat-raised-button {
+      font-size: 0.9rem;
+      padding: 6px 12px;
+    }
+  }
+    

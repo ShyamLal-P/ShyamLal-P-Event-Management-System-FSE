@@ -27,6 +27,7 @@ const routes: Routes = [
   { path: 'sidebar', component: SidebarComponent },
   { path: 'feedback', component: FeedbackComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'feedback-dialog', component: FeedbackComponent, canActivate: [AuthGuard] },
   { path: 'ticket', component: TicketComponent, canActivate: [AuthGuard] },
   { path: 'register', component: RegisterComponent },
   { path: 'my-bookings', component: MyBookingsComponent,  canActivate: [AuthGuard]},

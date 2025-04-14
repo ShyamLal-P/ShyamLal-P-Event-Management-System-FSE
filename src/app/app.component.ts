@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';  // Import DatePipe
+import { MatDialogModule } from '@angular/material/dialog';  // <-- Import MatDialogModule
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,8 @@ import { DatePipe } from '@angular/common';  // Import DatePipe
   imports: [
     RouterOutlet,
     ReactiveFormsModule,
-    FormsModule // Add FormsModule here
+    FormsModule,  // Add FormsModule here
+    MatDialogModule,  // <-- Add MatDialogModule here
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
