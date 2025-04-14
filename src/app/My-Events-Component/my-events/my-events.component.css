@@ -136,6 +136,25 @@ app-home-header.sidebar-open {
   min-height: 200px; /* Increased minimum height for larger tiles */
 }
 
+.feedback-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #6a5acd;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  z-index: 5;
+  transition: background-color 0.3s ease;
+}
+
+.feedback-button:hover {
+  background-color: #483d8b;
+}
+
 .event-tile:hover {
   transform: scale(1.05); /* Increase size slightly */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a larger shadow */

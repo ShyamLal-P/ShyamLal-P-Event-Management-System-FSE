@@ -32,6 +32,7 @@
 
   <div class="events-container" *ngIf="events.length > 0">
     <div *ngFor="let event of filteredEvents" class="event-tile">
+      <button class="feedback-button">Feedback</button>
       <h2>{{ event.name }}</h2>
       <div class="event-details">
         <div class="event-detail">

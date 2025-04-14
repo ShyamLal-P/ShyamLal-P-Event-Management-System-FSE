@@ -10,6 +10,7 @@ import { BookTicketDialogComponent } from './Book-Tickets-Component/book-ticket-
 import { BookTicketsComponent } from './Book-Tickets-Component/book-tickets/book-tickets.component';
 import { TicketComponent } from './Book-Tickets-Component/ticket/ticket.component';
 import { EditEventDialogComponent } from './My-Events-Component/edit-event-dialog/edit-event-dialog.component';
+import { FeedbackComponent } from './feedback/feedback.component';
 
 export const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -18,6 +19,7 @@ export const routes: Routes = [
   { path: 'edit-event-dialog', component: EditEventDialogComponent},
   { path: 'register', component: RegisterComponent },
   { path: 'sidebar', component: SidebarComponent},
+  { path: 'feedback', component: FeedbackComponent },
   { path: 'home', component: HomeComponent },
   { path: 'book-tickets-dialog', component: BookTicketDialogComponent},
   { path: 'my-events', component: MyEventsComponent},

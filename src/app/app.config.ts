@@ -16,6 +16,7 @@ import { MyBookingsComponent } from './My-Bookings-Component/my-bookings/my-book
 import { CancelTicketDialogComponent } from './My-Bookings-Component/cancel-ticket-dialog/cancel-ticket-dialog.component';
 import { TicketComponent } from './Book-Tickets-Component/ticket/ticket.component';
 import { EditEventDialogComponent } from './My-Events-Component/edit-event-dialog/edit-event-dialog.component';
+import { FeedbackComponent } from './feedback/feedback.component';
 // import { BookEventFormComponent } from './book-event-form/book-event-form.component';
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
 
   { path: 'edit-event-dialog', component: EditEventDialogComponent, canActivate: [AuthGuard]},
   { path: 'sidebar', component: SidebarComponent },
+  { path: 'feedback', component: FeedbackComponent },
   { path: 'login', component: LoginComponent },
   { path: 'ticket', component: TicketComponent, canActivate: [AuthGuard] },
   { path: 'register', component: RegisterComponent },

@@ -1,0 +1,34 @@
+<!-- Layout Wrapper -->
+<div class="layout-wrapper">
+
+    <!-- Sidebar -->
+    <app-sidebar (sidebarToggled)="onSidebarToggled($event)" class="sidebar"></app-sidebar>
+  
+    <!-- Main Area: Header + Feedback -->
+    <div class="main-area" [class.sidebar-open]="isSidebarOpen">
+  
+      <!-- Header -->
+      <app-home-header [isSidebarOpen]="isSidebarOpen" class="header"></app-home-header>
+  
+      <!-- Events Section -->
+      <div class="events-container">
+        <h2>Events</h2>
+  
+        <!-- Display Events -->
+        <div *ngIf="events.length > 0; else noEventsMessage">
+          <div *ngFor="let event of events" class="event-card">
+            <h3>{{ event.name }}</h3>
+            <p>{{ event.description }}</p>
+            <p><strong>Date:</strong> {{ event.date | date: 'mediumDate' }}</p>
+            <p><strong>Location:</strong> {{ event.location }}</p>
+          </div>
+        </div>
+  
+        <!-- No Events Message -->
+        <ng-template #noEventsMessage>
+          <p>No events available at the moment.</p>
+        </ng-template>
+      </div>
+  
+    </div>
+</div>
