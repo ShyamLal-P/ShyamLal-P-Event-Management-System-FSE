@@ -75,9 +75,7 @@
           <div class="front">
             <img [src]="getEventImage(event.category)" alt="{{ event.category }} image" class="event-image">
             <h2 class="event-name">{{ event.name }}</h2>
-            <div class="rating">
-              <i class="fas fa-star" *ngFor="let star of [1, 2, 3, 4, 5]" style="color: goldenrod;"></i>
-            </div>
+
             <div class="view-details">View Details</div>
           </div>
 
@@ -123,4 +121,5 @@
     </div>
   </div>
 </body>
+
  

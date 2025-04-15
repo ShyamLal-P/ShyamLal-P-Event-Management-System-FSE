@@ -1,8 +1,16 @@
-.main-content {
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .main-content {
     padding: 20px;
     transition: margin-left 0.3s ease;
     margin-top: 60px; /* height of fixed header */
     margin-left: 60px; /* Adjust to match the closed sidebar width */
+    background: linear-gradient(135deg, #95e692, #f5f7fa, #95e692); /* Background gradient */
+    min-height: 100vh; /* Ensure it covers the full viewport height */
   }
   
   .main-content.sidebar-open {
@@ -20,11 +28,26 @@
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1s ease-in-out; /* Fade-in animation */
+  }
+  
+  .profile-image {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .profile-image img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
   
   h2 {
     text-align: center;
     margin-bottom: 20px;
+    color: #333;
+    animation: slideIn 1s ease-in-out; /* Slide-in animation */
   }
   
   .profile-details {
@@ -33,5 +56,27 @@
   
   .profile-details p {
     margin: 10px 0;
+    color: #555;
+  }
+  
+  /* Keyframes for animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateY(-20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
   
