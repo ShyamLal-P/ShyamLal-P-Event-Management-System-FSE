@@ -30,12 +30,13 @@
 
         <label>Available Tickets:</label>
         <input formControlName="availableTickets" type="number" />
-      </form>
-    </div>
 
-    <div class="button-group">
-      <button type="submit" [disabled]="eventForm.invalid">Save</button>
-      <button type="button" (click)="onCancel()">Cancel</button>
+        <!-- Button Group placed inside the form -->
+        <div class="button-group">
+          <button type="submit" [disabled]="eventForm.invalid">Save</button>
+          <button type="button" (click)="onCancel()">Cancel</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
