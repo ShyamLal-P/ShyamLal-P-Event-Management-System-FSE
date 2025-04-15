@@ -40,7 +40,7 @@ export class MyBookingsComponent implements OnInit {
       this.ticketService.getEventsByUserId(this.userDetails.uid).subscribe(
         (data: any[]) => {
           this.events = data;
-          this.filteredEvents = [...this.events];
+          this.filteredEvents = this.events.filter(event => event.totalTickets - event.availableTickets > 0);
         },
         (error: any) => console.error('Error fetching events:', error)
       );
@@ -55,23 +55,23 @@ export class MyBookingsComponent implements OnInit {
   filterEvents(type: string): void {
     const now = new Date();
     if (type === 'all') {
-      this.filteredEvents = [...this.events];
+      this.filteredEvents = this.events.filter(event => event.totalTickets - event.availableTickets > 0);
     } else if (type === 'upcoming') {
       this.filteredEvents = this.events.filter(event => {
         const eventDateTime = new Date(event.date);
         const [hours, minutes] = event.time.split(':').map(Number);
         eventDateTime.setHours(hours, minutes, 0, 0);
-        return eventDateTime > now;
+        return eventDateTime > now && event.totalTickets - event.availableTickets > 0;
       });
     } else if (type === 'completed') {
       this.filteredEvents = this.events.filter(event => {
         const eventDateTime = new Date(event.date);
         const [hours, minutes] = event.time.split(':').map(Number);
         eventDateTime.setHours(hours, minutes, 0, 0);
-        return eventDateTime <= now;
+        return eventDateTime <= now && event.totalTickets - event.availableTickets > 0;
       });
     }
-  }  
+  }
 
   isMoreThan24HoursAway(dateStr: string, timeStr: string): boolean {
     const [hours, minutes] = timeStr.split(':').map(Number);

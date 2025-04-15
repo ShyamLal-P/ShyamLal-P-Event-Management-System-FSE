@@ -28,39 +28,41 @@
   
     <!-- Events List -->
     <div class="events-container" *ngIf="events.length > 0">
-      <div *ngFor="let event of filteredEvents" class="event-tile">
-        <h2>{{ event.name }}</h2>
-        <div class="event-details">
-          <div class="event-detail"><i class="fas fa-map-marker-alt location-icon"></i> <strong>Location:</strong> {{ event.location }}</div>
-          <div class="event-detail"><i class="fas fa-tags category-icon"></i> <strong>Category:</strong> {{ event.category }}</div>
-          <div class="event-detail"><i class="fas fa-calendar-alt date-icon"></i> <strong>Date:</strong> {{ event.date | date }}</div>
-          <div class="event-detail">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-            <i class="fas fa-rupee-sign price-icon"></i> <strong>Price:</strong> {{ event.eventPrice | currency:'INR':'symbol-narrow' }}
+      <ng-container *ngFor="let event of filteredEvents">
+        <div *ngIf="event.totalTickets - event.availableTickets > 0" class="event-tile">
+          <h2>{{ event.name }}</h2>
+          <div class="event-details">
+            <div class="event-detail"><i class="fas fa-map-marker-alt location-icon"></i> <strong>Location:</strong> {{ event.location }}</div>
+            <div class="event-detail"><i class="fas fa-tags category-icon"></i> <strong>Category:</strong> {{ event.category }}</div>
+            <div class="event-detail"><i class="fas fa-calendar-alt date-icon"></i> <strong>Date:</strong> {{ event.date | date }}</div>
+            <div class="event-detail">
+              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+              <i class="fas fa-rupee-sign price-icon"></i> <strong>Price:</strong> {{ event.eventPrice | currency:'INR':'symbol-narrow' }}
+            </div>
+            <div class="event-detail"><i class="fas fa-clock time-icon"></i> <strong>Time:</strong> {{ event.time }}</div>
+            <div class="event-detail"><i class="fas fa-check-circle booked-tickets-icon"></i> <strong>Booked Tickets:</strong> {{ event.totalTickets - event.availableTickets }}</div>
           </div>
-          <div class="event-detail"><i class="fas fa-clock time-icon"></i> <strong>Time:</strong> {{ event.time }}</div>
-          <div class="event-detail"><i class="fas fa-check-circle booked-tickets-icon"></i> <strong>Booked Tickets:</strong> {{ event.totalTickets - event.availableTickets }}</div>
+    
+          <!-- Conditional display: Show anchor or message -->
+          <div class="cancel-section">
+            <a *ngIf="!isEventPassed(event.date, event.time) && isMoreThan24HoursAway(event.date, event.time)"
+              href="#"
+              class="cancel-link"
+              (click)="openCancelDialog($event, event)">
+              Want to cancel tickets?
+            </a>
+            <p *ngIf="!isEventPassed(event.date, event.time) && !isMoreThan24HoursAway(event.date, event.time)" class="cancel-disabled-msg">
+              Tickets can't be cancelled within 24 hours of event start.
+            </p>
+            <p *ngIf="isEventPassed(event.date, event.time) && !isEventStartedWithinHour(event.date, event.time)" class="cancel-disabled-msg">
+              This event has ended.
+            </p>
+            <p *ngIf="isEventStartedWithinHour(event.date, event.time)" class="cancel-disabled-msg">
+              This event has already started.
+            </p>
+          </div>
         </div>
-  
-        <!-- Conditional display: Show anchor or message -->
-        <div class="cancel-section">
-          <a *ngIf="!isEventPassed(event.date, event.time) && isMoreThan24HoursAway(event.date, event.time)"
-            href="#"
-            class="cancel-link"
-            (click)="openCancelDialog($event, event)">
-            Want to cancel tickets?
-          </a>
-          <p *ngIf="!isEventPassed(event.date, event.time) && !isMoreThan24HoursAway(event.date, event.time)" class="cancel-disabled-msg">
-            Tickets can't be cancelled within 24 hours of event start.
-          </p>
-          <p *ngIf="isEventPassed(event.date, event.time) && !isEventStartedWithinHour(event.date, event.time)" class="cancel-disabled-msg">
-            This event has ended.
-          </p>
-          <p *ngIf="isEventStartedWithinHour(event.date, event.time)" class="cancel-disabled-msg">
-            This event has already started.
-          </p>
-        </div>
-      </div>
+      </ng-container>
     </div>
   
     <!-- Scroll to Top -->
