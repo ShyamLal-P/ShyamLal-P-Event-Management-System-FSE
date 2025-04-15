@@ -17,6 +17,8 @@ import { CancelTicketDialogComponent } from './My-Bookings-Component/cancel-tick
 import { TicketComponent } from './Book-Tickets-Component/ticket/ticket.component';
 import { EditEventDialogComponent } from './My-Events-Component/edit-event-dialog/edit-event-dialog.component';
 import { FeedbackComponent } from './feedback/feedback.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { ProfileComponent } from './profile/profile.component';
 // import { BookEventFormComponent } from './book-event-form/book-event-form.component';
 
 const routes: Routes = [
@@ -27,6 +29,8 @@ const routes: Routes = [
   { path: 'sidebar', component: SidebarComponent },
   { path: 'feedback', component: FeedbackComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+  { path: 'notifications', component: NotificationsComponent, canActivate: [AuthGuard]},
   { path: 'feedback-dialog', component: FeedbackComponent, canActivate: [AuthGuard] },
   { path: 'ticket', component: TicketComponent, canActivate: [AuthGuard] },
   { path: 'register', component: RegisterComponent },

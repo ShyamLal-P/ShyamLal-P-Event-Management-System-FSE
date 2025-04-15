@@ -30,7 +30,7 @@ app-home-header.sidebar-open {
   transition: margin-left 0.3s ease;
   margin-top: 60px; /* height of fixed header */
   margin-left: 60px; /* Adjust to match the closed sidebar width */
-  background-image: url('https://tse3.mm.bing.net/th/id/OIP.ZM0sn2nBANNkjQYnEOUmtQHaEo?rs=1&pid=ImgDetMain');
+  background-image: url('https://res.cloudinary.com/dwwpovlcs/image/upload/v1744286185/premium_photo-1668708034541-4ba9a33fae3a_navcwo.jpg');
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
@@ -94,6 +94,7 @@ app-home-header.sidebar-open {
   max-width: 400px; /* Set a maximum width */
   position: relative;
   display: flex;
+  opacity: 0.8;
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden; /* Prevent overflow */

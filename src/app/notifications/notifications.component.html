@@ -1,0 +1,13 @@
+<!-- Sidebar -->
+<app-sidebar (sidebarToggled)="onSidebarToggled($event)"></app-sidebar>
+
+<!-- Main Content -->
+<div class="main-content" [class.sidebar-open]="isSidebarOpen">
+  <!-- Header -->
+  <app-home-header [isSidebarOpen]="isSidebarOpen"></app-home-header>
+
+  <!-- Notifications Content -->
+  <div class="notifications-content">
+    <p>Notifications works!</p>
+  </div>
+</div>

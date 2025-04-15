@@ -11,6 +11,8 @@ import { BookTicketsComponent } from './Book-Tickets-Component/book-tickets/book
 import { TicketComponent } from './Book-Tickets-Component/ticket/ticket.component';
 import { EditEventDialogComponent } from './My-Events-Component/edit-event-dialog/edit-event-dialog.component';
 import { FeedbackComponent } from './feedback/feedback.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { ProfileComponent } from './profile/profile.component';
 
 export const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -21,6 +23,8 @@ export const routes: Routes = [
   { path: 'sidebar', component: SidebarComponent},
   { path: 'feedback', component: FeedbackComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'profile', component: ProfileComponent},
+  { path: 'notifications', component: NotificationsComponent},
   { path: 'feedback-dialog', component: FeedbackComponent },
   { path: 'book-tickets-dialog', component: BookTicketDialogComponent},
   { path: 'my-events', component: MyEventsComponent},
