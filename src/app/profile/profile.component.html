@@ -1,13 +1,21 @@
-<!-- Sidebar -->
 <app-sidebar (sidebarToggled)="onSidebarToggled($event)"></app-sidebar>
 
-<!-- Main Content -->
 <div class="main-content" [class.sidebar-open]="isSidebarOpen">
-  <!-- Header -->
   <app-home-header [isSidebarOpen]="isSidebarOpen"></app-home-header>
 
-  <!-- Profile Content -->
-  <div class="profile-content">
-    <p>Profile works!</p>
+  <div class="content-wrapper">
+    <div class="profile-container" *ngIf="user">
+      <h2>User Profile</h2>
+      <div class="profile-details">
+        <p><strong>Username:</strong> {{ user.userName }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Role:</strong> {{ user.role }}</p>
+        <p><strong>Phone Number:</strong> {{ user.phoneNumber }}</p> <!-- Added phone number -->
+        <!-- Add more user details as needed -->
+      </div>
+    </div>
+    <div *ngIf="!user">
+      <p>Loading user details...</p>
+    </div>
   </div>
 </div>

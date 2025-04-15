@@ -1,31 +1,4 @@
-:host {
-    display: block;
-  }
-  
-  /* Header positioning adjustments */
-  app-home-header {
-    display: block;
-    transition: margin-left 0.3s ease;
-  }
-  
-  app-home-header.sidebar-open {
-    margin-left: 250px;
-  }
-  
-  @media (max-width: 768px) {
-    app-home-header.sidebar-open {
-      margin-left: 200px;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    app-home-header.sidebar-open {
-      margin-left: 150px;
-    }
-  }
-  
-  /* Main content container */
-  .main-content {
+.main-content {
     padding: 20px;
     transition: margin-left 0.3s ease;
     margin-top: 60px; /* height of fixed header */
@@ -36,36 +9,29 @@
     margin-left: 270px;
   }
   
-  @media (max-width: 768px) {
-    .main-content.sidebar-open {
-      margin-left: 200px;
-    }
+  .content-wrapper {
+    margin-top: 60px; /* Ensure content starts below the header */
   }
   
-  @media (max-width: 480px) {
-    .main-content.sidebar-open {
-      margin-left: 150px;
-    }
-  }
-  
-  /* Profile content */
-  .profile-content {
+  .profile-container {
+    max-width: 600px;
+    margin: 0 auto;
     padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
   
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .profile-content {
-      padding: 15px;
-    }
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
   }
   
-  @media (max-width: 480px) {
-    .profile-content {
-      padding: 10px;
-    }
+  .profile-details {
+    font-size: 1.2em;
+  }
+  
+  .profile-details p {
+    margin: 10px 0;
   }
   
