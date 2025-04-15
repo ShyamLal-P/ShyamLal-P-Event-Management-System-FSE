@@ -16,20 +16,28 @@
 
   <mat-form-field class="ticket-input" appearance="fill">
     <mat-label>Number of Tickets to Cancel</mat-label>
-    <mat-select [(ngModel)]="numberOfTicketsToCancel">
+    <mat-select [(ngModel)]="numberOfTicketsToCancel" (selectionChange)="calculateRefund()">
       <mat-option *ngFor="let ticket of bookedTicketsArray" [value]="ticket">{{ ticket }}</mat-option>
     </mat-select>
   </mat-form-field>
 
+  <div class="alert-message">Note: You will only receive 70% of the ticket price as a refund.</div>
+  <div class="refund-amount">Refund Amount: ₹{{ refundAmount }}</div>
+
   <div *ngIf="message" class="message">{{ message }}</div>
 
   <!-- Confirmation Dialog -->
-  <div *ngIf="showCancelConfirmation" class="confirmation-dialog">
-    <h2>Confirm Cancellation</h2>
-    <p>Are you sure you want to cancel the ticket?</p>
-    <button mat-button (click)="confirmCancel(false)">No</button>
-    <button mat-button (click)="confirmCancel(true)">Yes</button>
+  
+<div *ngIf="showCancelConfirmation" class="confirmation-dialog">
+  <h2>Confirm Cancellation</h2>
+  <p>Are you sure you want to cancel the ticket?</p>
+  <div class="alert-message">Note: You will only receive 70% of the ticket price as a refund.</div>
+  <div class="refund-amount">Refund Amount: ₹{{ refundAmount }}</div>
+  <p class="refund-message">The refund will be processed within 5-7 business days.</p>
+  <button mat-button (click)="confirmCancel(false)">No</button>
+  <button mat-button (click)="confirmCancel(true)">Yes</button>
   </div>
+  
 </mat-dialog-content>
 
 <mat-dialog-actions class="dialog-actions">

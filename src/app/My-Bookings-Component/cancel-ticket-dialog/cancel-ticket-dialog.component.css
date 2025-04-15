@@ -72,6 +72,17 @@
   margin-top: 15px;
 }
 
+.alert-message {
+  margin-top: 15px;
+  color: #ff6347; /* Tomato */
+  font-weight: bold;
+}
+
+.refund-amount {
+  margin-top: 10px;
+  margin-bottom: 20px; /* Add gap between refund amount and buttons */
+}
+
 .dialog-actions {
   display: flex;
   justify-content: space-between;
@@ -125,6 +136,23 @@
   margin-bottom: 20px;
 }
 
+.confirmation-dialog .alert-message {
+  margin-top: 15px;
+  color: #ff6347; /* Tomato */
+  font-weight: bold;
+}
+
+.confirmation-dialog .refund-amount {
+  margin-top: 10px;
+  margin-bottom: 20px; /* Add gap between refund amount and buttons */
+}
+
+.confirmation-dialog .refund-message {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #32cd32; /* Lime Green */
+}
+
 .confirmation-dialog button {
   margin: 0 10px;
 }
@@ -137,4 +165,14 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   z-index: 999;
+}
+
+/* Prevent scrolling and remove scrollbar */
+mat-dialog-content {
+  overflow: hidden;
+  max-height: calc(100vh - 64px); /* Adjust height to fit within viewport */
+}
+
+mat-dialog-container {
+  overflow: hidden; /* Ensure the entire dialog container is non-scrollable */
 }

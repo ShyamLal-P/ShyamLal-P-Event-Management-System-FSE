@@ -24,6 +24,7 @@ export class CancelTicketDialogComponent implements OnInit {
   bookedTicketsArray: number[] = [];
   message: string = '';
   showCancelConfirmation: boolean = false;
+  refundAmount: number = 0;
 
   constructor(
     public dialogRef: MatDialogRef<CancelTicketDialogComponent>,
@@ -33,6 +34,7 @@ export class CancelTicketDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.bookedTicketsArray = Array.from({ length: this.data.event.totalTickets - this.data.event.availableTickets }, (_, i) => i + 1);
+    this.calculateRefund();
   }
 
   close(): void {
@@ -65,5 +67,9 @@ export class CancelTicketDialogComponent implements OnInit {
         this.message = `Error: ${error.message}`;
       }
     });
+  }
+
+  calculateRefund(): void {
+    this.refundAmount = this.numberOfTicketsToCancel * this.data.event.eventPrice * 0.7;
   }
 }
