@@ -83,16 +83,33 @@
   width: 100%;
 }
 
+/* Cancel Button Style */
 .cancel-button {
   color: white;
   background-color: red;
+  border: none; /* Remove black border */
+  font-size: 1.2em; /* Slightly larger button */
+  padding: 10px 20px; /* Increase button size */
+  transition: background-color 0.2s, transform 0.2s;
 }
-
+.cancel-button:hover {
+  background-color: darkred;
+  transform: scale(1.05); /* Slight enlargement */
+}
+/* Book Button Style */
 .book-button {
   color: white;
-  background-color: blue;
+  background-color: green; /* Change to green */
+  border: none; /* Remove black border */
+  font-size: 1.2em; /* Slightly larger button */
+  padding: 10px 20px; /* Increase button size */
+  transition: background-color 0.2s, transform 0.2s;
 }
 
+.book-button:hover {
+  background-color: darkblue;
+  transform: scale(1.05); /* Slight enlargement */
+}
 .error {
   color: red;
   margin-top: 10px;

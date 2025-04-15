@@ -1,71 +1,124 @@
+/* Backdrop styling: centers the dialog within the screen */
 .edit-backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-  }
-  
-  .edit-event-dialog {
-    background-color: #fff;
-    padding: 2rem;
-    border-radius: 12px;
-    width: 500px;
-    max-width: 90%;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-  
-  .edit-event-dialog h2 {
-    grid-column: span 2;
-    margin-bottom: 12px;
-    font-size: 24px;
-    text-align: center;
-  }
-  
-  .edit-event-dialog label {
-    font-weight: bold;
-    font-size: 14px;
-  }
-  
-  .edit-event-dialog input {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 14px;
-    width: 100%;
-    box-sizing: border-box;
-  }
-  
-  .button-group {
-    grid-column: span 2;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 12px;
-  }
-  
-  .button-group button {
-    padding: 10px 16px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 600;
-  }
-  
-  .button-group button[type="submit"] {
-    background-color: #4caf50;
-    color: white;
-  }
-  
-  .button-group button[type="button"] {
-    background-color: #f44336;
-    color: white;
-  }
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6); /* Semi-transparent backdrop */
+  display: flex; /* Flexbox for centering */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+  z-index: 1000;
+}
+
+/* Dialog styling: centers content within the box */
+.edit-event-dialog {
+  position: relative;
+  background-color: #fff; /* White background for clarity */
+  padding: 1.5rem; /* Adjust spacing inside the dialog */
+  border-radius: 12px; /* Rounded corners */
+  width: 400px; /* Fixed width for form box */
+  max-width: 90%; /* Responsive for smaller screens */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25); /* Elegant shadow effect */
+  display: flex; /* Flexbox for centering content */
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center; /* Center all child elements horizontally */
+  justify-content: center; /* Center everything vertically within the box */
+  gap: 1rem; /* Add spacing between elements */
+}
+
+/* Scrollable container for the form */
+.scrollable-container {
+  max-height: 300px; /* Limit the height for scrolling */
+  overflow-y: auto; /* Add vertical scrollbar if content exceeds height */
+  width: 100%; /* Stretch container to match the dialog width */
+  padding-right: 5px; /* Avoid content cut off behind the scrollbar */
+}
+
+/* Scrollbar styling */
+.scrollable-container::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+.scrollable-container::-webkit-scrollbar-thumb {
+  background: #888; /* Color of the scrollbar */
+  border-radius: 4px; /* Rounded edges */
+}
+
+.scrollable-container::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Darker color on hover */
+}
+
+/* Title styling */
+.edit-event-dialog h2 {
+  margin: 0; /* Remove extra margin */
+  font-size: 24px; /* Larger font for emphasis */
+  text-align: center; /* Center-align the title text */
+  color: #333; /* Neutral text color */
+}
+
+/* Label styling */
+.edit-event-dialog label {
+  font-weight: bold; /* Bold text for labels */
+  font-size: 14px; /* Font size for readability */
+  color: #333; /* Neutral text color */
+  display: block; /* Ensure labels appear above inputs */
+  width: 100%; /* Stretch across the form width */
+  text-align: left; /* Left-align for clarity */
+}
+
+/* Input field styling */
+.edit-event-dialog input {
+  padding: 10px; /* Maintain padding for usability */
+  border: 1px solid #ccc; /* Light gray border for clean styling */
+  border-radius: 8px; /* Rounded corners for smooth appearance */
+  font-size: 14px; /* Standard font size for readability */
+  width: 100%; /* Stretch text boxes to full width */
+  box-sizing: border-box; /* Include padding in total width calculation */
+  margin-bottom: 12px; /* Space between input fields */
+}
+
+/* Button group styling */
+.button-group {
+  display: flex; /* Flexbox for button alignment */
+  justify-content: center; /* Center-align buttons horizontally */
+  gap: 1rem; /* Add spacing between buttons */
+  width: 100%; /* Stretch buttons across the form width */
+}
+
+/* Button styling */
+.button-group button {
+  padding: 10px 16px; /* Adjust button padding */
+  border: none; /* Remove border */
+  border-radius: 6px; /* Rounded corners for buttons */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-weight: 600; /* Bold text for buttons */
+}
+
+.button-group button[type="submit"] {
+  background-color: #4caf50; /* Green background for Save button */
+  color: white; /* White text color */
+}
+
+.button-group button[type="button"] {
+  background-color: #f44336; /* Red background for Cancel button */
+  color: white; /* White text color */
+}
+
+.button-group button:hover {
+  opacity: 0.8; /* Hover effect for buttons */
+}
+
+/* Close button styling */
+.close-btn {
+  position: absolute; /* Positioned at the top-right corner */
+  top: 18px;
+  right: 18px;
+  background: none; /* No background styling */
+  border: none; /* No border */
+  font-size: 30px; /* Simple font size */
+  color: #000; /* Neutral text color */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+ 

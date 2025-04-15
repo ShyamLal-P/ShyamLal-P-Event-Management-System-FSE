@@ -1,36 +1,42 @@
 <div class="edit-backdrop">
-    <div class="edit-event-dialog">
-      <h2>Edit Event</h2>
+  <div class="edit-event-dialog">
+    <!-- Close Button -->
+    <button class="close-btn" (click)="onCancel()">×</button>
+
+    <h2>Edit Event</h2>
+    <!-- Scrollable Form Container -->
+    <div class="scrollable-container">
       <form [formGroup]="eventForm" (ngSubmit)="onSave()">
         <label>Name:</label>
         <input formControlName="name" />
-  
+
         <label>Location:</label>
         <input formControlName="location" />
-  
+
         <label>Category:</label>
         <input formControlName="category" />
-  
+
         <label>Date:</label>
         <input formControlName="date" type="date" />
-  
+
         <label>Time:</label>
         <input formControlName="time" type="time" />
-  
+
         <label>Price:</label>
         <input formControlName="eventPrice" type="number" />
-  
+
         <label>Total Tickets:</label>
         <input formControlName="totalTickets" type="number" />
-  
+
         <label>Available Tickets:</label>
         <input formControlName="availableTickets" type="number" />
-  
-        <div class="button-group">
-          <button type="submit" [disabled]="eventForm.invalid">Save</button>
-          <button type="button" (click)="onCancel()">Cancel</button>
-        </div>
       </form>
     </div>
+
+    <div class="button-group">
+      <button type="submit" [disabled]="eventForm.invalid">Save</button>
+      <button type="button" (click)="onCancel()">Cancel</button>
+    </div>
   </div>
-  
+</div>
+ 

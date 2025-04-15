@@ -13,6 +13,7 @@ import { EditEventDialogComponent } from './My-Events-Component/edit-event-dialo
 import { FeedbackComponent } from './feedback/feedback.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ViewFeedbackDialogComponent } from './My-Events-Component/view-feedback-dialog/view-feedback-dialog.component';
 
 export const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -24,6 +25,7 @@ export const routes: Routes = [
   { path: 'feedback', component: FeedbackComponent },
   { path: 'home', component: HomeComponent },
   { path: 'profile', component: ProfileComponent},
+  { path: 'view-feedback-dialog', component: ViewFeedbackDialogComponent},
   { path: 'notifications', component: NotificationsComponent},
   { path: 'feedback-dialog', component: FeedbackComponent },
   { path: 'book-tickets-dialog', component: BookTicketDialogComponent},

@@ -7,6 +7,7 @@ import { EventService } from '../../services/event.service';
 import { jwtDecode } from 'jwt-decode';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { EditEventDialogComponent } from '../edit-event-dialog/edit-event-dialog.component';
+import { ViewFeedbackDialogComponent } from '../view-feedback-dialog/view-feedback-dialog.component'; // Import ViewFeedbackDialogComponent
 
 @Component({
   selector: 'app-my-events',
@@ -16,7 +17,8 @@ import { EditEventDialogComponent } from '../edit-event-dialog/edit-event-dialog
     SidebarComponent,
     HomeHeaderComponent,
     MatDialogModule,
-    EditEventDialogComponent
+    EditEventDialogComponent,
+    ViewFeedbackDialogComponent // Add ViewFeedbackDialogComponent to imports
   ],
   templateUrl: './my-events.component.html',
   styleUrls: ['./my-events.component.css']
@@ -125,7 +127,6 @@ export class MyEventsComponent implements OnInit {
     this.router.navigate(['/add-event']);
   }
 
-  // ✅ Add this method to support Edit Dialog
   openEditDialog(event: any): void {
     const dialogRef = this.dialog.open(EditEventDialogComponent, {
       data: { ...event }  // Make sure this includes event.id
@@ -134,6 +135,19 @@ export class MyEventsComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.loadEvents(); // Refresh the events list after edit
+      }
+    });
+  }
+
+  // Add this method to support View Feedback Dialog
+  openFeedbackDialog(event: any): void {
+    const dialogRef = this.dialog.open(ViewFeedbackDialogComponent, {
+      data: { eventId: event.id }
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log('Feedback dialog closed');
       }
     });
   }

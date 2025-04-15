@@ -1,0 +1,24 @@
+<div class="dialog-container">
+    <button class="close-button" (click)="closeDialog()">&times;</button>
+    <h2>Feedback for Event</h2>
+    <div class="average-rating">
+      <p>Average Rating:</p>
+      <div class="stars">
+        <ng-container *ngFor="let star of starsArray; let i = index">
+          <i class="fas" [ngClass]="{'fa-star': i < averageRating, 'fa-star-half-alt': i < averageRating && i + 1 > averageRating, 'fa-star-o': i >= averageRating}"></i>
+        </ng-container>
+      </div>
+    </div>
+    <div *ngIf="feedbacks.length === 0">
+      <p>No feedback available for this event.</p>
+    </div>
+    <div *ngIf="feedbacks.length > 0">
+      <div *ngFor="let feedback of feedbacks" class="feedback-item">
+        <p><strong>Rating:</strong> {{ feedback.rating }}</p>
+        <p><strong>Comments:</strong> {{ feedback.comments }}</p>
+        <p><strong>Submitted on:</strong> {{ feedback.submittedDate | date }}</p>
+      </div>
+    </div>
+    <button (click)="closeDialog()">Close</button>
+  </div>
+  

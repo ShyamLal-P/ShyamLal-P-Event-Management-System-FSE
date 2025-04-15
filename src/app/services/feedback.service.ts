@@ -9,11 +9,21 @@ export interface FeedbackRequest {
   comments: string;
 }
 
+export interface Feedback {
+  id: string;
+  userId: string;
+  eventId: string;
+  rating: number;
+  comments: string;
+  submittedTime: string;
+  submittedDate: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class FeedbackService {
-  private apiUrl = 'http://localhost:5081/api/EventFeedback';
+  private apiUrl = 'http://localhost:5081/api/';
 
   constructor(private http: HttpClient) {}
 
@@ -23,6 +33,12 @@ export class FeedbackService {
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.post(this.apiUrl, feedback, { headers });
+    return this.http.post(`${this.apiUrl}EventFeedback`, feedback, { headers });
+  }
+
+  getFeedbacksByEventId(eventId: string): Observable<Feedback[]> {
+    const token = localStorage.getItem('userToken'); // Retrieve the token from local storage
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post<Feedback[]>(`${this.apiUrl}Feedback/GetByEventId`, { eventId }, { headers });
   }
 }
