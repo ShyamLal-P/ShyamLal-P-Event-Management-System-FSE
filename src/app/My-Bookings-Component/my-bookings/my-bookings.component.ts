@@ -138,7 +138,7 @@ export class MyBookingsComponent implements OnInit {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  navigateToAddEvent(): void {
-    this.router.navigate(['/add-event']);
+  navigateToBookTickets(): void {
+    this.router.navigate(['/book-tickets']);
   }
 }
