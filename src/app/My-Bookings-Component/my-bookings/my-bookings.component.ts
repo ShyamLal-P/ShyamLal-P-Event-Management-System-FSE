@@ -121,6 +121,9 @@ export class MyBookingsComponent implements OnInit {
     dialogRef.componentInstance.cancellationSuccess.subscribe((message: string) => {
       this.successMessage = message;
       this.loadEvents(); // Reload events after cancellation
+      setTimeout(() => {
+        this.successMessage = null;
+      }, 4000); // Hide the success message after 4 seconds
     });
   }
 
