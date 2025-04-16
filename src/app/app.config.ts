@@ -16,10 +16,10 @@ import { MyBookingsComponent } from './My-Bookings-Component/my-bookings/my-book
 import { CancelTicketDialogComponent } from './My-Bookings-Component/cancel-ticket-dialog/cancel-ticket-dialog.component';
 import { TicketComponent } from './Book-Tickets-Component/ticket/ticket.component';
 import { EditEventDialogComponent } from './My-Events-Component/edit-event-dialog/edit-event-dialog.component';
-import { FeedbackComponent } from './feedback/feedback.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ViewFeedbackDialogComponent } from './My-Events-Component/view-feedback-dialog/view-feedback-dialog.component';
+import { FeedbackComponent } from './Feedbacks-Component/feedback/feedback.component';
 // import { BookEventFormComponent } from './book-event-form/book-event-form.component';
 
 const routes: Routes = [

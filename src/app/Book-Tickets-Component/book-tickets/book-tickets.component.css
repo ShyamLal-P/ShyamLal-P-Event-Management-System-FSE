@@ -215,6 +215,10 @@
   background-color: #0056b3;
 }
 
+.price-icon {
+  font-size: 24px; /* Adjust the size as needed */
+}
+
 /* Search Bar and Filter Dropdown */
 .search-filter-container {
   display: flex;

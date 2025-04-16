@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { EventService } from '../services/event.service'; 
 import { CommonModule } from '@angular/common';
-import { SidebarComponent } from '../sidebar/sidebar.component';
-import { HomeHeaderComponent } from '../home-header/home-header.component';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { FeedbackDialogComponent } from '../feedback-dialog/feedback-dialog.component';
-import { AuthService } from '../services/auth.service'; // Import AuthService
+import { SidebarComponent } from '../../sidebar/sidebar.component';
+import { HomeHeaderComponent } from '../../home-header/home-header.component';
+import { EventService } from '../../services/event.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-feedback',

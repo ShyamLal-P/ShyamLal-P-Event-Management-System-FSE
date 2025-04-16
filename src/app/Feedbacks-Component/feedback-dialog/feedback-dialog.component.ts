@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatOption } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { FeedbackService } from '../services/feedback.service';
+import { FeedbackService } from '../../services/feedback.service';
 
 @Component({
   selector: 'app-feedback-dialog',
@@ -18,8 +18,7 @@ import { FeedbackService } from '../services/feedback.service';
     FormsModule,
     MatDialogModule,
     MatFormField,
-    MatLabel,
-    MatOption
+    MatLabel
   ]
 })
 export class FeedbackDialogComponent {

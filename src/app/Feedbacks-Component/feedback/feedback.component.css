@@ -1,0 +1,158 @@
+/* Layout wrapper using flexbox */
+.layout-wrapper {
+  display: flex;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  transition: all 0.3s ease;
+}
+
+/* Main Area */
+.main-area {
+  flex-grow: 1;
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+  margin-top: 60px; /* height of fixed header */
+  margin-left: 250px; /* Adjust to match the sidebar width */
+}
+
+.main-area.sidebar-open {
+  margin-left: 250px; /* Sidebar width when open */
+}
+
+@media (max-width: 768px) {
+  .main-area.sidebar-open {
+    margin-left: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-area.sidebar-open {
+    margin-left: 150px;
+  }
+}
+
+/* Events container */
+.events-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+  margin-left: 0; /* Align to the left */
+}
+
+.main-area.sidebar-open .events-container {
+  margin-left: 250px; /* Sidebar width when open */
+}
+
+@media (max-width: 768px) {
+  .main-area.sidebar-open .events-container {
+    margin-left: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-area.sidebar-open .events-container {
+    margin-left: 150px;
+  }
+}
+
+/* Event card */
+.event-card {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 30px; /* Increased padding */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden; /* Prevent overflow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-height: 200px; /* Increased minimum height for larger tiles */
+}
+
+.event-card:hover {
+  transform: scale(1.05); /* Increase size slightly */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a larger shadow */
+}
+
+.event-card h3 {
+  margin-top: 0;
+  font-size: 1.5em;
+  white-space: nowrap; /* Prevent text wrapping */
+  overflow: hidden; /* Hide overflow */
+  text-overflow: ellipsis; /* Add ellipsis for overflow text */
+}
+
+/* Feedback button */
+button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:disabled {
+  background-color: #999;
+}
+
+/* No events message */
+.no-events-message {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.no-events-message p {
+  font-size: 1.2em;
+}
+
+/* Scroll-to-top button */
+.scroll-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #007bff;
+  color: white;
+  padding: 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.scroll-to-top.show {
+  display: block;
+}
+
+.scroll-to-top:hover {
+  background-color: #0056b3;
+  transform: scale(1.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .events-container {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .events-container {
+    grid-template-columns: 1fr;
+  }
+}
