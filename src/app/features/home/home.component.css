@@ -178,7 +178,7 @@ app-home-header.sidebar-open {
 
 .carousel-track {
   display: flex;
-  transition: transform 0.5s ease-in-out;
+  transition: transform 2s ease-in-out;
 }
 
 .event-tile {

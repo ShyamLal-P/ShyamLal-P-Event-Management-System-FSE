@@ -29,12 +29,6 @@ export class FeedbackComponent implements OnInit {
   ngOnInit(): void {
     const token = localStorage.getItem('userToken');
   
-    // If token is missing, redirect to login page
-    if (!token) {
-      this.router.navigate(['/login']);
-      return;
-    }
-  
     // Fetch the current user ID
     this.authService.getCurrentUser().subscribe(
       (user) => {

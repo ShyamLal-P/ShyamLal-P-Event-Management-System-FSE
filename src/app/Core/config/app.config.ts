@@ -24,7 +24,6 @@ import { AuthInterceptor } from '../interceptors/auth.interceptor';
 const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
-
   { path: 'edit-event-dialog', component: EditEventDialogComponent, canActivate: [AuthGuard]},
   { path: 'sidebar', component: SidebarComponent },
   { path: 'feedback', component: FeedbackComponent },
