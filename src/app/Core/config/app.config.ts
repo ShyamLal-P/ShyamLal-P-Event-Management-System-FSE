@@ -6,7 +6,6 @@ import { RegisterComponent } from '../../features/auth/register/register.compone
 import { LandingComponent } from '../../features/landing/landing.component';
 import { HomeComponent } from '../../features/home/home.component';
 import { SidebarComponent } from '../../shared/components/sidebar/sidebar.component';
-import { AuthInterceptor } from '../interceptors/auth.interceptor'; // <-- import
 import { AddEventComponent } from '../../features/add-event/add-event.component';
 import { MyEventsComponent } from '../../features/my-events/my-events/my-events.component';
 import { BookTicketDialogComponent } from '../../features/book-tickets/book-ticket-dialog/book-ticket-dialog.component';
@@ -20,7 +19,7 @@ import { ProfileComponent } from '../../features/profile/profile.component';
 import { ViewFeedbackDialogComponent } from '../../features/my-events/view-feedback-dialog/view-feedback-dialog.component';
 import { FeedbackComponent } from '../../features/feedback/feedback/feedback.component';
 import { AuthGuard } from '../guards/auth.guard';
-// import { BookEventFormComponent } from './book-event-form/book-event-form.component';
+import { AuthInterceptor } from '../interceptors/auth.interceptor';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
