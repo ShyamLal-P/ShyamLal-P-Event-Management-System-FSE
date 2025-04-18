@@ -13,16 +13,12 @@
     <span 
       *ngFor="let star of stars; let i = index" 
       class="star"
-      [ngClass]="{ 'selected': i < feedback.rating }"
+      [ngClass]="{ 'gold': i < feedback.rating }"
       (click)="setRating(i + 1)"
     >
-      &#9733; <!-- Stars remain as stars -->
+      <!-- Replace the selected star with the corresponding emoji -->
+      {{ i === feedback.rating - 1 ? getEmoji(i) : '★' }}
     </span>
-  </div>
-
-  <!-- Display Selected Emoji -->
-  <div class="selected-emoji" *ngIf="feedback.rating">
-    {{ getEmoji(feedback.rating - 1) }} <!-- Show corresponding emoji below the stars -->
   </div>
 
   <!-- Comments Input -->

@@ -32,40 +32,51 @@
     color: #e74c3c;
   }
   
-  /* Star Rating */
+/* Star Rating */
 .star-rating {
   display: flex;
   justify-content: center;
-  gap: 10px; /* Increased gap for better spacing */
+  gap: 10px; /* Space between stars */
   margin-bottom: 20px;
 }
 
 .star {
-  font-size: 2.5rem; /* Increased size for better visibility */
-  color: lightgray; /* Default color for unselected stars */
+  font-size: 3rem; /* Size for stars and emojis */
   cursor: pointer;
-  transition: color 0.3s ease, transform 0.3s ease; /* Added transform transition for hover effects */
+  color: lightgray; /* Default color for unselected stars */
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
-.star.selected {
-  color: gold; /* Color for selected stars */
+.star.gold {
+  color: gold; /* Fill the star with gold color */
 }
 
 .star:hover {
-  color: #f39c12; /* Hover effect for unselected stars */
-  transform: scale(1.2); /* Slight scaling effect on hover */
+  transform: scale(1.2); /* Hover scaling effect */
+  color: #f39c12; /* Highlight color for hover effect */
 }
 
 /* Optional Responsive Design for Smaller Screens */
 @media (max-width: 768px) {
   .star {
-    font-size: 2rem; /* Adjust star size for smaller screens */
+    font-size: 2.2rem; /* Adjust star size for smaller screens */
   }
 
   .star-rating {
-    gap: 5px; /* Reduced gap for smaller screens */
+    gap: 8px; /* Reduced gap for smaller screens */
   }
 }
+
+@media (max-width: 480px) {
+  .star {
+    font-size: 1.8rem; /* Further adjust size for very small screens */
+  }
+
+  .star-rating {
+    gap: 5px; /* Further reduce gap for very small screens */
+  }
+}
+
 
   
   /* Dialog Content (Form inputs, textarea) */
