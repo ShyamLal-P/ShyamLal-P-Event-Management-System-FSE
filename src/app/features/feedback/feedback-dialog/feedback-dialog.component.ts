@@ -57,7 +57,7 @@ export class FeedbackDialogComponent {
   }
 
   getEmoji(index: number): string {
-    const emojis = ['😡', '😞', '😐', '😊', '😍']; // Emojis for star ratings
+    const emojis = ['😞', '😐', '🙂', '😀', '😍']; // Emojis for star ratings
     return emojis[index];
   }
 

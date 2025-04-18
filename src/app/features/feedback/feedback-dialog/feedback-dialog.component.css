@@ -76,8 +76,6 @@
     gap: 5px; /* Further reduce gap for very small screens */
   }
 }
-
-
   
   /* Dialog Content (Form inputs, textarea) */
   .mat-dialog-content {
