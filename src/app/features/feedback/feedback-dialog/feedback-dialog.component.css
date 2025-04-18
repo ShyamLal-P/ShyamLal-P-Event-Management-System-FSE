@@ -33,27 +33,40 @@
   }
   
   /* Star Rating */
-  .star-rating {
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-    margin-bottom: 20px;
-  }
-  
+.star-rating {
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Increased gap for better spacing */
+  margin-bottom: 20px;
+}
+
+.star {
+  font-size: 2.5rem; /* Increased size for better visibility */
+  color: lightgray; /* Default color for unselected stars */
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease; /* Added transform transition for hover effects */
+}
+
+.star.selected {
+  color: gold; /* Color for selected stars */
+}
+
+.star:hover {
+  color: #f39c12; /* Hover effect for unselected stars */
+  transform: scale(1.2); /* Slight scaling effect on hover */
+}
+
+/* Optional Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
   .star {
-    font-size: 2rem;
-    color: lightgray; /* Default color for unselected stars */
-    cursor: pointer;
-    transition: color 0.3s ease;
+    font-size: 2rem; /* Adjust star size for smaller screens */
   }
-  
-  .star.selected {
-    color: gold; /* Color for selected stars */
+
+  .star-rating {
+    gap: 5px; /* Reduced gap for smaller screens */
   }
-  
-  .star:hover {
-    color: #f39c12; /* Hover effect for unselected stars */
-  }
+}
+
   
   /* Dialog Content (Form inputs, textarea) */
   .mat-dialog-content {

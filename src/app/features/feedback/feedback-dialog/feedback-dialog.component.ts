@@ -3,7 +3,6 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/materia
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
-import { MatOption } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FeedbackService } from '../../../Core/services/feedback.service';
 
@@ -29,46 +28,59 @@ export class FeedbackDialogComponent {
 
   currentDate: string;
   currentTime: string;
-  stars = [1, 2, 3, 4, 5];
-  selectedRating: number = 0;
-  loading = false;
+  stars = [1, 2, 3, 4, 5]; // Array for star ratings
+  loading = false; // Indicates submission status
 
   constructor(
     public dialogRef: MatDialogRef<FeedbackDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { eventId: string, userId: string, token: string, event: any }, // Ensure `event` is in the data
+    @Inject(MAT_DIALOG_DATA) public data: { eventId: string; userId: string; token: string; event: any },
     private datePipe: DatePipe,
     private feedbackService: FeedbackService,
     private snackBar: MatSnackBar
   ) {
     const now = new Date();
-  this.currentDate = this.datePipe.transform(now, 'shortDate')!;
-  this.currentTime = this.datePipe.transform(now, 'shortTime')!;
+    this.currentDate = this.datePipe.transform(now, 'shortDate')!;
+    this.currentTime = this.datePipe.transform(now, 'shortTime')!;
 
-  // ✅ Debug logs
-  console.log('Dialog Data:', this.data);
-  console.log('Token:', this.data.token);
-}
+    console.log('Dialog Data:', this.data); // Debug information
+    console.log('Token:', this.data.token); // Debug information
+  }
 
-  // Set the selected rating when a star is clicked
-  rateEvent(rating: number): void {
-    this.selectedRating = rating;
+  // Set rating for the feedback
+  setRating(rating: number): void {
     this.feedback.rating = rating;
   }
 
-  // Close the dialog without submitting
+  // Close the dialog without saving feedback
   close(): void {
     this.dialogRef.close();
   }
 
-  // Submit feedback
-  submitFeedback(): void {
-    // Validate that rating is between 1 and 5
+  getEmoji(index: number): string {
+    const emojis = ['😡', '😞', '😐', '😊', '😍']; // Emojis for star ratings
+    return emojis[index];
+  }
+
+  // Validate the feedback form data
+  private validateFeedback(): boolean {
     if (this.feedback.rating < 1 || this.feedback.rating > 5) {
       this.snackBar.open('Please select a rating between 1 and 5', 'Close', { duration: 3000 });
+      return false;
+    }
+    return true;
+  }
+
+  // Display a snackbar message to the user
+  private showSnackBar(message: string, action: string = 'Close', duration: number = 3000): void {
+    this.snackBar.open(message, action, { duration });
+  }
+
+  // Submit the feedback to the server
+  submitFeedback(): void {
+    if (!this.validateFeedback()) {
       return;
     }
 
-    // Create the payload for the feedback submission
     const payload = {
       eventId: this.data.eventId,
       userId: this.data.userId,
@@ -80,15 +92,14 @@ export class FeedbackDialogComponent {
 
     this.loading = true;
 
-    // Call the feedback service to submit the feedback
     this.feedbackService.submitFeedback(payload, this.data.token).subscribe({
       next: () => {
-        this.snackBar.open('Feedback submitted successfully', 'Close', { duration: 3000 });
+        this.showSnackBar('Feedback submitted successfully');
         this.dialogRef.close(true);
       },
       error: (error: any) => {
-        const msg = error?.error || 'Error submitting feedback';
-        this.snackBar.open(msg, 'Close', { duration: 4000 });
+        const errorMsg = error?.error || 'Error submitting feedback';
+        this.showSnackBar(errorMsg, 'Close', 4000);
         this.loading = false;
       }
     });

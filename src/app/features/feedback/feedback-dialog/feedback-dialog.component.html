@@ -1,42 +1,46 @@
 <h2 mat-dialog-title class="dialog-title">
-    {{ data.event.name }} Event Feedback
-    <button class="close-button" (click)="close()">
-      <i class="material-icons">close</i>
-    </button>
-  </h2>
-  
-  <mat-dialog-content id="feedback-content">
-    <div class="event-name">{{ data.event.name }}</div> <!-- This will now work as event is passed in data -->
-  
-    <!-- Star Rating -->
-    <div class="star-rating">
-      <span 
-        *ngFor="let star of stars; let i = index" 
-        class="star"
-        [ngClass]="{ 'selected': i < feedback.rating }"
-        (click)="feedback.rating = i + 1"
-      >
-        &#9733;
-      </span>
-    </div>
-  
-    <!-- Comments Input -->
-    <mat-form-field class="comments-input" appearance="fill">
-      <mat-label>Comments</mat-label>
-      <textarea matInput [(ngModel)]="feedback.comments" rows="4"></textarea>
-    </mat-form-field>
-  
-    <!-- Submitted Time and Date -->
-    <div class="submitted-time">
-      <strong>Submitted Time:</strong> {{ currentTime | date: 'shortTime' }}
-    </div>
-  
-    <div class="submitted-date">
-      <strong>Submitted Date:</strong> {{ currentDate | date: 'shortDate' }}
-    </div>
-  </mat-dialog-content>
-  
-  <mat-dialog-actions class="dialog-actions">
-    <button mat-button class="cancel-button" (click)="close()">Cancel</button>
-    <button mat-raised-button class="submit-button" color="primary" (click)="submitFeedback()">Submit</button>
-  </mat-dialog-actions>
+  {{ data.event.name }} Event Feedback
+  <button class="close-button" (click)="close()">
+    <i class="material-icons">close</i>
+  </button>
+</h2>
+
+<mat-dialog-content id="feedback-content">
+  <div class="event-name">{{ data.event.name }}</div>
+
+  <!-- Star Rating -->
+  <div class="star-rating">
+    <span 
+      *ngFor="let star of stars; let i = index" 
+      class="star"
+      [ngClass]="{ 'selected': i < feedback.rating }"
+      (click)="setRating(i + 1)"
+    >
+      &#9733; <!-- Stars remain as stars -->
+    </span>
+  </div>
+
+  <!-- Display Selected Emoji -->
+  <div class="selected-emoji" *ngIf="feedback.rating">
+    {{ getEmoji(feedback.rating - 1) }} <!-- Show corresponding emoji below the stars -->
+  </div>
+
+  <!-- Comments Input -->
+  <mat-form-field class="comments-input" appearance="fill">
+    <mat-label>Comments</mat-label>
+    <textarea matInput [(ngModel)]="feedback.comments" rows="4"></textarea>
+  </mat-form-field>
+
+  <!-- Submitted Time and Date -->
+  <div class="submitted-time">
+    <strong>Submitted Time:</strong> {{ currentTime | date: 'shortTime' }}
+  </div>
+  <div class="submitted-date">
+    <strong>Submitted Date:</strong> {{ currentDate | date: 'shortDate' }}
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions class="dialog-actions">
+  <button mat-button class="cancel-button" (click)="close()">Cancel</button>
+  <button mat-raised-button class="submit-button" color="primary" (click)="submitFeedback()">Submit</button>
+</mat-dialog-actions>
