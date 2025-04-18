@@ -93,7 +93,7 @@ export class BookTicketDialogComponent {
   
     doc.setFontSize(22);
     doc.setTextColor(40, 40, 40);
-    doc.text('🎟️ Event Ticket', 70, 20);
+    doc.text('Event Ticket', 70, 20);
   
     doc.setFontSize(12);
     doc.setTextColor(0, 0, 0);

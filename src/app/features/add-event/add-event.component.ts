@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -31,13 +31,13 @@ export class AddEventComponent implements OnInit {
     private authService: AuthService // Inject AuthService
   ) {
     this.eventForm = this.fb.group({
-      name: ['', Validators.required],
-      location: ['', Validators.required],
+      name: ['', [Validators.required, Validators.minLength(3), this.textValidator]],
+      location: ['', [Validators.required, Validators.minLength(3), this.textValidator]],
       category: ['', Validators.required],
-      date: ['', Validators.required],
+      date: ['', [Validators.required, this.dateValidator]],
       time: ['', Validators.required],
       eventPrice: [0, [Validators.required, Validators.min(0)]],
-      totalTickets: [0, [Validators.required, Validators.min(1)]],
+      totalTickets: [1, [Validators.required, Validators.min(1)]],
     });
   }
 
@@ -58,7 +58,6 @@ export class AddEventComponent implements OnInit {
   onSidebarToggled(open: boolean): void {
     this.isSidebarOpen = open;
   }
-
 
   logClick(): void {
     console.log('Button clicked');
@@ -111,5 +110,21 @@ export class AddEventComponent implements OnInit {
     setTimeout(() => {
       this.message = null;
     }, 4000);
+  }
+
+  dateValidator(control: AbstractControl): { [key: string]: boolean } | null {
+    const today = new Date().toISOString().split('T')[0];
+    if (control.value && control.value < today) {
+      return { 'invalidDate': true };
+    }
+    return null;
+  }
+
+  textValidator(control: AbstractControl): { [key: string]: boolean } | null {
+    const textPattern = /^[a-zA-Z\s]*$/;
+    if (control.value && !textPattern.test(control.value)) {
+      return { 'invalidText': true };
+    }
+    return null;
   }
 }

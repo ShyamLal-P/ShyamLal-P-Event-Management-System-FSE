@@ -475,6 +475,13 @@ button:hover:not(:disabled) {
   background-color: #dc3545;
 }
  
+
+.error-message {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 5px;
+} 
+ 
 @keyframes slideDown {
   from {
     top: -50px;

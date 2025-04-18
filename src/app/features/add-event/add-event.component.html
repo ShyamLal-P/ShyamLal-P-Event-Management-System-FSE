@@ -47,11 +47,21 @@
 
       <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
         <label for="name">Event Name:</label>
-        <input id="name" formControlName="name" type="text" />
-
+        <input id="name" formControlName="name" type="text" pattern="[a-zA-Z\s]*" title="Only letters and spaces are allowed" />
+        <div *ngIf="eventForm.get('name')?.invalid && eventForm.get('name')?.touched" class="error-message">
+          <span *ngIf="eventForm.get('name')?.errors?.['required']">Event Name is required.</span>
+          <span *ngIf="eventForm.get('name')?.errors?.['minlength']">Event Name must be at least 3 characters long.</span>
+          <span *ngIf="eventForm.get('name')?.errors?.['invalidText']">Event Name can only contain letters and spaces.</span>
+        </div>
+      
         <label for="location">Location:</label>
-        <input id="location" formControlName="location" type="text" />
-
+        <input id="location" formControlName="location" type="text" pattern="[a-zA-Z\s]*" title="Only letters and spaces are allowed" />
+        <div *ngIf="eventForm.get('location')?.invalid && eventForm.get('location')?.touched" class="error-message">
+          <span *ngIf="eventForm.get('location')?.errors?.['required']">Location is required.</span>
+          <span *ngIf="eventForm.get('location')?.errors?.['minlength']">Location must be at least 3 characters long.</span>
+          <span *ngIf="eventForm.get('location')?.errors?.['invalidText']">Location can only contain letters and spaces.</span>
+        </div>
+      
         <label for="category">Category:</label>
         <select id="category" formControlName="category">
           <option value="Corporate">Corporate</option>
@@ -61,23 +71,37 @@
           <option value="Entertainment">Entertainment</option>
           <option value="Educational">Educational</option>
         </select>
-
+        <div *ngIf="eventForm.get('category')?.invalid && eventForm.get('category')?.touched" class="error-message">
+          <span *ngIf="eventForm.get('category')?.errors?.['required']">Category is required.</span>
+        </div>
+      
         <label for="date">Date:</label>
         <input id="date" formControlName="date" type="date" min="{{ today }}" />
-
+        <div *ngIf="eventForm.get('date')?.invalid && eventForm.get('date')?.touched" class="error-message">
+          <span *ngIf="eventForm.get('date')?.errors?.['required']">Date is required.</span>
+          <span *ngIf="eventForm.get('date')?.errors?.['invalidDate']">Date cannot be in the past.</span>
+        </div>
+      
         <label for="time">Time:</label>
         <input id="time" formControlName="time" type="time" />
-
+        <div *ngIf="eventForm.get('time')?.invalid && eventForm.get('time')?.touched" class="error-message">
+          <span *ngIf="eventForm.get('time')?.errors?.['required']">Time is required.</span>
+        </div>
+      
         <label for="eventPrice">Event Price:</label>
         <input id="eventPrice" formControlName="eventPrice" type="number" min="0" />
-
+        <div *ngIf="eventForm.get('eventPrice')?.invalid && eventForm.get('eventPrice')?.touched" class="error-message">
+          <span *ngIf="eventForm.get('eventPrice')?.errors?.['required']">Event Price is required.</span>
+          <span *ngIf="eventForm.get('eventPrice')?.errors?.['min']">Event Price cannot be negative.</span>
+        </div>
+      
         <label for="totalTickets">Total Tickets:</label>
         <input id="totalTickets" formControlName="totalTickets" type="number" min="1" />
-
+        <div *ngIf="eventForm.get('totalTickets')?.invalid && eventForm.get('totalTickets')?.touched" class="error-message">
+          <span *ngIf="eventForm.get('totalTickets')?.errors?.['required']">Total Tickets is required.</span>
+          <span *ngIf="eventForm.get('totalTickets')?.errors?.['min']">Total Tickets must be at least 1.</span>
+        </div>
+      
         <button type="submit" (click)="logClick()">Add Event</button>
       </form>
-    </div>
-  </div>
-</div>
-
- 
+      
