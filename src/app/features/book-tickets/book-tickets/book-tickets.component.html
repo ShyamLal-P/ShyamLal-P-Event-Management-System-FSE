@@ -74,7 +74,7 @@
         <div class="flipper">
           <div class="front">
             <img [src]="getEventImage(event.category)" alt="{{ event.category }} image" class="event-image">
-            <h2 class="event-name">{{ event.name }}</h2>
+            <h2 class="event-name">{{ event.name | titlecase}}</h2>
 
             <div class="view-details">View Details</div>
           </div>
@@ -84,11 +84,11 @@
             <div class="event-details">
               <div class="event-detail">
                 <i class="fas fa-map-marker-alt location-icon"></i>
-                <strong>Location:</strong> {{ event.location }}
+                <strong>Location:</strong> {{ event.location | titlecase}}
               </div>
               <div class="event-detail">
                 <i class="fas fa-tags category-icon"></i>
-                <strong>Category:</strong> {{ event.category }}
+                <strong>Category:</strong> {{ event.category | titlecase}}
               </div>
               <div class="event-detail">
                 <i class="fas fa-calendar-alt date-icon"></i>

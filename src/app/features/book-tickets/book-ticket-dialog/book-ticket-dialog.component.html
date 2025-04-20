@@ -5,9 +5,9 @@
   </button>
 </h2>
 <mat-dialog-content id="ticket-content">
-  <div class="event-name">{{ data.event.name }}</div>
+  <div class="event-name">{{ data.event.name| titlecase }}</div>
   <div class="event-details">
-    <div><i class="material-icons location-icon">location_on</i> <strong>Location:</strong> {{ data.event.location }}</div>
+    <div><i class="material-icons location-icon">location_on</i> <strong>Location:</strong> {{ data.event.location | titlecase }}</div>
     <div><i class="material-icons date-icon">event</i> <strong>Date:</strong> {{ data.event.date | date }}</div>
     <div><i class="material-icons time-icon">access_time</i> <strong>Time:</strong> {{ data.event.time }}</div>
     <div><i class="material-icons price-icon">attach_money</i> <strong>Price:</strong> ₹{{ data.event.eventPrice }}</div>
