@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { HomeHeaderComponent } from '../../shared/components/home-header/home-header.component';
 import { SidebarComponent } from '../../shared/components/sidebar/sidebar.component';
 import { AuthService } from '../../Core/services/auth.service';
+import { CanComponentDeactivate } from '../../Core/guards/can-deactivate.guard';
 
 @Component({
   selector: 'app-add-event',
@@ -15,7 +16,7 @@ import { AuthService } from '../../Core/services/auth.service';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, HomeHeaderComponent, SidebarComponent]
 })
-export class AddEventComponent implements OnInit {
+export class AddEventComponent implements OnInit, CanComponentDeactivate {
   eventForm: FormGroup;
   apiUrl = 'http://localhost:5081/api';
   message: string | null = null;
@@ -28,7 +29,7 @@ export class AddEventComponent implements OnInit {
     private fb: FormBuilder,
     private http: HttpClient,
     private router: Router,
-    private authService: AuthService // Inject AuthService
+    private authService: AuthService
   ) {
     this.eventForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3), this.textValidator]],
@@ -43,11 +44,10 @@ export class AddEventComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('Add Event component initialized');
-    // 🔥 Fetch current user data dynamically
     this.authService.getCurrentUser().subscribe({
       next: (res) => {
         console.log('Fetched User Details:', res);
-        this.userDetails = res; // Set user details dynamically
+        this.userDetails = res;
       },
       error: (err) => {
         console.error('Error fetching user details:', err);
@@ -126,5 +126,13 @@ export class AddEventComponent implements OnInit {
       return { 'invalidText': true };
     }
     return null;
+  }
+
+  // ✅ CanDeactivate support
+  canDeactivate(): boolean {
+    if (this.eventForm.dirty && !this.isSuccess) {
+      return confirm('You have unsaved changes. Are you sure you want to leave this page?');
+    }
+    return true;
   }
 }
