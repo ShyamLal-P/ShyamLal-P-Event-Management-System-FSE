@@ -1,6 +1,7 @@
 import { ApplicationConfig } from '@angular/core';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideRouter, Routes } from '@angular/router';
+
 import { LoginComponent } from '../../features/auth/login/login.component';
 import { RegisterComponent } from '../../features/auth/register/register.component';
 import { LandingComponent } from '../../features/landing/landing.component';
@@ -18,33 +19,44 @@ import { NotificationsComponent } from '../../features/notifications/notificatio
 import { ProfileComponent } from '../../features/profile/profile.component';
 import { ViewFeedbackDialogComponent } from '../../features/my-events/view-feedback-dialog/view-feedback-dialog.component';
 import { FeedbackComponent } from '../../features/feedback/feedback/feedback.component';
+
 import { AuthGuard } from '../guards/auth.guard';
+import { CanDeactivateGuard } from '../guards/can-deactivate.guard'; // ✅ Import the guard
 import { AuthInterceptor } from '../interceptors/auth.interceptor';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
-  { path: 'edit-event-dialog', component: EditEventDialogComponent, canActivate: [AuthGuard]},
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'edit-event-dialog', component: EditEventDialogComponent, canActivate: [AuthGuard] },
   { path: 'sidebar', component: SidebarComponent },
   { path: 'feedback', component: FeedbackComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'view-feedback-dialog', component: ViewFeedbackDialogComponent, canActivate: [AuthGuard]},
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
-  { path: 'notifications', component: NotificationsComponent, canActivate: [AuthGuard]},
+  { path: 'view-feedback-dialog', component: ViewFeedbackDialogComponent, canActivate: [AuthGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'notifications', component: NotificationsComponent, canActivate: [AuthGuard] },
   { path: 'feedback-dialog', component: FeedbackComponent, canActivate: [AuthGuard] },
   { path: 'ticket', component: TicketComponent, canActivate: [AuthGuard] },
   { path: 'register', component: RegisterComponent },
-  { path: 'my-bookings', component: MyBookingsComponent,  canActivate: [AuthGuard]},
-  { path: 'cancel-ticket-dialog', component: CancelTicketDialogComponent, canActivate: [AuthGuard]},
-  { path: 'book-tickets-dialog', component: BookTicketDialogComponent,  canActivate: [AuthGuard]},
-  { path: 'book-tickets', component: BookTicketsComponent, canActivate: [AuthGuard]},
-  { path: 'add-event', component: AddEventComponent, canActivate: [AuthGuard]},
-  { path: 'my-events', component: MyEventsComponent, canActivate: [AuthGuard]}
+  { path: 'my-bookings', component: MyBookingsComponent, canActivate: [AuthGuard] },
+  { path: 'cancel-ticket-dialog', component: CancelTicketDialogComponent, canActivate: [AuthGuard] },
+  { path: 'book-tickets-dialog', component: BookTicketDialogComponent, canActivate: [AuthGuard] },
+  { path: 'book-tickets', component: BookTicketsComponent, canActivate: [AuthGuard] },
+
+  // ✅ Updated with canDeactivate guard
+  {
+    path: 'add-event',
+    component: AddEventComponent,
+    canActivate: [AuthGuard],
+    canDeactivate: [CanDeactivateGuard]
+  },
+
+  { path: 'my-events', component: MyEventsComponent, canActivate: [AuthGuard] }
 ];
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
-    provideHttpClient(withInterceptors([AuthInterceptor])) // <-- attach here
+    provideHttpClient(withInterceptors([AuthInterceptor])),
+    CanDeactivateGuard // ✅ Provide the guard here
   ]
 };
