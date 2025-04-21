@@ -9,6 +9,7 @@ import { HomeHeaderComponent } from '../../../shared/components/home-header/home
 import { SidebarComponent } from '../../../shared/components/sidebar/sidebar.component';
 import { EventService } from '../../../Core/services/event.service';
 import { AuthService } from '../../../Core/services/auth.service';
+import confetti from 'canvas-confetti'; // Import the confetti library
 
 @Component({
   selector: 'app-book-tickets',
@@ -138,6 +139,7 @@ export class BookTicketsComponent implements OnInit {
         this.message = 'Tickets booked successfully!';
         this.autoClearMessage();
         this.loadEvents();
+        this.triggerConfetti(); // Trigger confetti effect
       }
     });
   }
@@ -146,6 +148,30 @@ export class BookTicketsComponent implements OnInit {
     setTimeout(() => {
       this.message = null;
     }, 4000);
+  }
+
+  triggerConfetti(): void {
+    const duration = 3 * 1000; // 5 seconds
+    const end = Date.now() + duration;
+
+    (function frame() {
+      confetti({
+        particleCount: 5,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0 }
+      });
+      confetti({
+        particleCount: 5,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1 }
+      });
+
+      if (Date.now() < end) {
+        requestAnimationFrame(frame);
+      }
+    }());
   }
 
   @HostListener('window:scroll', [])
@@ -181,4 +207,3 @@ export class BookTicketsComponent implements OnInit {
     }
   }
 }
- 
