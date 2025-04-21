@@ -8,6 +8,7 @@ import { jwtDecode } from 'jwt-decode';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { EditEventDialogComponent } from '../edit-event-dialog/edit-event-dialog.component';
 import { ViewFeedbackDialogComponent } from '../view-feedback-dialog/view-feedback-dialog.component'; // Import ViewFeedbackDialogComponent
+import JSConfetti from 'js-confetti'; // Import the jsConfetti library
 
 @Component({
   selector: 'app-my-events',
@@ -31,6 +32,8 @@ export class MyEventsComponent implements OnInit {
 
   eventIdToDelete: string | null = null;
   showConfirmDialog: boolean = false;
+
+  private jsConfetti = new JSConfetti(); // Initialize jsConfetti
 
   constructor(
     private eventService: EventService,
@@ -147,6 +150,17 @@ export class MyEventsComponent implements OnInit {
       if (result) {
         console.log('Feedback dialog closed');
       }
+    });
+
+    this.triggerStarBlast(); // Trigger star blast effect
+  }
+
+  triggerStarBlast(): void {
+    this.jsConfetti.addConfetti({
+      confettiRadius: 6,
+      confettiNumber: 100,
+      emojis: ['⭐'],
+      emojiSize: 30,
     });
   }
 }
