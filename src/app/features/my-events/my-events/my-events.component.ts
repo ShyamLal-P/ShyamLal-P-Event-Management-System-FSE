@@ -103,21 +103,31 @@ export class MyEventsComponent implements OnInit {
 
   deleteEvent(): void {
     if (this.eventIdToDelete) {
-      this.eventService.deleteEvent(this.eventIdToDelete).subscribe({
-        next: () => {
-          this.events = this.events.filter(event => event.id !== this.eventIdToDelete);
-          this.filteredEvents = [...this.events];
-          this.showConfirmDialog = false;
-          this.eventIdToDelete = null;
-        },
-        error: (error: any) => console.error('Error deleting event:', error)
-      });
+      const eventElement = document.getElementById(`event-${this.eventIdToDelete}`);
+      if (eventElement) {
+        eventElement.classList.add('break-effect');
+        setTimeout(() => {
+          if (this.eventIdToDelete) { // Ensure eventIdToDelete is not null
+            this.eventService.deleteEvent(this.eventIdToDelete).subscribe({
+              next: () => {
+                this.events = this.events.filter(event => event.id !== this.eventIdToDelete);
+                this.filteredEvents = [...this.events];
+                this.showConfirmDialog = false;
+                this.eventIdToDelete = null;
+              },
+              error: (error: any) => console.error('Error deleting event:', error)
+            });
+          }
+        }, 500); // Wait for the animation to complete
+      }
     }
   }
 
   cancelDelete(): void {
-    this.showConfirmDialog = false;
-    this.eventIdToDelete = null;
+    if (this.eventIdToDelete) {
+      this.showConfirmDialog = false;
+      this.eventIdToDelete = null;
+    }
   }
 
   onSidebarToggled(open: boolean): void {

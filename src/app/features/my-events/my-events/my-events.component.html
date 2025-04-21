@@ -31,7 +31,7 @@
   </div>
 
   <div class="events-container" *ngIf="events.length > 0">
-    <div *ngFor="let event of filteredEvents" class="event-tile">
+    <div *ngFor="let event of filteredEvents" class="event-tile" [attr.id]="'event-' + event.id">
       <button class="feedback-button" (click)="openFeedbackDialog(event)">View Feedback</button>
       <h2>{{ event.name }}</h2>
       <div class="event-details">

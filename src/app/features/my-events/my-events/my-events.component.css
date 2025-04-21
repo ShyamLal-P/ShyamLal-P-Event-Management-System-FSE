@@ -376,3 +376,41 @@ app-home-header.sidebar-open {
   }
 }
  
+@keyframes break {
+  0% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.5) rotate(720deg); /* Increase rotation to 720 degrees */
+  }
+}
+
+.break-effect {
+  animation: break 0.5s forwards; /* Decrease duration to 0.5s for faster effect */
+  position: relative;
+  overflow: hidden;
+}
+
+.break-effect::before,
+.break-effect::after {
+  content: '';
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  background: inherit;
+  top: 0;
+  transition: transform 0.5s; /* Match the duration of the main animation */
+}
+
+.break-effect::before {
+  left: 0;
+  transform: translateX(-100%) rotate(-720deg); /* Increase rotation to -720 degrees */
+}
+
+.break-effect::after {
+  right: 0;
+  transform: translateX(100%) rotate(720deg); /* Increase rotation to 720 degrees */
+}
+
