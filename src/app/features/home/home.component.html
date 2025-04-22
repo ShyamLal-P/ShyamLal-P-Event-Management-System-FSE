@@ -18,7 +18,7 @@
       <button class="prev" (click)="prevEvent()">&#10094;</button>
       <div class="carousel-track-container">
         <div class="carousel-track">
-          <div *ngIf="topEvents.length > 0; else noEvents">
+          <ng-container *ngIf="topEvents.length > 0; else noEvents">
             <div class="event-tile" *ngFor="let event of topEvents; let i = index" [class.active]="i === currentEventIndex">
               <h2>{{ event.name }}</h2>
               <div class="event-details">
@@ -43,7 +43,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </ng-container>
           <ng-template #noEvents>
             <div class="event-tile no-events">
               <h2>No events available at the moment. Please check back later.</h2>
@@ -52,11 +52,11 @@
         </div>
       </div>
       <button class="next" (click)="nextEvent()">&#10095;</button>
-      <!-- Explore More button -->
-      <button class="explore-more" (click)="navigateToBookEvents()">Explore More</button>
     </div>
     <div class="carousel-dots" *ngIf="topEvents.length > 0">
       <span *ngFor="let event of topEvents; let i = index" class="dot" [class.active]="i === currentEventIndex" (click)="goToEvent(i)"></span>
     </div>
+    <!-- Explore More button -->
+    <button class="explore-more" (click)="navigateToBookEvents()">Explore More</button>
   </div>
 </div>

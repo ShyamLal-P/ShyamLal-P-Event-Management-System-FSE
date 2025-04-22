@@ -102,7 +102,7 @@ app-home-header.sidebar-open {
 }
 
 /* Event tile */
-.event-tile {
+.event-tile, .no-events {
   background-color: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 20px;
@@ -116,18 +116,19 @@ app-home-header.sidebar-open {
   display: flex;
   opacity: 0.8;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center; /* Center content vertically */
   overflow: hidden; /* Prevent overflow */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   margin: 0 auto; /* Center the event tile */
 }
 
-.event-tile h2 {
+.event-tile h2, .no-events h2 {
   margin-top: 0;
   font-size: 1.2em; /* Reduced font size */
   white-space: nowrap; /* Prevent text wrapping */
   overflow: hidden; /* Hide overflow */
   text-overflow: ellipsis; /* Add ellipsis for overflow text */
+  text-align: center; /* Center text */
 }
 
 /* Event details */
@@ -263,7 +264,7 @@ button.next {
   transition: background-color 0.3s ease, transform 0.3s ease;
   position: absolute;
   right: 20px; /* Adjust as needed */
-  bottom: 000px; /* Adjust to position below the event tile */
+  bottom: -40px; /* Adjust to position below the event tile */
 }
 
 .explore-more:hover {
@@ -285,8 +286,16 @@ button.next {
   border: 1px solid #ddd;
   border-radius: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin: 20px auto; /* Center the message */
-  padding: 20px;
+  width: 60%; /* Decreased width */
+  max-width: 400px; /* Set a maximum width */
+  position: relative;
+  display: flex;
+  opacity: 0.8;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+  overflow: hidden; /* Prevent overflow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 0 auto; /* Center the event tile */
   text-align: center;
   font-size: 1.2em;
   color: #333;
