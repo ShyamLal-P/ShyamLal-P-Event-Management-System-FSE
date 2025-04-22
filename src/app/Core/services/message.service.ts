@@ -15,4 +15,8 @@ export class MessageService {
     this.message = null; // Clear message after retrieving
     return message;
   }
+
+  hasMessage(): boolean {
+    return this.message !== null;
+  }
 }

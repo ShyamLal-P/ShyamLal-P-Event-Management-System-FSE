@@ -23,10 +23,11 @@ app-home-header.sidebar-open {
     margin-left: 150px;
   }
 }
+
 /* Home content container */
 .home-container {
   padding: 20px;
-  height:100vh;
+  height: 100vh;
   transition: margin-left 0.3s ease;
   margin-top: 60px; /* height of fixed header */
   margin-left: 60px; /* Adjust to match the closed sidebar width */
@@ -35,7 +36,6 @@ app-home-header.sidebar-open {
   background-attachment: fixed;
   background-position: center;
 }
-
 
 .home-container.sidebar-open {
   margin-left: 270px;
@@ -51,6 +51,26 @@ app-home-header.sidebar-open {
   .home-container.sidebar-open {
     margin-left: 150px;
   }
+}
+
+/* Slide message */
+.slide-message {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4caf50; /* Green background */
+  color: white; /* White text */
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Ensure it is above other elements */
+  transition: opacity 0.3s ease, top 0.3s ease;
+}
+
+.slide-message.hidden {
+  opacity: 0;
+  top: 0;
 }
 
 /* Events container */
@@ -229,6 +249,7 @@ button.next {
 .dot.active {
   background-color: #717171;
 }
+
 .explore-more {
   display: inline-block;
   padding: 10px 20px;
@@ -255,4 +276,3 @@ button.next {
   background-color: #3b6a8e; /* Darker SteelBlue */
   transform: scale(0.95);
 }
- 

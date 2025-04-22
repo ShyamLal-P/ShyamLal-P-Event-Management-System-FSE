@@ -51,6 +51,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     this.message = this.messageService.getMessage();
+    console.log('Retrieved message:', this.message); // Debug log
     if (this.message) {
       this.showMessage = true;
       setTimeout(() => this.showMessage = false, 3000);
