@@ -95,7 +95,7 @@ export class FeedbackDialogComponent {
     this.feedbackService.submitFeedback(payload, this.data.token).subscribe({
       next: () => {
         this.showSnackBar('Feedback submitted successfully');
-        this.dialogRef.close(true);
+        this.dialogRef.close(true); // Pass true to indicate successful submission
       },
       error: (error: any) => {
         const errorMsg = error?.error || 'Error submitting feedback';

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar'; // Import MatSnackBar
 import { FeedbackDialogComponent } from '../feedback-dialog/feedback-dialog.component';
 import { SidebarComponent } from '../../../shared/components/sidebar/sidebar.component';
 import { HomeHeaderComponent } from '../../../shared/components/home-header/home-header.component';
@@ -23,7 +24,8 @@ export class FeedbackComponent implements OnInit {
     private eventService: EventService,
     private router: Router,
     private dialog: MatDialog,
-    private authService: AuthService // Inject AuthService here
+    private authService: AuthService, // Inject AuthService here
+    private snackBar: MatSnackBar // Inject MatSnackBar here
   ) {}
 
   ngOnInit(): void {
@@ -75,13 +77,20 @@ export class FeedbackComponent implements OnInit {
     }
   
     // Open the dialog and pass the full event object, userId, and token
-    this.dialog.open(FeedbackDialogComponent, {
+    const dialogRef = this.dialog.open(FeedbackDialogComponent, {
       width: '600px',
       data: {
         eventId: event.id,  // Use event.id instead of this.eventId
         userId: userId,     // Use userId from AuthService
         token: token,       // Use token from localStorage
         event: event        // Pass the event details
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Show success message using MatSnackBar
+        this.snackBar.open('Feedback submitted successfully', 'Close', { duration: 3000 });
       }
     });
   }  

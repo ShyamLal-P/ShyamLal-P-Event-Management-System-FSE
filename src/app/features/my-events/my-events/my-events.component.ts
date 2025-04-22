@@ -106,6 +106,7 @@ export class MyEventsComponent implements OnInit {
       const eventElement = document.getElementById(`event-${this.eventIdToDelete}`);
       if (eventElement) {
         eventElement.classList.add('break-effect');
+        this.createSmokeEffect(eventElement);
         setTimeout(() => {
           if (this.eventIdToDelete) { // Ensure eventIdToDelete is not null
             this.eventService.deleteEvent(this.eventIdToDelete).subscribe({
@@ -120,6 +121,22 @@ export class MyEventsComponent implements OnInit {
           }
         }, 500); // Wait for the animation to complete
       }
+    }
+  }
+
+  createSmokeEffect(eventElement: HTMLElement): void {
+    const smokeCount = 10; // Number of smoke elements
+    for (let i = 0; i < smokeCount; i++) {
+      const smoke = document.createElement('div');
+      smoke.className = 'smoke';
+      smoke.style.top = `${eventElement.offsetTop + Math.random() * eventElement.offsetHeight}px`;
+      smoke.style.left = `${eventElement.offsetLeft + Math.random() * eventElement.offsetWidth}px`;
+      document.body.appendChild(smoke);
+
+      // Remove smoke element after animation
+      setTimeout(() => {
+        smoke.remove();
+      }, 1000);
     }
   }
 

@@ -375,42 +375,41 @@ app-home-header.sidebar-open {
     grid-template-columns: 1fr;
   }
 }
- 
-@keyframes break {
+
+@keyframes zoomOut {
   0% {
     opacity: 1;
-    transform: scale(1) rotate(0deg);
+    transform: scale(1);
   }
   100% {
     opacity: 0;
-    transform: scale(0.5) rotate(720deg); /* Increase rotation to 720 degrees */
+    transform: scale(0.5);
+  }
+}
+
+@keyframes smokeRise {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-50px);
   }
 }
 
 .break-effect {
-  animation: break 0.5s forwards; /* Decrease duration to 0.5s for faster effect */
+  animation: zoomOut 0.5s forwards; /* Zoom out effect */
   position: relative;
   overflow: hidden;
 }
 
-.break-effect::before,
-.break-effect::after {
-  content: '';
+.smoke {
   position: absolute;
-  width: 50%;
-  height: 100%;
-  background: inherit;
-  top: 0;
-  transition: transform 0.5s; /* Match the duration of the main animation */
-}
-
-.break-effect::before {
-  left: 0;
-  transform: translateX(-100%) rotate(-720deg); /* Increase rotation to -720 degrees */
-}
-
-.break-effect::after {
-  right: 0;
-  transform: translateX(100%) rotate(720deg); /* Increase rotation to 720 degrees */
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(128,128,128,0.5) 0%, rgba(128,128,128,0) 70%); /* Grey smoke effect */
+  animation: smokeRise 1s forwards; /* Smoke rising effect */
+  z-index: -1; /* Ensure smoke is behind the event tile */
 }
 
