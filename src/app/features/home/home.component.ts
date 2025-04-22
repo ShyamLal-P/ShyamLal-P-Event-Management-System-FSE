@@ -54,7 +54,13 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     console.log('Retrieved message:', this.message); // Debug log
     if (this.message) {
       this.showMessage = true;
-      setTimeout(() => this.showMessage = false, 3000);
+      setTimeout(() => {
+        this.showMessage = false;
+        const slideMessageElement = document.querySelector('.slide-message');
+        if (slideMessageElement) {
+          slideMessageElement.classList.add('hidden');
+        }
+      }, 3000);
     }
 
     this.authService.getCurrentUser().subscribe({

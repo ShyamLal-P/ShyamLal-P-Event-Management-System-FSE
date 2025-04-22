@@ -253,7 +253,6 @@ button.next {
 .explore-more {
   display: inline-block;
   padding: 10px 20px;
-  margin-top: 20px;
   font-size: 16px;
   font-weight: bold;
   color: #fff;
@@ -264,7 +263,7 @@ button.next {
   transition: background-color 0.3s ease, transform 0.3s ease;
   position: absolute;
   right: 20px; /* Adjust as needed */
-  bottom: 20px; /* Adjust as needed */
+  bottom: 000px; /* Adjust to position below the event tile */
 }
 
 .explore-more:hover {
@@ -275,4 +274,20 @@ button.next {
 .explore-more:active {
   background-color: #3b6a8e; /* Darker SteelBlue */
   transform: scale(0.95);
+}
+
+.no-events {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px; /* Adjust height as needed */
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 20px auto; /* Center the message */
+  padding: 20px;
+  text-align: center;
+  font-size: 1.2em;
+  color: #333;
 }
